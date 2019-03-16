@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://webprogramozas.inf.elte.hu/webfejl2-pti/gyak/04.html -->
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>4. gyakorlat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./4. gyakorlat_files/bootstrap.min.css">
+<link rel="stylesheet" href="./4. gyakorlat_files/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="http://webprogramozas.inf.elte.hu/assets/images/favicon.ico">
+
+</head><body><div class="jumbotron bg-dark rounded-0 m-0">
+    <div class="container text-center text-light">
+        <h1>4. gyakorlat</h1>
+    </div>
+</div>
+
+<header id="backlink" class="bg-dark">
+    <a href="http://webprogramozas.inf.elte.hu/webfejl2-pti.html" class="text-white">
+        <strong>
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Vissza a tárgyhoz
+        </strong>
+    </a>
+</header>
+
+<section class="feher">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h2 id="feladatok">Feladatok</h2>
+
+<ol>
+  <li>
+    <p>Készíts egy űrlapot, amelyen egy nevet, életkort és egy érdeklődési területet kérünk be. A nevet és az életkort szöveges beviteli mezővel adható meg, az érdeklődési terület legördülő listából választható. Ennek első eleme “Kérem, válasszon!” feliratú.</p>
+
+    <p>a. A feladat az, hogy JavaScript segítségével ellenőrizzük, hogy a következő szabályok teljesülnek-e: név és érdeklődési terület megadása kötelező, életkornak csak számot fogadunk el. Az ellenőrzést elküldéskor végezzük el, a hibákat az űrlap felett egy listában jelenítsük meg.</p>
+
+    <p>b. Tegyünk fel egy radiogomb-csoportot is az oldalra, és vizsgáljuk azt is, hogy ki lett-e választva ezek közül az egyik.</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">""</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">"hibak"</span><span class="nt">&gt;&lt;/ul&gt;</span>
+   Nev: 
+   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"nev"</span><span class="nt">&gt;</span> <span class="nt">&lt;br&gt;</span>
+   Kor: 
+   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"kor"</span><span class="nt">&gt;</span> <span class="nt">&lt;br&gt;</span>
+   Erd:
+   <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">"erd"</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">""</span><span class="nt">&gt;</span>Kérem, válasszon...<span class="nt">&lt;/option&gt;</span>
+     <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"film"</span><span class="nt">&gt;</span>Film<span class="nt">&lt;/option&gt;</span>
+     <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"olvasas"</span><span class="nt">&gt;</span>Olvasás<span class="nt">&lt;/option&gt;</span>
+     <span class="nt">&lt;option</span> <span class="na">value=</span><span class="s">"sport"</span><span class="nt">&gt;</span>Sport<span class="nt">&lt;/option&gt;</span>
+   <span class="nt">&lt;/select&gt;</span> <span class="nt">&lt;br&gt;</span>
+   <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">id=</span><span class="s">"Küldés"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;/form&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Tegyünk fel az oldalra két lista űrlapelemet (select). Ezek között legyen két gomb: az egyikre kattintva a bal oldali listában kiválasztott elem átkerül a jobb oldali listába, a másikra kattintva ugyanez történik jobbról balra.</p>
+
+    <p>a. A listákban csak egy elemet lehet egyszerre kiválasztani.</p>
+
+    <p>b. A listákban többszörös választás is lehetséges.</p>
+  </li>
+  <li>
+    <p>Egy űrlapra tegyünk fel három radio gombot 1, 2, 3 értékkel és felirattal. Mellette legyen egy gomb. Erre kattintva a kiválasztott radiogombnak megfelelő számosságú szöveges beviteli mezőt generáljunk az űrlapba.</p>
+  </li>
+  <li>
+    <p>Egy űrlapon kérjük be a kitöltő nevét, és radio gomb segítségével a nemét. Ha a “nő” lett kiválasztva, akkor kérjük be a leánykori nevét is. Ellenkező esetben ez meg se jelenjen.</p>
+  </li>
+  <li>
+    <p>Egy űrlapon szöveges beviteli mezők és legördülő listák vannak. Oldjuk meg, hogy ha bármelyik mezőben változás állna be, akkor legyen piros az űrlap kerete.</p>
+  </li>
+  <li>
+    <p>Tegyünk fel egy képet az oldalra, mellé pedig egy szöveget (pl. “segítség” felirattal).</p>
+
+    <p>a. Ha a szöveg fölé visszük az egeret, akkor cseréljük le a képet valami másra.</p>
+
+    <p>b. Oldjuk meg ezt a problémát a kép előtöltésével!</p>
+  </li>
+  <li>
+    <p>Készíts egy képnézegetőt!</p>
+
+    <p>a. Az oldalon legyen egy kép és két gomb “Előző”, “Következő” felirattal. A gombokra kattintva változzon meg a kép. A képek forrását egy tömbben tároljuk.</p>
+
+    <p>b. Töltsük előre a következő képet.</p>
+
+    <p>c. Oldd meg a képváltás stílusátmenettel. Legegyszerűbb halványulással megoldani az átmenetet.</p>
+
+    <p>d. Ha nincs JavaScript, akkor egyáltalán ne jelenjen meg a képnézegető.</p>
+  </li>
+  <li>
+    <p>Egy négyzetrácsos térképen el van dugva egy kincs. Kattintgatással keresd meg, hol van! A megtalálás után, a gép újra rejtse el a kincset!
+ a) A tábla legyen 2x2-es méretű!</p>
+
+    <p>b) Egy szöveges mezőben lehessen megadni, mekkora legyen a tábla. Egy gombra kattintva a megfelelő méretű táblázat jelenik meg.</p>
+
+    <p>c) Készítsünk számlálót, mely méri hány kattintásból találtuk meg a kincset!</p>
+  </li>
+  <li>
+    <p>Rakjunk fel az oldalra három szöveges beviteli mezőt, amelyekben az új ablak nyitásához szükséges paraméterek értékeit kérjük be. Az elsőbe az URL-t, a másodikban az ablak nevét, a harmadikban az ablaknyitási paramétereket adjuk meg. Egy gomb megnyomására a felvitt értékekkel hívjuk meg az ablaknyitási parancsot.</p>
+  </li>
+  <li>
+    <p>Adott néhány hivatkozás az oldalon. 
+ a) Ezekre kattintva a linkek által mutatott oldalak új ablakban nyíljanak meg!
+ b) Pozícionáljuk középre az új ablakot!
+ c) Oldjuk meg azt, hogy a fenti metódus minden olyan linkre működjön az oldalon, amelyiknek az “ujablak” stílusosztály be van állítva!</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://www.elte.hu"</span><span class="nt">&gt;</span>ELTE<span class="nt">&lt;/a&gt;</span> <span class="nt">&lt;br&gt;</span>
+ <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://www.inf.elte.hu"</span> <span class="na">class=</span><span class="s">"ujablak"</span><span class="nt">&gt;</span>ELTE IK<span class="nt">&lt;/a&gt;</span> <span class="nt">&lt;br&gt;</span>
+ <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://webprogramozas.inf.elte.hu"</span><span class="nt">&gt;</span>Webprogramozás szerver<span class="nt">&lt;/a&gt;</span> <span class="nt">&lt;br&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Az oldalra tegyünk fel egy szöveges beviteli mezőt és egy gombot. A gombra kattintva nyíljon meg új ablak, amelyben megjelenik a mezőben megadott szöveg.</p>
+  </li>
+  <li>
+    <p>Adott egy legördülő lista, benne különböző oldalak neveivel. A lista elemei közül egyet választva töltődjön be az adott oldal!</p>
+  </li>
+  <li>
+    <p>Adott egy “Vissza” feliratú hivatkozás az oldalon. Felhasználói megerősítés után (“Biztos, hogy vissza akar menni az előző oldalra?”), töltődjön be az előző oldal.</p>
+  </li>
+</ol>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+</body></html>

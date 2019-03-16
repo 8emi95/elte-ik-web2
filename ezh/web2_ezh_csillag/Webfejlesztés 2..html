@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://webprogramozas.inf.elte.hu/webfejl2/gyak/pelda_zh2.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>Webfejlesztés 2.</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="./Webfejlesztés 2._files/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="./Webfejlesztés 2._files/targy.css" rel="stylesheet" media="screen">
+		<link href="./Webfejlesztés 2._files/bootstrap-responsive.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="brand" href="http://webprogramozas.inf.elte.hu/webfejl2/gyak/pelda_zh2.html#">Webprogramozás szerver</a>
+					<ul class="nav">
+						<li class="active"><a href="http://webprogramozas.inf.elte.hu/webfejl2.html">Webfejlesztés 2.</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/weaf1.html">Webes alkalmazásfejlesztés 1.</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	    <div class="container">
+	    	<div class="well">
+				<h1>Webfejlesztés 2.</h1>
+			</div>
+	    	<div class="row">
+	    		<div class="span3">
+				    <ul class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="125">
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#altalanos">Általános információk</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#szamonkeres">Számonkérés</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#eloadas">Előadások</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#gyakorlat">Gyakorlatok</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#segedanyag">Segédanyagok</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#oktatok">Oktatók</a></li>
+					</ul>
+	    		</div>		
+	    		<div class="span9">
+	    			<section>
+						
+
+
+
+	    				<h1 id="webfejlesztés-2.-zárthelyi-dolgozat">Példa zárthelyi dolgozat</h1>
+<h2 id="tudnivalók">Tudnivalók</h2>
+<ul>
+<li>A feladatot a webprogramozas.inf.elte.hu szerveren kell elvégezni PHP és JavaScript segítségével.</li>
+<li>A megoldást egy <code>wf2zh</code> nevű mappába készítsd el a public_html mappán belül!</li>
+<li>A megoldások plágiumellenőrzésen esnek át a zh után. A gyanúsan hasonló megoldást adó hallgatókat megkérhetjük zh-ik megvédésére.</li>
+<li>A megoldáshoz bármilyen segédanyag felhasználható, kivéve a humán segítséget!</li>
+<li>A megoldások elkészítésére 105 perc áll rendelkezésre.</li>
+<li>Értékelés: 1 + a megoldott részfeladatok száma.</li>
+<li>Az értékelés helyben történik.</li>
+<li>Lényeg a működő alkalmazás, kinézet, kód szépsége nem számít.</li>
+</ul>
+<h2 id="feladat">Feladat</h2>
+<p>Készíts egy csillagok adatait kezelő alkalmazást. Az adatokat szerveroldalon fájlban tároljuk.</p>
+<ol style="list-style-type: decimal">
+<li><p>Készíts űrlapot, amelyen egy új csillag adatai vehetők fel! Ehhez meg kell adni a következő adatokat:</p>
+<ul>
+<li>csillag neve (kötelező)</li>
+<li>csillag típusa (kötelező, legördülő mező, értéke: nap, galaxis, szupernova, hullócsillag)</li>
+<li>csillag vízszintes koordinátája (kötelező, szám, 0 és 500 között)</li>
+<li>csillag függőleges koordinátája (kötelező, szám, 0 és 300 között)</li>
+</ul>
+<p>A fenti adatok mellett minden csillagnál tárolunk egy egyedi sorszámot (pl. amit a time() függvény állít elő)! Az adatok ellenőrzését PHP oldalon el kell végezni, és a hibaüzeneteket az űrlap felett meg kell jeleníteni.</p></li>
+<li><p>Egy másik oldalon jelenítsd meg a csillagos eget a következő módon: Az ég egy <code>egbolt</code> azonosítójú <code>div</code> elem legyen. Ebben legyenek a csillagok, mindegyik egy újabb <code>div</code> elemként megjelenve. Mindegyik csillagot az égbolton a koordinátái szerint helyezzünk el (<code>top</code> és <code>left</code>). A <code>div</code> tartalma szupernovánál <code>X</code>, hullócsillagnál <code>/</code>, minden egyéb esetben <code>*</code>. Például:</p>
+<pre><code>&lt;div id="sky"&gt;
+    &lt;div style="top: 30px;left: 20px;"&gt;*&lt;/div&gt;
+    &lt;div style="top: 80px;left: 10px;"&gt;/&lt;/div&gt;
+    &lt;div style="top: 20px;left: 30px;"&gt;*&lt;/div&gt;
+    &lt;div style="top: 45px;left: 40px;"&gt;X&lt;/div&gt;
+    &lt;div style="top: 60px;left: 50px;"&gt;*&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>A hozzá tartozó stílusok:</p>
+<pre><code>#egbolt {
+    width:  500px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+#egbolt div {
+    position: absolute;
+    cursor: pointer;
+}</code></pre>
+<p>Az oldalon helyezz el egy legördülő mezőt, amelyben a csillagok típusai jelennek meg (lehet üres is), mellé pedig egy gombot. A gombra kattintva töltődjön újra az oldal, és csak a legördülő mezőben kiválasztott csillagtípusok jelenjenek meg az égbolton.</p></li>
+<li><p>A csillagos égbolton egy csillagra kattintva legyen lehetőség a róla szóló információkat megtudni. A csillag azonosítóját érdemes a csillag <code>div</code> elemének attribútumaként tárolni (pl. <code>data-azon="123"</code>, aminek kiolvasásához hasznos lehet a <code>getAttribute()</code> függvény a következő formában: <code>elem.getAttribute('data-azon')</code>). Az információkat AJAX-szal kérjük le a szerverről, és jelenítsük meg az égbolt alatt. Ha hullócsillagra kattintottunk, akkor a csillag animálva essen is le az égről (függőleges koordinátája lógjon ki az égboltból)!</p></li>
+<li><p>Legyen lehetőség a csillagos égbolton kijelölni egy területet, például úgy, hogy egy erre utaló gomb megnyomását követően az égbolton először a bal felső sarkot, majd a jobb alsó sarkot jelöljük ki. Ezt követően a program rajzolja ki a kijelölt területnek megfelelő téglalapot az égboltra (pl. egy megfelelően formázott és elhelyezett <code>div</code> elem segítségével), majd írja ki a kijelölt területen található csillagok számát, és a csillagokat fesse pirosra!</p></li>
+</ol>
+
+
+
+
+
+	    				
+
+
+					</section>
+	    		</div>
+	    	</div>
+		</div>
+		
+		<script src="./Webfejlesztés 2._files/jquery.min.js.download"></script>
+		<script src="./Webfejlesztés 2._files/bootstrap.min.js.download"></script>
+	
+</body></html>

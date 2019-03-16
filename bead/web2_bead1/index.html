@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web2 Bead1</title>
+</head>
+<body>
+    <div>
+        <style>
+            .visible {
+                width: 100px;
+                height: 100px;
+                border: 1px solid black;
+                text-align: center;
+            }
+            .invisible {
+                width: 100px;
+                height: 100px;
+                text-align: center;
+            }
+            .targetCount {
+                color: red;
+            }
+            .rotated90 {
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+            .rotated180 {
+                -webkit-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+        </style>
+        <table id="table">
+            <tr>
+                <td colspan="5" align="center">Táblázat</td>
+                <td></td>
+                <td align="center">Hozzáadandó</td>
+                <td></td>
+                <td align="center">Célok száma</td>
+            </tr>
+            <tr>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="invisible"></td>
+                <td class="visible"><img src="./dupla.png"></td>
+                <td class="invisible"></td>
+                <td class="visible" class="targetCount">1</td>
+            </tr>
+            <tr>
+                <td class="visible"></td>
+                <td class="visible"><img src="./lezer.png"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="invisible"></td>
+                <td class="visible"></td>
+                <td class="invisible"></td>
+                <td class="invisible"></td>
+            </tr>
+            <tr>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="invisible"></td>
+                <td class="visible"></td>
+                <td class="invisible"></td>
+                <td class="invisible"></td>
+            </tr>
+            <tr>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"><img id="rotatable" onclick="rotateImage()" src="./cel.png"></td>
+                <td class="visible"></td>
+                <td class="invisible"></td>
+                <td class="visible"></td>
+                <td class="invisible"></td>
+                <td class="invisible"></td>
+            </tr>
+            <tr>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="visible"></td>
+                <td class="invisible"></td>
+                <td class="visible"></td>
+                <td class="invisible"></td>
+                <td class="invisible"></td>
+            </tr>
+        </table>
+        </div>
+    <script src="./index.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+    <script type="text/javascript">
+        // document.writeln("Hello World!")
+        // console.log("Hello World!")
+        // alert("Hello World!")
+
+        // var name = prompt("What's your name?")
+        // console.log(name)
+
+        // var n = prompt("n: ")
+        // function factorial(n) {
+        //     var fact = 1;
+        //     for (var i = 1; i <= n; ++i) {
+        //         fact *= i
+        //     }
+        //     return fact;
+        // }
+        // console.log(factorial(n))
+
+        // var n = prompt("n: ")
+        // document.writeln("<table>")
+        // for (var i = 1; i <= n; ++i) {
+        //     document.writeln("<tr>")
+        //     for (var j = 1; j <= n; ++j) {
+        //         document.writeln("<td>" + i * j + "</td>")
+        //     }
+        // }
+        // document.writeln("</table>")
+
+        var array = [1, 2, 3, 4]
+        array.push(5)
+        // console.log(array)
+        // function search(array) {
+        //     var i = 0;
+        //     while (i < array.length && array[i] % 2 != 0) {
+        //         i++
+        //     }
+        //     return {
+        //         l: i < array.length,
+        //         no: i
+        //     }
+        // }
+        // console.log(search(array))
+
+        function even(array) {
+            var ret = []
+            for (var i = 0; i < array.length; ++i) {
+                if (array[i] % 2 == 0) {
+                    ret.push(array[i])
+                }
+            }
+            return ret
+        }
+        console.log(even(array))
+    </script>
+    <!-- <h1>Hello World!</h1> -->
+    </body>
+</html>

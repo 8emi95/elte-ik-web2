@@ -1,0 +1,94 @@
+html, body
+{
+    height: 100%;
+}
+
+body
+{
+    /* background: #8595af; */
+    background: linear-gradient(to bottom, pink, red, orange, yellow, green, turquoise, indigo) no-repeat fixed;
+    min-width: 640px;
+    max-width: 4096px;
+}
+
+
+
+h1 {
+    margin-bottom: 50px;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 40px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 18px;
+}
+
+#wrapper {
+    width: 85%;
+    margin: 0 auto;
+}
+
+#rules {
+    margin-bottom: 50px;
+}
+
+#gameModes {
+    margin: auto;
+    font-size: 18px;
+}
+
+.leftButtons {
+    width: 200px;
+
+    font-size: 25px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.modeParagraphs {
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+#gameboard table {
+    margin: auto;
+    text-align: center;
+    font-size: 50px;
+    border: 5px solid black;
+}
+
+#gameboard td {
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+}
+
+.buttons {
+    margin: auto;
+
+    font-size: 25px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#message {
+    text-align: center;
+}
+
+#animation {
+    text-align: center;
+}
+
+#backImage {
+    left: 0;
+    bottom: 0;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}

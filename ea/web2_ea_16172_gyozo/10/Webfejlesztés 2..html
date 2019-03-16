@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)http://webprogramozas.inf.elte.hu/webfejl2/ea/10/#/webfejleszts-2. -->
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>Webfejlesztés 2.</title>
+
+    <meta name="description" content="Hour of Code előadás, Csorna">
+    <meta name="author" content="Horváth Győző">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/reveal.css">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2.css" id="theme">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2(1).css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <!-- <link rel="stylesheet" href="../revealjs/lib/css/obsidian.css"> -->
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/github.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../revealjs/css/print/pdf.css' : '../revealjs/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script><link rel="stylesheet" type="text/css" href="./Webfejlesztés 2._files/paper.css">
+
+    <!--[if lt IE 9]>
+    <script src="../revealjs/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body style="transition: -webkit-transform 0.8s ease;">
+
+    <div class="reveal convex center has-parallax-background" role="application" data-transition-speed="default" data-background-transition="fade">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides" style="width: 960px; height: 700px; left: 50%; top: 50%; bottom: auto; right: auto; transform: translate(-50%, -50%) scale(0.757286);">
+
+<section id="webfejlesztés-2." class="slide level1 present" style="top: 126px; display: block;">
+<h1>Webfejlesztés 2.</h1>
+<h3 id="munkamenet-kezelés-hitelesítés">Munkamenet-kezelés, hitelesítés</h3>
+<p><small> Horváth Győző<br>
+Egyetemi adjunktus<br>
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba<br>
+Tel: (1) 372-2500/1816<br>
+horvath.gyozo@inf.elte.hu </small></p>
+<!--
+
+## PHP beadandó {.new-section}
+
+- Honlapról elérhető
+- Sárkányharcos szerveroldali funkcionalitása
+    + tárolás (fájlban)
+    + listázás
+    + AJAX
+- Határidő: 2016. május 22. éjfél
+
+-->
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 224.5px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés" class="new-section">Ismétlés</h2>
+</section>
+<section class="slide level1 future" style="top: 0px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés-1">Ismétlés</h2>
+<ul>
+<li>Dinamikus szerveroldali webprogramozás</li>
+<li>Output (HTML generálás)</li>
+<li>Input (link, űrlap)</li>
+<li>Adattárolás: fájlok
+<ul>
+<li>Fájlműveletek</li>
+</ul></li>
+<li>alacsony szintű műveletek</li>
+<li>magas szintű műveletek
+<ul>
+<li>Fájlszerkezet-vezérelt</li>
+<li>Adatszerkezet-vezérelt</li>
+</ul></li>
+<li>Sorosítás</li>
+<li>Kódszervezés (logikailag, fizikailag)
+<ul>
+<li>elővezérlő, vezérlő, sablonok</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés-2">Ismétlés</h2>
+<div class="span7 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/server_client_php_file.png" alt="">
+</figure>
+</div>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="munkamenet-kezelés" class="new-section">Munkamenet-kezelés</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="http-állapotmentesség">HTTP állapotmentesség</h2>
+<div class="equal">
+<div class="span7">
+<ul>
+<li>A HTTP állapotmentes protokoll</li>
+<li>Nem emlékezik az előző kérés adataira</li>
+<li>Függetlenül kezeli a kéréseket
+<ul>
+<li>Ugyanazon kliens különböző kéréseit</li>
+<li>Különböző kliensek kéréseit</li>
+</ul></li>
+</ul>
+</div>
+<div class="span5">
+<figure>
+<img src="./Webfejlesztés 2._files/kulonbozo_kliensek.png" alt="">
+</figure>
+</div>
+</div>
+<div class="span10 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/kulonbozo_keresek.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="probléma">1. probléma</h2>
+<ul>
+<li>Ugyanazon kliens több kérése között az állapot megtartása</li>
+<li>Pl. kosár</li>
+<li>HTTP kéréstől külön tárolni</li>
+</ul>
+<div class="span12 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/bolt1.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="probléma-1">1. probléma</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/bolt2.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="probléma-2">2. probléma</h2>
+<p>Mindegyik kliens ugyanazon az adaton osztozkodik</p>
+<div class="span7 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/bolt3.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="munkamenet-kezelés-1">Munkamenet-kezelés</h2>
+<p>Kliensenkénti adattárolás</p>
+<div class="span7 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/bolt4.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="munkamenet-kezelés-2">Munkamenet-kezelés</h2>
+<ul>
+<li>Kliensek megkülönböztetése</li>
+<li>Kliensenkénti adattárolás</li>
+<li>Példák:
+<ul>
+<li>levelezés, dokumentumok</li>
+<li>internetbank</li>
+<li>webáruház kosara, online szerkesztők (Doodle)</li>
+</ul></li>
+<li>Megoldás
+<ul>
+<li>kliens oldalon</li>
+<li>szerver oldalon</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="php-programok-adatforrása">PHP programok adatforrása</h2>
+<div class="span10 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/php_adatok_3.png" alt="">
+</figure>
+</div>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="munkamenet-kezelési-lehetőségek" class="new-section">Munkamenet-kezelési lehetőségek</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa">Példa</h2>
+<p>Tároljuk egy számláló értékét felhasználónként, és minden kérésnél növeljük a számláló értékét eggyel!</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kliens-oldali-állapottartás">Kliens oldali állapottartás</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Az adatot a kliensen tároljuk</li>
+<li>Minden kérésnél felküldjük a szerverre</li>
+<li>A szerver visszaadja a kliensnek</li>
+</ul>
+</div>
+<div class="span6">
+<ul>
+<li>Kliens oldali technológiák
+<ul>
+<li>URL</li>
+<li>Rejtett mező</li>
+<li>Süti</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="span10 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/client_side_state.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="állapottartás-url-ben">Állapottartás URL-ben</h2>
+<pre class="txt"><code class="hljs cpp">szamol.php?szamlalo=<span class="hljs-number">1</span></code></pre>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-variable">$szamlalo</span> = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">'szamlalo'</span>])) {
+  <span class="hljs-variable">$szamlalo</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">'szamlalo'</span>];
+}
+<span class="hljs-variable">$szamlalo</span> += <span class="hljs-number">1</span>;
+
+var_dump(<span class="hljs-variable">$szamlalo</span>);
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;a href=<span class="hljs-string">"szamol.php?szamlalo=&lt;?= $szamlalo ?&gt;"</span>&gt;Növel&lt;/a&gt;</code></pre>
+<figure>
+<img src="./Webfejlesztés 2._files/url_state.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="állapottartás-url-ben-1">Állapottartás URL-ben</h2>
+<ul>
+<li>Hátránya:
+<ul>
+<li>Minden linkhez oda kell generálni
+<ul>
+<li>Ha egyről is lemarad, elvész az adat</li>
+</ul></li>
+<li>Sok adat nem fér el benne
+<ul>
+<li>URL hossza legfeljebb 2kB</li>
+</ul></li>
+<li>Feltűnő (zavaró)</li>
+<li>Könnyen átírható</li>
+<li>Könyvjelzőzhető (nem mindig hátrány)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="állapottartás-rejtett-mezőben">Állapottartás rejtett mezőben</h2>
+<ul>
+<li>URL: kevés adat, feltűnő, manipulálható</li>
+<li><p>→ űrlap rejtett mezője</p>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"hidden"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"szamlalo"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"4"</span>&gt;</span></code></pre></li>
+</ul>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Előny
+<ul>
+<li>sok adat</li>
+<li>nem feltűnő</li>
+</ul></li>
+</ul>
+</div>
+<div class="span6">
+<ul>
+<li>Hátrány
+<ul>
+<li>manipulálható</li>
+<li>csak űrlapok esetén</li>
+<li>normál linkeknél JavaScript kell</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-számláló">Példa – számláló</h2>
+<div class="equal">
+<div class="span9">
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-variable">$szamlalo</span> = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">'szamlalo'</span>])) {
+  <span class="hljs-variable">$szamlalo</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'szamlalo'</span>];
+}
+<span class="hljs-variable">$szamlalo</span> += <span class="hljs-number">1</span>;
+
+var_dump(<span class="hljs-variable">$szamlalo</span>);
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;form action=<span class="hljs-string">"szamlalo3.php"</span> method=<span class="hljs-string">"post"</span>&gt;
+  &lt;input type=<span class="hljs-string">"hidden"</span> name=<span class="hljs-string">"szamlalo"</span> 
+         value=<span class="hljs-string">"&lt;?php echo $szamlalo; ?&gt;"</span>&gt;
+  &lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"Növel"</span>&gt;
+&lt;/form&gt;
+
+&lt;!-- Ez nem működik --&gt;
+&lt;a href=<span class="hljs-string">"szamlalo3.php"</span>&gt;Növel&lt;/a&gt;</code></pre>
+</div>
+<div class="span3">
+<figure>
+<img src="./Webfejlesztés 2._files/hidden_state.png" alt="">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="állapottartás-sütivel">Állapottartás sütivel</h2>
+<ul>
+<li>Rejtett mező: macerás, manipulálható → süti</li>
+<li><p>HTTP kérés és PHP (<code>$_COOKIES</code>)</p>
+<pre class="txt"><code class="hljs stata">Cookie: <span class="hljs-keyword">n</span>év1=érték1; <span class="hljs-keyword">n</span>év2=érték2; <span class="hljs-keyword">n</span>év3=érték3</code></pre></li>
+<li><p>HTTP válasz és PHP:</p>
+<pre class="php"><code class="hljs">Set-Cookie: név=érték[; expires=dátum][; domain=domain][; path=path][; secure]</code></pre>
+<pre class="php"><code class="hljs"><span class="hljs-comment">//Általános formája</span>
+<span class="hljs-variable">$siker</span> = setcookie(<span class="hljs-variable">$név</span>[, <span class="hljs-variable">$érték</span> [, <span class="hljs-variable">$expires</span> = <span class="hljs-number">0</span> [, <span class="hljs-variable">$path</span> [, <span class="hljs-variable">$domain</span> [, <span class="hljs-variable">$secure</span> = <span class="hljs-keyword">false</span>]]]]]);
+<span class="hljs-comment">//Néhány példa</span>
+setcookie(<span class="hljs-string">'alma'</span>, <span class="hljs-string">'piros'</span>);
+setcookie(<span class="hljs-string">'körte'</span>, <span class="hljs-string">'sárga'</span>, time() + <span class="hljs-number">60</span>); <span class="hljs-comment">//lejárat 60 mp múlva</span></code></pre></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-számláló-1">Példa – számláló</h2>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-variable">$szamlalo</span> = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">'szamlalo'</span>])) {
+  <span class="hljs-variable">$szamlalo</span> = <span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">'szamlalo'</span>];
+}
+<span class="hljs-variable">$szamlalo</span> += <span class="hljs-number">1</span>;
+setcookie(<span class="hljs-string">'szamlalo'</span>, <span class="hljs-variable">$szamlalo</span>);
+
+print_r(<span class="hljs-variable">$_GET</span>);
+print_r(<span class="hljs-variable">$_POST</span>);
+print_r(<span class="hljs-variable">$_COOKIE</span>);
+
+var_dump(<span class="hljs-variable">$szamlalo</span>);
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;a href=<span class="hljs-string">"szamol.php"</span>&gt;Növel&lt;/a&gt;</code></pre>
+<p>DEMO</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="állapottartás-sütivel-1">Állapottartás sütivel</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Előny
+<ul>
+<li>nem feltűnő</li>
+<li>automatikus küldése</li>
+</ul></li>
+</ul>
+</div>
+<div class="span6">
+<ul>
+<li>Hátrány
+<ul>
+<li>manipulálható (kódolható)</li>
+<li>limitált adatmennyiség</li>
+<li>letiltható</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kliensoldali-megoldások">Kliensoldali megoldások</h2>
+<ul>
+<li>Adat a kliensen van</li>
+<li>Manipulálható</li>
+<li>Sok adat esetén feleslegesen sok adat megy oda-vissza a kliens és szerver között</li>
+</ul>
+<figure>
+<img src="./Webfejlesztés 2._files/client_side_state.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szerveroldali-megoldások">Szerveroldali megoldások</h2>
+<ul>
+<li>Tároljuk az adatot a szerveren
+<ul>
+<li>→ nem manipulálható kliens oldalon</li>
+<li>→ nem kell sok adatot küldözgetni</li>
+</ul></li>
+<li>A kliens megkülönböztetése továbbra is szükséges</li>
+<li>→ tokent kap, amivel azonosítja magát és hozzáfér a tokenhez tartozó adatokhoz</li>
+<li>Token kliensoldali megoldással közlekedik
+<ul>
+<li>süti (alapértelmezett)</li>
+<li>URL (ha nincs süti)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szerveroldali-megoldás">Szerveroldali megoldás</h2>
+<p>Több kliens</p>
+<figure>
+<img src="./Webfejlesztés 2._files/kulonbozo_kliensek_token.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szerveroldali-megoldás-1">Szerveroldali megoldás</h2>
+<p>Egy kliens különböző kérései</p>
+<figure>
+<img src="./Webfejlesztés 2._files/kulonbozo_keresek_token.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szerveroldali-megoldás-2">Szerveroldali megoldás</h2>
+<ul>
+<li>Adatok tárolása
+<ul>
+<li>fájlban (ld. PHP)</li>
+<li>adatbázisban</li>
+</ul></li>
+<li>Plusz erőforrás a szervertől</li>
+<li>A tokenre nagyon kell vigyázni!
+<ul>
+<li>ellopható</li>
+<li>kilépés</li>
+</ul></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="munkamenet-kezelés-php-ban" class="new-section">Munkamenet-kezelés PHP-ban</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="munkamenet-kezelés-php-ban-1">Munkamenet-kezelés PHP-ban</h2>
+<ul>
+<li>Munkamenethez tartozó adatok:
+<ul>
+<li><code>$_SESSION</code></li>
+</ul></li>
+<li>Munkamenet-kezelő függvények:
+<ul>
+<li><code>session_start()</code></li>
+<li><code>session_destroy()</code></li>
+<li><code>SID</code> konstans (<code>PHPSESSID=token</code>)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-számláló-2">Példa – számláló</h2>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+session_start();
+
+var_dump(<span class="hljs-variable">$_GET</span>);
+var_dump(<span class="hljs-variable">$_SESSION</span>);
+
+<span class="hljs-variable">$szamlalo</span> = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'szamlalo'</span>])) {
+  <span class="hljs-variable">$szamlalo</span> = <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'szamlalo'</span>];
+}
+<span class="hljs-variable">$szamlalo</span> += <span class="hljs-number">1</span>;
+<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'szamlalo'</span>] = <span class="hljs-variable">$szamlalo</span>;
+
+var_dump(<span class="hljs-variable">$szamlalo</span>);
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;a href=<span class="hljs-string">"szamol.php?&lt;?php echo SID; ?&gt;"</span>&gt;Növel&lt;/a&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa---számláló">Példa - számláló</h2>
+<p>Süti letiltása → token az URL-ben</p>
+<figure>
+<img src="./Webfejlesztés 2._files/suti_letiltasa.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-számláló-3">Példa – számláló</h2>
+<p>Munkamenet megszüntetése</p>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+session_start();
+
+print_r(<span class="hljs-variable">$_GET</span>);
+print_r(<span class="hljs-variable">$_SESSION</span>);
+
+<span class="hljs-variable">$_SESSION</span> = <span class="hljs-keyword">array</span>();
+session_destroy();
+
+print_r(<span class="hljs-variable">$_SESSION</span>);
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;a href=<span class="hljs-string">"szamol.php"</span>&gt;Vissza&lt;/a&gt;</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hitelesítés" class="new-section">Hitelesítés</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hitelesítés-1">Hitelesítés</h2>
+<ul>
+<li>Ki használja az alkalmazást?</li>
+<li>→ azonosított felhasználó
+<ul>
+<li>felhasználónév</li>
+<li>teljes név</li>
+</ul></li>
+<li>→ névtelen felhasználó
+<ul>
+<li>vendég</li>
+</ul></li>
+<li>Bizonyos oldalak csak azonosított felhasználók számára érhetőek el</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="technológiák">Technológiák</h2>
+<ul>
+<li><code>.htaccess</code>, <code>.htpasswd</code>
+<ul>
+<li>könyvtár alapú védelem</li>
+</ul></li>
+<li>WWW-Authenticate
+<ul>
+<li>Módok
+<ul>
+<li>Basic</li>
+<li>Digest (titkosított)</li>
+</ul></li>
+<li>HTTP része</li>
+<li>PHP-ból kiolvasható</li>
+</ul></li>
+<li>Ezek PHP-tól független technológiák</li>
+<li>Plusz adat tárolására nem alkalmasak</li>
+<li>Csak hitelesítésre</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hitelesítés-munkamenettel">Hitelesítés munkamenettel</h2>
+<ul>
+<li>Azonosított felhasználó munkamenetében egy speciális kulcsot helyezünk el</li>
+<li>Ezzel jelezzük, hogy már azonosítottuk</li>
+<li>Folyamat
+<ul>
+<li>beléptető űrlap</li>
+<li>sikeres belépés esetén → kulcs</li>
+<li>minden oldalon: ha ez a kulcs megvan, akkor azonosított</li>
+<li>ettől függően más logika, más nézet lehet</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="regisztráció">Regisztráció</h2>
+<p>Űrlap</p>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span> var_dump(<span class="hljs-variable">$hibak</span>); <span class="hljs-preprocessor">?&gt;</span>
+&lt;form action=<span class="hljs-string">"reg.php"</span> method=<span class="hljs-string">"post"</span>&gt;
+  Felhasználónév:
+  &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"felhnev"</span>&gt; &lt;br&gt;
+  Jelszó:
+  &lt;input type=<span class="hljs-string">"password"</span> name=<span class="hljs-string">"jelszo"</span>&gt; &lt;br&gt;
+  &lt;input type=<span class="hljs-string">"submit"</span> name=<span class="hljs-string">"reg"</span> value=<span class="hljs-string">"Regisztrál"</span>&gt;
+&lt;/form&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="regisztráció-1">Regisztráció</h2>
+<pre class="php"><code class="hljs"><span class="hljs-variable">$hibak</span> = <span class="hljs-keyword">array</span>();
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$_POST</span>) {
+  <span class="hljs-variable">$felhnev</span> = trim(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">'felhnev'</span>]);
+  <span class="hljs-variable">$jelszo</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'jelszo'</span>];
+  <span class="hljs-variable">$jelszavak</span> = fajlbol_betolt(<span class="hljs-string">'jelszavak.txt'</span>);
+  <span class="hljs-keyword">if</span> (strlen(<span class="hljs-variable">$felhnev</span>) == <span class="hljs-number">0</span>) {
+    <span class="hljs-variable">$hibak</span>[] = <span class="hljs-string">'Nincs felhnev!'</span>;
+  }
+  <span class="hljs-keyword">if</span> (strlen(<span class="hljs-variable">$jelszo</span>) == <span class="hljs-number">0</span>) {
+    <span class="hljs-variable">$hibak</span>[] = <span class="hljs-string">'Nincs jelszo!'</span>;
+  }
+  <span class="hljs-keyword">if</span> (array_key_exists(<span class="hljs-variable">$felhnev</span>, <span class="hljs-variable">$jelszavak</span>)) {
+    <span class="hljs-variable">$hibak</span>[] = <span class="hljs-string">'Letezo felhnev!'</span>;
+  }
+  <span class="hljs-keyword">if</span> (!<span class="hljs-variable">$hibak</span>) {
+    <span class="hljs-variable">$jelszavak</span>[<span class="hljs-variable">$felhnev</span>] = md5(<span class="hljs-variable">$jelszo</span>);
+    fajlba_ment(<span class="hljs-string">'jelszavak.txt'</span>, <span class="hljs-variable">$jelszavak</span>);
+    header(<span class="hljs-string">'Location: login.php'</span>);
+    <span class="hljs-keyword">exit</span>();
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="beléptetés">Beléptetés</h2>
+<p>Űrlap</p>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span> var_dump(<span class="hljs-variable">$hibak</span>); <span class="hljs-preprocessor">?&gt;</span>
+&lt;form action=<span class="hljs-string">"login.php"</span> method=<span class="hljs-string">"post"</span>&gt;
+  Felhasználónév:
+  &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"felhnev"</span>&gt; &lt;br&gt;
+  Jelszó:
+  &lt;input type=<span class="hljs-string">"password"</span> name=<span class="hljs-string">"jelszo"</span>&gt; &lt;br&gt;
+  &lt;input type=<span class="hljs-string">"submit"</span> name=<span class="hljs-string">"belep"</span> value=<span class="hljs-string">"Belép"</span>&gt;
+&lt;/form&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="beléptetés-1">Beléptetés</h2>
+<pre class="php"><code class="hljs"><span class="hljs-variable">$hibak</span> = <span class="hljs-keyword">array</span>();
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$_POST</span>) {
+  <span class="hljs-variable">$felhnev</span> = trim(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">'felhnev'</span>]);
+  <span class="hljs-variable">$jelszo</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'jelszo'</span>];
+  <span class="hljs-variable">$jelszavak</span> = fajlbol_betolt(<span class="hljs-string">'jelszavak.txt'</span>);
+  <span class="hljs-keyword">if</span> (!(array_key_exists(<span class="hljs-variable">$felhnev</span>, <span class="hljs-variable">$jelszavak</span>) &amp;&amp; 
+        <span class="hljs-variable">$jelszavak</span>[<span class="hljs-variable">$felhnev</span>] == md5(<span class="hljs-variable">$jelszo</span>))) {
+    <span class="hljs-variable">$hibak</span>[] = <span class="hljs-string">'Nem jó!'</span>;
+  }
+  <span class="hljs-keyword">if</span> (!<span class="hljs-variable">$hibak</span>) {
+    <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'belepve'</span>] = <span class="hljs-keyword">true</span>;
+    <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'felhnev'</span>] = <span class="hljs-variable">$felhnev</span>;
+    header(<span class="hljs-string">'Location: szamlalo5.php'</span>);
+    <span class="hljs-keyword">exit</span>();
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hitelesítés-ellenőrzése">Hitelesítés ellenőrzése</h2>
+<ul>
+<li>munkamenet indítása</li>
+<li>létezik-e a kulcs a munkamenet adatai között</li>
+<li>kulcs értéke indifferens</li>
+<li>külön fájlba tehető</li>
+</ul>
+<pre class="php"><code class="hljs">session_start();
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">azonositott_e</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'belepve'</span>]);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kijelentkezés">Kijelentkezés</h2>
+<ul>
+<li>Kulcs kivétele a munkamenetből</li>
+<li>Általában az egész munkamenet megszüntetése (feladatfüggő)</li>
+</ul>
+<pre class="php"><code class="hljs"><span class="hljs-keyword">unset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'belepve'</span>]);</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlapfeldolgozás-újra" class="new-section">Űrlapfeldolgozás (újra)</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlapfeldolgozás-lépései">Űrlapfeldolgozás lépései</h2>
+<ol type="1">
+<li>Űrlap megjelenítése</li>
+<li>Adatok feldolgozása (mentése)</li>
+<li>Siker oldal megjelenítése</li>
+</ol>
+<p>Hogyan jelenítsük meg a siker oldalt?</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="post-redirect-get-módszer">POST-REDIRECT-GET módszer</h2>
+<p>Oldalt megjeleníteni csak GET metódussal lehet!</p>
+<ol type="1">
+<li>Az űrlap megjelenítése GET metódussal</li>
+<li>Adat elküldése POST metódussal</li>
+<li>Sikeres feldolgozás esetén átirányítás a siker oldalra</li>
+<li>Siker oldal megjelenítése GET metódussal</li>
+</ol>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hibakezelés">Hibakezelés</h2>
+<ol type="1">
+<li>Az űrlap megjelenítése GET metódussal</li>
+<li>Adat elküldése POST metódussal</li>
+<li>Hiba esetén az űrlap megjelenítése hibaüzenetekkel és a felküldött adatokkal
+<ul>
+<li>Szembemegy a PRG irányelvével!</li>
+</ul></li>
+<li>Adat újbóli elküldése POST metódussal</li>
+<li>Sikeres feldolgozás esetén átirányítás a siker oldalra</li>
+<li>Siker oldal megjelenítése GET metódussal</li>
+</ol>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="form-processing-errors-2.">Form processing: errors 2.</h2>
+<ol type="1">
+<li>Az űrlap megjelenítése GET metódussal</li>
+<li>Adat elküldése POST metódussal</li>
+<li>Hiba esetén átirányítás az 1. pontra; a hibaüzeneteket és a felküldött adatokat a két kérés között meg kell őrizni
+<ul>
+<li>munkamenet-kezelés (flash adatok)</li>
+</ul></li>
+<li>Adat újbóli elküldése POST metódussal</li>
+<li>Sikeres feldolgozás esetén átirányítás a siker oldalra</li>
+<li>Siker oldal megjelenítése GET metódussal</li>
+</ol>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="flash-adatok">Flash adatok</h2>
+<p>Olyan adatok, amelyek csak egy kérés idejéig élnek a munkamenetben</p>
+<p>(Nálunk: amíg ki nem vesszük őket)</p>
+<pre class="php"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">set_flash_data</span><span class="hljs-params">(<span class="hljs-variable">$key</span>, <span class="hljs-variable">$value</span>)</span> </span>{
+  <span class="hljs-variable">$_SESSION</span>[<span class="hljs-variable">$key</span>] = <span class="hljs-variable">$value</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get_flash_data</span><span class="hljs-params">(<span class="hljs-variable">$key</span>)</span> </span>{
+  <span class="hljs-variable">$value</span> = <span class="hljs-variable">$_SESSION</span>[<span class="hljs-variable">$key</span>] ?: <span class="hljs-keyword">null</span>;
+  <span class="hljs-keyword">unset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-variable">$key</span>]);
+  <span class="hljs-keyword">return</span> <span class="hljs-variable">$value</span>;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-1.lépés">Példa: 1.lépés</h2>
+<p>Az űrlap (<code>controllers/velemeny_get.php</code>)</p>
+<pre class="php"><code class="hljs"><span class="hljs-keyword">include</span>(<span class="hljs-string">'templates/velemeny.template.php'</span>);</code></pre>
+<pre class="php"><code class="hljs">&lt;form action=<span class="hljs-string">""</span> method=<span class="hljs-string">"POST"</span>&gt;
+  Név: &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"nev"</span> value=<span class="hljs-string">""</span>&gt; &lt;br&gt;
+  Kor: &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"kor"</span> value=<span class="hljs-string">""</span>&gt; &lt;br&gt;
+  &lt;input type=<span class="hljs-string">"submit"</span> name=<span class="hljs-string">"submit"</span>&gt;
+&lt;/form&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-2.-lépés">Példa: 2. lépés</h2>
+<p>Adatok feldolgozása (<code>controllers/velemeny_post.php</code>)</p>
+<pre class="php"><code class="hljs"><span class="hljs-comment">// Adatok, alapértelmezett értékek</span>
+<span class="hljs-variable">$errors</span> = [];
+<span class="hljs-variable">$input</span> = [];
+<span class="hljs-variable">$data</span> = [];
+
+<span class="hljs-comment">// Beolvasás</span>
+<span class="hljs-variable">$input</span> = <span class="hljs-variable">$_POST</span>; 
+<span class="hljs-comment">// Ellenőrzés</span>
+<span class="hljs-variable">$rules</span> = [
+  <span class="hljs-string">'nev'</span> =&gt; [
+    <span class="hljs-string">'filter'</span>    =&gt; FILTER_DEFAULT,
+    <span class="hljs-string">'errormsg'</span>  =&gt; <span class="hljs-string">'Nem megfelelő formátum (szám)!'</span>,
+  ],
+  <span class="hljs-string">'kor'</span> =&gt; [
+    <span class="hljs-string">'filter'</span>    =&gt; FILTER_VALIDATE_INT,
+    <span class="hljs-string">'errormsg'</span>  =&gt; <span class="hljs-string">'Nem megfelelő formátum (szám)!'</span>,
+  ],
+];
+<span class="hljs-keyword">if</span> (validate(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$rules</span>, <span class="hljs-variable">$data</span>, <span class="hljs-variable">$errors</span>)) {
+  <span class="hljs-comment">// Feldolgozás</span>
+  process(<span class="hljs-variable">$data</span>);
+  <span class="hljs-comment">// Kiírás: redirect</span>
+  redirect(<span class="hljs-string">'success'</span>);
+} <span class="hljs-keyword">else</span> {
+  <span class="hljs-comment">// Kiírás: redirect</span>
+  set_flash_data(<span class="hljs-string">'errors'</span>, <span class="hljs-variable">$errors</span>);
+  set_flash_data(<span class="hljs-string">'input'</span>, <span class="hljs-variable">$input</span>);
+  redirect(<span class="hljs-string">'velemeny'</span>);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-3.-lépés">Példa: 3. lépés</h2>
+<p>Hiba megjelenítése (<code>controllers/velemeny_get.php</code>)</p>
+<pre class="php"><code class="hljs"><span class="hljs-comment">// Adatok, alapértelmezett értékek</span>
+<span class="hljs-variable">$errors</span> = get_flash_data(<span class="hljs-string">'errors'</span>) ?? [];
+<span class="hljs-variable">$input</span> = get_flash_data(<span class="hljs-string">'input'</span>) ?? [];
+<span class="hljs-variable">$data</span> = [];
+
+<span class="hljs-comment">// Kiírás</span>
+<span class="hljs-keyword">include</span>(<span class="hljs-string">'templates/velemeny.template.php'</span>);</code></pre>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable">$errors</span>) : <span class="hljs-preprocessor">?&gt;</span>
+  &lt;ul&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$errors</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$error</span>) : <span class="hljs-preprocessor">?&gt;</span>
+      &lt;li&gt;<span class="hljs-preprocessor">&lt;?</span>= <span class="hljs-variable">$error</span> <span class="hljs-preprocessor">?&gt;</span>&lt;/li&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-preprocessor">?&gt;</span>
+  &lt;/ul&gt;
+<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-preprocessor">?&gt;</span>
+
+&lt;form action=<span class="hljs-string">""</span> method=<span class="hljs-string">"POST"</span>&gt;
+  Név: &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"nev"</span> value=<span class="hljs-string">"&lt;?= $input['nev'] ?? '' ?&gt;"</span>&gt; &lt;br&gt;
+  Kor: &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"kor"</span> value=<span class="hljs-string">"&lt;?= $input['kor'] ?? '' ?&gt;"</span>&gt; &lt;br&gt;
+  &lt;input type=<span class="hljs-string">"submit"</span> name=<span class="hljs-string">"submit"</span>&gt;
+&lt;/form&gt;</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="fájlfeltöltés" class="new-section">Fájlfeltöltés</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlap-és-feldolgozás">Űrlap és feldolgozás</h2>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span> print_r(<span class="hljs-variable">$hibak</span>); <span class="hljs-preprocessor">?&gt;</span>
+&lt;form action=<span class="hljs-string">""</span> method=<span class="hljs-string">"post"</span> enctype=<span class="hljs-string">"multipart/form-data"</span>&gt;
+  &lt;input type=<span class="hljs-string">"file"</span> name=<span class="hljs-string">"fajl"</span>&gt;
+  &lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"Feltölt"</span>&gt;
+&lt;/form&gt;</code></pre>
+<pre class="php"><code class="hljs"><span class="hljs-variable">$hibak</span> = <span class="hljs-keyword">array</span>();
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$_FILES</span>) {
+  <span class="hljs-keyword">if</span> (array_key_exists(<span class="hljs-string">'fajl'</span>, <span class="hljs-variable">$_FILES</span>) &amp;&amp;
+      <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">'fajl'</span>][<span class="hljs-string">'error'</span>] == <span class="hljs-number">0</span>) {
+
+    <span class="hljs-variable">$honnan</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">'fajl'</span>][<span class="hljs-string">'tmp_name'</span>];
+    <span class="hljs-variable">$hova</span> = <span class="hljs-string">'fajlok\\'</span> . <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">'fajl'</span>][<span class="hljs-string">'name'</span>];
+    move_uploaded_file(<span class="hljs-variable">$honnan</span>, <span class="hljs-variable">$hova</span>); 
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-variable">$hibak</span>[] = <span class="hljs-string">'Hiba tortent!'</span>;
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="files">$_FILES</h2>
+<pre class="txt"><code class="hljs php"><span class="hljs-keyword">Array</span>
+(
+  [fajl] =&gt; <span class="hljs-keyword">Array</span>
+    (
+      [name] =&gt; Desert_small.jpg
+      [type] =&gt; image/jpeg
+      [tmp_name] =&gt; C:\eltescorm\tmp\php1750.tmp
+      [error] =&gt; <span class="hljs-number">0</span>
+      [size] =&gt; <span class="hljs-number">18218</span>
+    )
+)</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="könyvtárlista">Könyvtárlista</h2>
+<pre class="php"><code class="hljs">&lt;ul&gt;
+<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$fajlok</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$f</span>) : <span class="hljs-preprocessor">?&gt;</span>
+  &lt;li&gt;<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$f</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/li&gt;
+<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-preprocessor">?&gt;</span>
+&lt;/ul&gt;</code></pre>
+<pre class="php"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fajlok</span><span class="hljs-params">(<span class="hljs-variable">$kvt</span>)</span> </span>{
+  <span class="hljs-variable">$fajlok</span> = <span class="hljs-keyword">array</span>();
+  <span class="hljs-variable">$d</span> = opendir(<span class="hljs-variable">$kvt</span>);
+  <span class="hljs-keyword">while</span> ((<span class="hljs-variable">$f</span> = readdir(<span class="hljs-variable">$d</span>)) !== <span class="hljs-keyword">false</span>) {
+    <span class="hljs-variable">$fajlok</span>[] = <span class="hljs-variable">$f</span>;
+  }
+  closedir(<span class="hljs-variable">$d</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-variable">$fajlok</span>;
+}
+<span class="hljs-variable">$fajlok</span> = fajlok(<span class="hljs-string">'fajlok\\'</span>);</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hasznos-függvények" class="new-section">Hasznos függvények</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tömbműveletek">Tömbműveletek</h2>
+<ul>
+<li><code>in_array($mit, $tömb)</code>: eldöntés (logikai)</li>
+<li><code>array_search($mit, $tömb)</code>: lineáris keresés (kulcs)</li>
+<li><code>sort($tömb)</code>: rendezés (többféle van)</li>
+<li><code>shuffle($tömb)</code>: keverés</li>
+<li><code>array_keys($tömb)</code>: <code>$tömb</code> kulcsai tömbként</li>
+<li><code>array_values($tömb)</code>: <code>$tömb</code> értékeit tömbként</li>
+<li><code>array_key_exists($kulcs, $tömb)</code>: <code>$kulcs</code> szerepel-e a <code>$tömb</code> tömb kulcsai között.</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szövegműveletek">Szövegműveletek</h2>
+<ul>
+<li>szöveg: karakterek tömbje</li>
+<li><code>explode($elválasztó, $s)</code>: elemekre bontás</li>
+<li><code>implode($elválasztó, $tömb)</code>: összefűzés</li>
+<li><code>substr($s, $kezdet, $hossz)</code>: részszöveg</li>
+<li><code>ltrim($s)</code>, <code>rtrim($s)</code>, <code>trim($s)</code>: fehérszóköz-eltávolítás.</li>
+<li><code>strstr($miben, $mit)</code>, <code>strpos($miben, $mit)</code>, <code>strrpos($miben, $mit)</code>: részszöveg keresése</li>
+<li><code>preg_match($minta, $s)</code>: regkif illeszkedése</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="dátum-és-idő">Dátum és idő</h2>
+<ul>
+<li><code>date($formátum)</code>: az aktuális idő kiírása a megadott formátumban.</li>
+<li><code>time()</code>: Unix idő visszaadása másodpercben.</li>
+<li><code>strtotime($s)</code>: szövegként megadott dátum Unix időbe átalakítása.</li>
+<li><code>getdate()</code>: dátuminformációk visszaadása tömbként.</li>
+<li><code>date_*</code>: dátummal kapcsolatos további függvények</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="php-programok-adatforrása-1">PHP programok adatforrása</h2>
+<div class="span10 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/php_adatok_4.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="további-hasznos-függvények">További hasznos függvények</h2>
+<ul>
+<li><code>header()</code>
+<ul>
+<li>HTTP fejlécek leküldése</li>
+<li>Pl.: <code>header('Location: index.php');</code>
+<ul>
+<li>átirányítás másik oldalra</li>
+</ul></li>
+</ul></li>
+<li><code>redirect()</code> segédfüggvény</li>
+</ul>
+<pre class="php"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">redirect</span><span class="hljs-params">(<span class="hljs-variable">$page</span>)</span> </span>{
+  header(<span class="hljs-string">"Location: index.php?{$page}"</span>);
+}</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="fejlesztői-környezet" class="new-section">Fejlesztői környezet</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="fejlesztői-környezet-részei">Fejlesztői környezet részei</h2>
+<ul>
+<li>Szerver oldalon
+<ul>
+<li>webszerver</li>
+<li>PHP</li>
+</ul></li>
+<li>Kliens oldalon
+<ul>
+<li>böngésző</li>
+</ul></li>
+<li>Fejlesztői környezet
+<ul>
+<li>Szerkesztő program (HTML, PHP, CSS)</li>
+<li>SFTP, SCP kliens az állományok webszerverre töltéséhez</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="otthoni-fejlesztéshez">Otthoni fejlesztéshez</h2>
+<ul>
+<li><a href="http://www.apachefriends.org/en/xampp.html">XAMPP telepítőcsomag</a>
+<ul>
+<li>Multiplatform</li>
+</ul></li>
+<li>WAMP Stack, LAMP Stack
+<ul>
+<li><a href="http://bitnami.com/stacks/infrastructure">Bitnami stacks</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="összefoglalás" class="new-section">Összefoglalás</h2>
+<ul>
+<li>Munkamenet-kezelés</li>
+<li>Hitelesítés</li>
+<li>Űrlapfeldolgozás PRG irányelvvel</li>
+<li>Fájlfeltöltés</li>
+<li>Hasznos függvények</li>
+</ul>
+</section>
+
+      </div>
+
+    <div class="backgrounds" style="background-image: url(&quot;hatter.jpg&quot;); background-size: 2460px 800px; background-position: 0px 0px;"><div class="slide-background slide level1 present" data-loaded="true" style="display: block;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: block;" data-loaded="true"></div><div class="slide-background slide level1 future" data-loaded="true" style="display: block;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div></div><div class="progress" style="display: block;"><span style="width: 0px;"></span></div><aside class="controls" style="display: block;"><button class="navigate-left" aria-label="previous slide"></button><button class="navigate-right enabled" aria-label="next slide"></button><button class="navigate-up" aria-label="above slide"></button><button class="navigate-down" aria-label="below slide"></button></aside><div class="slide-number" style="display: block;"><span class="slide-number-a">1</span></div><div class="speaker-notes" data-prevent-swipe=""></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px 1px 1px 1px);">
+Webfejlesztés 2.
+Munkamenet-kezelés, hitelesítés
+ Horváth Győző
+Egyetemi adjunktus
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba
+Tel: (1) 372-2500/1816
+horvath.gyozo@inf.elte.hu 
+
+</div></div>
+
+    <script src="./Webfejlesztés 2._files/head.min.js.download"></script>
+    <script src="./Webfejlesztés 2._files/reveal.js.download"></script>
+
+    <script>
+
+      // var newSectionBackgroundColor = '#085536';
+      // var newSectionBackgroundColor = '#FFC000';
+      var newSectionBackgroundColor = '#D4A71C';
+
+      function moveAttributesFromH2ToSection() {
+        var h2s = document.querySelectorAll('section > h2, section > h1');
+        for (var i = 0; i < h2s.length; i++) { 
+          var h2 = h2s[i];
+          if (h2.hasAttributes()) {
+            var section = h2s[i].parentNode;
+            var attrs = h2.attributes;
+            for(var j = attrs.length - 1; j >= 0; j--) {
+              if (attrs[j].name != 'id') {
+                section.setAttribute(attrs[j].name, attrs[j].value);
+              } 
+            }
+          } 
+        }
+      }
+
+      // function setDataBackground() {
+      //   var h2s = document.querySelectorAll('section > h2[data-background], section > h1[data-background]');
+      //   for (var i = 0; i < h2s.length; i++) { 
+      //     var section = h2s[i].parentNode; 
+      //     section.setAttribute('data-background', h2s[i].getAttribute('data-background')); 
+      //   }
+      // }
+
+      // function setVideoBackground() {
+      //   var h2s = document.querySelectorAll('section > h2[data-background-video], section > h1[data-background-video]');
+      //   for (var i = 0; i < h2s.length; i++) { 
+      //     var section = h2s[i].parentNode; 
+      //     section.setAttribute('data-background-video', h2s[i].getAttribute('data-background-video')); 
+      //   }
+      // }
+
+      function setSectionClass() {
+        var h2s = document.querySelectorAll('section > h2.new-section');
+        console.log(h2s)
+        for (var i = 0; i < h2s.length; i++) { 
+          var section = h2s[i].parentNode; 
+          section.classList.add('new-section'); 
+          section.setAttribute('data-background', newSectionBackgroundColor); 
+          // console.log(section);
+        }
+      }
+
+      setSectionClass();
+      moveAttributesFromH2ToSection();
+      // setDataBackground();
+      // setVideoBackground();
+
+
+      Reveal.addEventListener('slidechanged', function(event) {
+        // console.log(event.currentSlide)               
+        if(event.currentSlide.getAttribute('data-background-iframe')) {
+          document.querySelector('.reveal > .backgrounds').style.zIndex = 1;
+        } else {
+          document.querySelector('.reveal > .backgrounds').style.zIndex = 0;
+        }                  
+      });
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        backgroundTransition: 'fade', 
+
+        multiplex: {
+          secret: null, 
+          id: 'e19e5eb5f667a316', // Obtained from socket.io server
+          url: '//webprogramozas.inf.elte.hu:1948' // Location of socket.io server
+        },
+
+        parallaxBackgroundImage: 'hatter.jpg',
+        parallaxBackgroundSize: '2460px 800px', 
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../revealjs/plugin/zoom-js/zoom.js', async: true },
+          { src: '../revealjs/plugin/notes/notes.js', async: true },
+          // { src: '//cdn.socket.io/socket.io-1.3.5.js', async: true },
+          // { src: '../revealjs/plugin/multiplex/client.js', async: true },
+        ]
+      });
+
+    </script><script type="text/javascript" src="./Webfejlesztés 2._files/highlight.js.download"></script><script type="text/javascript" src="./Webfejlesztés 2._files/zoom.js.download"></script><script type="text/javascript" src="./Webfejlesztés 2._files/notes.js.download"></script>
+
+  
+
+</body></html>

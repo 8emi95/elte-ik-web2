@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://webprogramozas.inf.elte.hu/webfejl2/gyak/js_grafilogika.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>Webfejlesztés 2.</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="./Webfejlesztés 2._files/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="./Webfejlesztés 2._files/targy.css" rel="stylesheet" media="screen">
+		<link href="./Webfejlesztés 2._files/bootstrap-responsive.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="brand" href="http://webprogramozas.inf.elte.hu/webfejl2/gyak/js_grafilogika.html#">Webprogramozás szerver</a>
+					<ul class="nav">
+						<li class="active"><a href="http://webprogramozas.inf.elte.hu/webfejl2.html">Webfejlesztés 2.</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/weaf1.html">Webes alkalmazásfejlesztés 1.</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	    <div class="container">
+	    	<div class="well">
+				<h1>Webfejlesztés 2.</h1>
+			</div>
+	    	<div class="row">
+	    		<div class="span3">
+				    <ul class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="125">
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#altalanos">Általános információk</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#szamonkeres">Számonkérés</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#eloadas">Előadások</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#gyakorlat">Gyakorlatok</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#segedanyag">Segédanyagok</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#oktatok">Oktatók</a></li>
+					</ul>
+	    		</div>		
+	    		<div class="span9">
+	    			<section>
+						<h1>Példa JavaScript beadandó</h1>
+						
+						<h2 id="grafilogika">Grafilogika</h2>
+            <p>Készíts egy grafilogikai feladványok megoldását segítő programot! Az elkészítendő játékban két előre beépített feladvány legyen, egy kisebb és egy közepes méretű.</p>
+            
+            <h3 id="feladványok-és-megoldásaik">Feladványok és megoldásaik</h3>
+            <table>
+              <tbody><tr>
+                <td>
+                  <figure>
+                    <img src="./Webfejlesztés 2._files/kis.png" alt="kis méretű grafilogika feladvány">
+                    <figcaption>Kis méretű feladvány</figcaption>
+                  </figure>
+                </td>
+                <td>
+                  <figure>
+                    <img src="./Webfejlesztés 2._files/kis_mo.png" alt="kis méretű grafilogika megoldás">
+                    <figcaption>Kis méretű feladvány megoldása</figcaption>
+                  </figure>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <figure>
+                    <img src="./Webfejlesztés 2._files/kozepes.png" alt="közepes méretű grafilogika feladvány">
+                    <figcaption>Közepes méretű feladvány</figcaption>
+                  </figure>
+                </td>
+                <td>
+                  <figure>
+                    <img src="./Webfejlesztés 2._files/kozepes_mo.png" alt="közepes méretű grafilogika megoldás">
+                    <figcaption>Közepes méretű feladvány megoldása</figcaption>
+                  </figure>
+                </td>
+              </tr>
+            </tbody></table>
+            
+            <h3 id="grafilogika-szabályai">Grafilogika szabályai</h3>
+            <p>A grafilogikai játékban a cél egy négyzetrács kiszínezése a sorok és oszlopok mellett megadott számoknak megfelelően. A számok darabszáma a sorok elején és az oszlopok tetején azt jelenti, hogy a sötét négyzetek hány csoportban helyezkednek el. (Például ha az egyik oszlop tetején a 2,3,1,5 számok vannak, ez azt jelzi, hogy abban az oszlopban a sötét négyzetek négy csoportban helyezkednek el.) Maguk a számok azt jelzik, hogy az egyes csoportok hány sötét négyzetet tartalmaznak. (Például az első oszlop tetején levő 2,3,1,5 számok azt jelentik, hogy az első csoportban 2, a következőben 3, majd 1 és végül 5 sötét négyzet van.) Ha helyesen fejted meg a rejtvényt, egy kép rajzolódik ki a rejvényből. Mit ábrázol ez a kép? (<a href="http://www.logikaifeladatok.hu/rejtvenyek.html"><code class="url">http://www.logikaifeladatok.hu/rejtvenyek.html</code></a>)</p>
+            <h3 id="a-játék-megjelenése-működése">A játék megjelenése, működése</h3>
+            <p>A felületen jelenjen meg a kitöltendő négyzetrács és a hozzá kapcsolódó számok a sorok mellett, illetve az oszlopok felett. A celláknak három színezése lehet: a fekete jelzi, hogy ott színezni kell, szürke pont azt jelenti, hogy ott biztosan nem kell színezni, a fehér cella még megoldásra vár. A négyzetrács kezdetben csupa fehér cellából álljon. Egy cellára kattintva először fekete, majd szürke, majd ismét fehér legyen ciklikusan. A játék akkor ér véget, ha az egész négyzetrácsot feketére, illetve szürkére színeztük.</p>
+            <p>Ha egy sorban vagy egy oszlopban a mellettük lévő számoknak megfelelő négyzetcsoportokat elhelyeztük, akkor annak háttere szürkévé válik jelezvén, hogy ott már nem kell ténykednünk. (Nem biztos azonban, hogy helyesen vannak a sorban vagy oszlopban a négyzetek, csak azt tudjuk, hogy megfelelő számban szerepelnek benne.)</p>
+            <p>Legyen lehetőség gombnyomásra ellenőrizni, hogy a szürke és fekete négyzetrácsok megfelelőek-e. A rossz négyzetrácsok háttere legyen ekkor piros. A fehér cellákról itt nem nyilatkozunk.</p>
+            <p>Egy másik gombnyomásra legyen elérhető a megoldás. Ekkor a meglévő játéktáblán jelezzük, hogy hol kellene színeznünk.</p>
+            <p>A játék elején választhassunk a kisebb és a közepes méretű feladat között. A feladvány elindításától a megoldási terjedő időt egy óra mutassa.</p>
+            <h3 id="beadás">Beadás</h3>
+            <p>A megoldásokat a webprogramozas.inf.elte.hu szerverre kell feltölteni, és publikusan elérhetővé tenni. A megfelelő hivatkozást a gyakorlatvezetőnek kell elküldeni e-mailben.</p>
+
+					</section>
+	    		</div>
+	    	</div>
+		</div>
+		
+		<script src="./Webfejlesztés 2._files/jquery.min.js.download"></script>
+		<script src="./Webfejlesztés 2._files/bootstrap.min.js.download"></script>
+	
+</body></html>

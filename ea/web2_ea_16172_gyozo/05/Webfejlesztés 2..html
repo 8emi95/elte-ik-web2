@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://webprogramozas.inf.elte.hu/webfejl2/ea/05/#/1 -->
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>Webfejlesztés 2.</title>
+
+    <meta name="description" content="Diasor az ELTE Webfejlesztés 2. tárgyához">
+    <meta name="author" content="Horváth Győző">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/reveal.css">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <!-- <link rel="stylesheet" href="../revealjs/lib/css/obsidian.css"> -->
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/github.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../revealjs/css/print/pdf.css' : '../revealjs/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script><link rel="stylesheet" type="text/css" href="./Webfejlesztés 2._files/paper.css">
+
+    <!--[if lt IE 9]>
+    <script src="../revealjs/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body style="transition: -webkit-transform 0.8s ease;">
+
+    <div class="reveal convex center has-parallax-background" role="application" data-transition-speed="default" data-background-transition="fade">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides" style="width: 960px; height: 700px; left: 50%; top: 50%; bottom: auto; right: auto; transform: translate(-50%, -50%) scale(0.757286);">
+
+<section id="webfejlesztés-2." class="slide level1 past" style="top: 96.5px; display: block;" hidden="" aria-hidden="true">
+<h1>Webfejlesztés 2.</h1>
+<h3 id="nyelvi-elemek-időzítők-stílusok-animációk">5. Nyelvi elemek, időzítők, stílusok, animációk</h3>
+<p><small> Horváth Győző<br>
+Egyetemi adjunktus<br>
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba<br>
+Tel: (1) 372-2500/1816<br>
+horvath.gyozo@inf.elte.hu </small></p>
+</section>
+<section class="slide level1 present" style="top: 0px; display: block;">
+
+<h2 id="javascript-beadandó">JavaScript beadandó</h2>
+<!-- 
+[Lézerharc](http://webprogramozas.inf.elte.hu/webfejl2/gyak/js_lazer.html)
+
+-->
+<div class="span8 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/lezerharc.png" alt="Fénytörő fejtörő"><figcaption>Fénytörő fejtörő</figcaption>
+</figure>
+</div>
+<p>Határidő: 2017. április 9. éjfél</p>
+</section>
+<section class="slide level1 future" style="top: 92.5px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés">Ismétlés</h2>
+<ul>
+<li>JavaScript nyelvi elemei</li>
+<li>JavaScript és HTML kapcsolata</li>
+<li>Eseménykezelés részletei</li>
+<li>JavaScript beépített objektumok</li>
+<li>DOM</li>
+<li>HTML DOM: űrlapok, képek, táblázatok</li>
+<li>BOM</li>
+</ul>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 179px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="reguláris-kifejezések" class="new-section">Reguláris kifejezések</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="reguláris-kifejezés">Reguláris kifejezés</h2>
+<ul>
+<li>Egy olyan (szövegként megadott) minta, amely szövegekre illeszthető</li>
+<li>Speciális karakterek szerepelnek benne</li>
+<li>Például:</li>
+</ul>
+<pre class="js"><code class="hljs javascript">/\d+<span class="hljs-regexp">/.test('alma')    /</span><span class="hljs-regexp">/false
+/</span>\d+<span class="hljs-regexp">/.test('')        /</span><span class="hljs-regexp">/false
+/</span>\d+<span class="hljs-regexp">/.test('123')     /</span><span class="hljs-regexp">/true
+/</span>\d+<span class="hljs-regexp">/.test('alma123') /</span><span class="hljs-regexp">/true</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="reguláris-kifejezés-1">Reguláris kifejezés</h2>
+<ul>
+<li>Literálforma: <code>/minta/flags</code>
+<ul>
+<li>minta: szöveg, normál szöveg + speciális jelölők</li>
+<li>flag: viselkedést szabályozó jelölők</li>
+</ul></li>
+<li>Metódusok
+<ul>
+<li><code>test()</code> → logika érték</li>
+<li><code>exec()</code> → tömb</li>
+</ul></li>
+<li>String függvények használják intenzíven
+<ul>
+<li><code>search(regexp)</code></li>
+<li><code>replace(regexp, mire)</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="minta">Minta</h2>
+<ul>
+<li><p>Normál szöveg:</p>
+<pre class="js"><code class="hljs javascript">/alma/.test(<span class="hljs-string">'piros alma kukacos'</span>)    <span class="hljs-comment">//true</span></code></pre></li>
+<li><code>^</code> elejére illeszkedik</li>
+<li><code>$</code> végére illeszkedik</li>
+<li><code>*</code> legalább 0-szor ismétlődik</li>
+<li><code>+</code> legalább 1-szer ismétlődik</li>
+<li><code>?</code> 0 vagy 1-szer ismétlődik</li>
+<li><p><code>{n,m}</code> legalább n-szer, legfeljebb m-szer ismétlődik</p></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="minta-1">Minta</h2>
+<ul>
+<li><code>.</code> bármilyen karakter</li>
+<li><code>(minta)</code> csoportosítás</li>
+<li><code>\d</code> számok: <code>[0-9]</code></li>
+<li><code>\D</code> nem számok</li>
+<li><code>\s</code> fehér szóköz</li>
+<li><code>\w</code> alfanumerikus karakter: <code>[A-Za-z0-9_]</code></li>
+</ul>
+<pre class="js"><code class="hljs javascript">/alma$/.test(<span class="hljs-string">'piros alma kukacos'</span>) <span class="hljs-comment">//false</span>
+/alma$/.test(<span class="hljs-string">'piros alma'</span>)         <span class="hljs-comment">//true</span>
+/\w+$/.test(<span class="hljs-string">'piros alma'</span>)          <span class="hljs-comment">//true</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="flag-ek">Flag-ek</h2>
+<ul>
+<li><code>g</code>: globális egyezés, ne álljon meg az elsőnél</li>
+<li><code>i</code>: nem érzékeny a kis és nagybetűkre</li>
+<li><code>m</code>: multiline – sorvégjeleken átívelő egyezés</li>
+</ul>
+<pre class="js"><code class="hljs javascript">/alma/.test(<span class="hljs-string">'Piros Alma'</span>)          <span class="hljs-comment">//false</span>
+/alma/i.test(<span class="hljs-string">'Piros Alma'</span>)         <span class="hljs-comment">//true</span>
+<span class="hljs-string">"piros alma kukacos"</span>.replace(<span class="hljs-regexp">/os/</span>, <span class="hljs-string">'itott'</span>)
+<span class="hljs-comment">//"piritott alma kukacos"</span>
+<span class="hljs-string">"piros alma kukacos"</span>.replace(<span class="hljs-regexp">/os/g</span>, <span class="hljs-string">'itott'</span>)
+<span class="hljs-comment">//"piritott alma kukacitott"</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="metódusok">Metódusok</h2>
+<ul>
+<li><code>regexp.test(szöveg)</code>
+<ul>
+<li>megvizsgálja illeszkedik a minta a paraméterként megadott szövegre</li>
+</ul></li>
+<li><code>regexp.exec(szöveg)</code>
+<ul>
+<li>az illeszkedés információit egy tömbben adja vissza</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szövegműveletek">Szövegműveletek</h2>
+<ul>
+<li><code>szöveg.search(regexp)</code></li>
+<li><code>szöveg.replace(regexp, mire)</code></li>
+<li><code>szöveg.match(regexp)</code> --&gt; tömb</li>
+</ul>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> re = <span class="hljs-regexp">/(\w+)\s(\w+)/i</span>;
+<span class="hljs-keyword">var</span> sz = <span class="hljs-string">"Horvath Gyozo"</span>;
+<span class="hljs-built_in">console</span>.log(sz.replace(re, <span class="hljs-string">"$2, $1"</span>));
+<span class="hljs-comment">// Gyozo, Horvath</span>
+
+<span class="hljs-string">'Hófehérke és a 7 törpe meg az 1 herceg'</span>.match(<span class="hljs-regexp">/\d+/g</span>)
+<span class="hljs-comment">// ["7", "1"]</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hivatkozások">Hivatkozások</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/RegExp">MDN referencia</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions">MDN guide</a></li>
+</ul>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="időzítő" class="new-section">Időzítő</h2>
+<p>setTimeout, setInterval</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="időzítő-1">Időzítő</h2>
+<ul>
+<li>Egyszeri
+<ul>
+<li>egy függvény valahány ms múlva végrehajtódik</li>
+</ul></li>
+<li>Ismételt
+<ul>
+<li>egy függvény valahány ms-onként végrehajtódik</li>
+</ul></li>
+<li>Aszinkron
+<ul>
+<li>végrehajtás tovább megy</li>
+<li>felület zavartalanul működik</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="időzítő-egyszeri">Időzítő – egyszeri</h2>
+<ul>
+<li><p><code>setTimeout</code>, <code>clearTimeout</code> általában</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> idozito = setTimeout(fuggveny, ms);
+clearTimeout(idozito);</code></pre></li>
+<li><p><code>setTimeout</code> példa</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">csorog</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Brrrrrrr'</span>);
+}
+setTimeout(csorog, <span class="hljs-number">2000</span>);</code></pre></li>
+<li><p><code>clearTimeout</code> példa</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">csorog</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Brrrrrrr'</span>);
+}
+<span class="hljs-keyword">var</span> idozito = setTimeout(csorog, <span class="hljs-number">2000</span>);
+clearTimeout(idozito);</code></pre></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="időzítő-ismétlődő">Időzítő – ismétlődő</h2>
+<ul>
+<li><p><code>setInterval</code>, <code>clearInterval</code> általában</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> idozito = setInterval(fuggveny, ms);
+clearInterval(idozito);</code></pre></li>
+<li><p><code>setInterval</code> példa</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">csorog</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Brrrrrrr'</span>);
+}
+setInterval(csorog, <span class="hljs-number">2000</span>);</code></pre></li>
+<li><p><code>clearInterval</code> példa</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">csorog</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Brrrrrrr'</span>);
+}
+<span class="hljs-keyword">var</span> idozito = setInterval(csorog, <span class="hljs-number">2000</span>);
+clearInterval(idozito);</code></pre></li>
+</ul>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="stílusok" class="new-section">Stílusok</h2>
+<p>Inline stílusok, stílusosztályok és stíluslapok programozása</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="stílusmanipulációk">Stílusmanipulációk</h2>
+<ul>
+<li>CSS szabályok elengedhetetlen ismerete szükséges</li>
+<li>Három szint
+<ul>
+<li><code>style</code> attribútum</li>
+<li><code>class</code> attribútum</li>
+<li>stíluslapok</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="style-attribútum">Style attribútum</h2>
+<ul>
+<li><p>HTML: style attribútum</p>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">elem</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"css szabály"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">elem</span>&gt;</span></code></pre></li>
+<li><p>JavaScript: az elem <code>style</code> tulajdonsága</p>
+<pre class="js"><code class="hljs javascript">elem.style</code></pre></li>
+<li>Az <code>elem.style</code> egy objektum (<code>CSSProperties</code>), aminek egyes tulajdonságain keresztül kérdezhetjük le vagy állíthatjuk be a stílustulajdonságokat.</li>
+<li><p>Analóg módszer szerinti megfeleltetés</p></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="style-objektum-tulajdonságai">Style objektum tulajdonságai</h2>
+<div class="equal">
+<div class="span6">
+<h3 id="css-szabály">CSS szabály</h3>
+<ul>
+<li><code>color</code></li>
+<li><code>background</code></li>
+<li><code>margin-left</code></li>
+<li><code>font-size</code></li>
+<li><code>border-bottom-width</code></li>
+</ul>
+</div>
+<div class="span6">
+<h3 id="javascript-tulajdonság">JavaScript tulajdonság</h3>
+<ul>
+<li><code>color</code></li>
+<li><code>background</code></li>
+<li><code>marginLeft</code></li>
+<li><code>fontSize</code></li>
+<li><code>borderBottomWidth</code></li>
+</ul>
+</div>
+</div>
+<pre class="js"><code class="hljs javascript">elem.style.borderBottomWidth = <span class="hljs-string">'5px'</span>;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="style-objektum">Style objektum</h2>
+<ul>
+<li>Csak azok a stílustulajdonságok kérdezhetők le, amelyek
+<ul>
+<li>a <code>style</code> attribútumon keresztül voltak megadva;</li>
+<li>JavaScriptből határoztuk meg az értéküket.</li>
+</ul></li>
+<li>Nem kérdezhető le akármilyen tulajdonság így.</li>
+<li>→ számított stílus</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="számított-stílus">Számított stílus</h2>
+<ul>
+<li>Kiolvashatók azonban azok a tulajdonságok, amelyeket a böngésző tart nyilván az elemekről</li>
+<li>Szabványos
+<ul>
+<li><code>window.getComputedStyle(elem)</code></li>
+</ul></li>
+<li>Internet Explorer (régebbiek)
+<ul>
+<li><code>elem.currentStyle()</code></li>
+</ul></li>
+<li>A rövidítések (pl. <code>border</code>, <code>background</code>, stb.) nem érhető el, csak az elemi tulajdonságok.</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa">Példa</h2>
+<div class="equal">
+<div class="span8">
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> d = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'doboz'</span>);
+<span class="hljs-built_in">console</span>.log(d);
+d.style.top = <span class="hljs-string">'50px'</span>;
+
+<span class="hljs-built_in">console</span>.log(d.style);   <span class="hljs-comment">//CSS2Properties</span>
+<span class="hljs-built_in">console</span>.log(d.style.top); <span class="hljs-comment">//"50px"</span>
+<span class="hljs-built_in">console</span>.log(d.style.left);  <span class="hljs-comment">//"20px"</span>
+<span class="hljs-built_in">console</span>.log(d.style.width); <span class="hljs-comment">//""</span>
+<span class="hljs-built_in">console</span>.log(d.style.height);  <span class="hljs-comment">//""</span>
+
+<span class="hljs-keyword">var</span> s = <span class="hljs-built_in">window</span>.getComputedStyle(d);
+<span class="hljs-built_in">console</span>.log(s.top);   <span class="hljs-comment">//"50px"</span>
+<span class="hljs-built_in">console</span>.log(s.left);    <span class="hljs-comment">//"20px"</span>
+<span class="hljs-built_in">console</span>.log(s.width);   <span class="hljs-comment">//"100px"</span>
+<span class="hljs-built_in">console</span>.log(s.height);  <span class="hljs-comment">//"100px"</span>
+<span class="hljs-built_in">console</span>.log(s.border);  <span class="hljs-comment">//""</span>
+<span class="hljs-built_in">console</span>.log(s.borderBottomWidth); <span class="hljs-comment">//"2px"</span>
+<span class="hljs-built_in">console</span>.log(s.position);  <span class="hljs-comment">//"absolute"</span></code></pre>
+</div>
+<div class="span4">
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span>&gt;</span><span class="css">
+<span class="hljs-class">.doboz</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">2px</span> solid orange</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+}</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> 
+  <span class="hljs-attribute">id</span>=<span class="hljs-value">"doboz"</span> 
+  <span class="hljs-attribute">class</span>=<span class="hljs-value">"doboz"</span> 
+  <span class="hljs-attribute">style</span>=<span class="hljs-value">"left: 20px"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></code></pre>
+<style type="text/css">
+.reveal .doboz {
+  width: 100px;
+  height: 100px;
+  border: 2px solid orange;
+}
+</style>
+<div id="doboz" class="doboz">
+
+</div>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="class-attribútum">Class attribútum</h2>
+<p>HTML: <code>class</code> attribútum</p>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span>&gt;</span><span class="css">
+  <span class="hljs-class">.osztaly</span> <span class="hljs-rules">{ ... }</span>
+  <span class="hljs-class">.osztaly1</span> <span class="hljs-rules">{ ... }</span>
+  <span class="hljs-class">.osztaly2</span> <span class="hljs-rules">{ ... }</span>
+  <span class="hljs-class">.osztaly3</span> <span class="hljs-rules">{ ... }</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">elem</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"osztaly"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">elem</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">elem</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"osztaly1 osztaly2 osztaly3"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">elem</span>&gt;</span></code></pre>
+<p>JavaScript: <code>className</code> tulajdonság (szöveges érték)</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-built_in">console</span>.log(elem.className); <span class="hljs-comment">//lekérdezés</span>
+elem.className = <span class="hljs-string">'osztaly'</span>;  <span class="hljs-comment">//beállítás</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="class-példa">Class példa</h2>
+<pre class="js"><code class="hljs javascript">&lt;style type=<span class="hljs-string">"text/css"</span>&gt;
+.doboz {
+  width: <span class="hljs-number">100</span>px;
+  height: <span class="hljs-number">100</span>px;
+  border: <span class="hljs-number">2</span>px solid orange;
+  position: absolute;
+  top: <span class="hljs-number">50</span>px;
+  left: <span class="hljs-number">20</span>px;
+}
+&lt;<span class="hljs-regexp">/style&gt;
+
+&lt;div id="doboz"&gt;&lt;/</span>div&gt;</code></pre>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> d = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'doboz'</span>);
+d.className = <span class="hljs-string">'doboz'</span>;
+<span class="hljs-built_in">console</span>.log(d.className);  <span class="hljs-comment">//doboz</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="stílusosztály-kezelés">Stílusosztály-kezelés</h2>
+<ul>
+<li>Mit tegyünk, ha több osztály van megadva, és csak egy osztályt szeretnénk hozzáadni vagy elvenni?
+<ul>
+<li>Szövegfeldolgozás (pl. reguláris kifejezések)</li>
+<li>Tömbfeldolgozás (<code>indexOf</code>, <code>splice</code>, stb)</li>
+<li><code>Element.classList</code></li>
+</ul></li>
+<li>Segédfüggvények
+<ul>
+<li>Van-e adott stílusosztály beállítva?</li>
+<li>Hozzáad stílusosztályt</li>
+<li>Elvesz stílusosztályt</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="element.classlist">Element.classList</h2>
+<p><code>add</code>, <code>remove</code>, <code>toggle</code>, <code>contains</code></p>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"piros barna sarga"</span>&gt;</span></code></pre>
+<pre class="js"><code class="hljs javascript">div.classList.remove(<span class="hljs-string">"barna"</span>);
+div.classList.add(<span class="hljs-string">"zold"</span>);
+
+<span class="hljs-comment">// váltogatás</span>
+div.classList.toggle(<span class="hljs-string">"zold"</span>);
+
+<span class="hljs-comment">// feltételes megjelenítés</span>
+div.classList.toggle(<span class="hljs-string">"zold"</span>, i &lt; <span class="hljs-number">10</span> );
+
+<span class="hljs-comment">// van-e adott stílusosztály</span>
+alert(div.classList.contains(<span class="hljs-string">"piros"</span>));
+
+<span class="hljs-comment">// több hozzáadása egyszerre</span>
+div.classList.add(<span class="hljs-string">"kek"</span>,<span class="hljs-string">"arany"</span>);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="stíluslapok">Stíluslapok</h2>
+<ul>
+<li>HTML: <code>&lt;link&gt;</code> vagy <code>&lt;style&gt;</code> elem</li>
+<li>Helye szerint
+<ul>
+<li>Belső stíluslap (<code>&lt;style&gt;</code> elem)</li>
+<li>Külső stíluslap (<code>&lt;link&gt;</code> elem)</li>
+</ul></li>
+<li>Típusa szerint
+<ul>
+<li>permanens (mindig aktív, nem kikapcsolható)</li>
+<li>preferált (betöltéskor aktív, de ki-bekapcsolható)</li>
+<li>alternatív stíluslap (betöltéskor nem aktív, ki-bekapcsolható)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="stíluslapok-példa">Stíluslapok – példa</h2>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"permanens.css"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"preferalt.css"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"preferalt"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"alternate stylesheet"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"alternativ.css"</span> <span class="hljs-attribute">title</span>=<span class="hljs-value">"alternativ"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">style</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span>&gt;</span><span class="css">
+      <span class="hljs-tag">p</span> <span class="hljs-rules">{
+        <span class="hljs-rule"><span class="hljs-attribute">font-style</span>:<span class="hljs-value"> italic</span></span>;
+      }</span>
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Valamilyen szöveg.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="stíluslapok-példa-1">Stíluslapok – példa</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/stiluslapok.png">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="stíluslapok-1">Stíluslapok</h2>
+<ul>
+<li>JavaScript: <code>document.styleSheets</code></li>
+<li>Tömb – <code>StyleSheet</code>-ekből áll</li>
+<li><code>StyleSheet</code>
+<ul>
+<li><code>type</code></li>
+<li><code>disabled</code> (stíluslap dinamikus ki-bekapcsolása)</li>
+<li><code>href</code></li>
+<li><code>title</code></li>
+</ul></li>
+<li><a href="http://www.w3.org/TR/DOM-Level-2-Style/stylesheets.html">Szabványos</a> (DOM Level 2)</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="stíluslapok-2">Stíluslapok</h2>
+<ul>
+<li>A stíluslapon belüli szabályok is elérhetők
+<ul>
+<li>szabványos: <code>cssRules</code> tömb</li>
+<li>Internet Explorer: <code>rules</code> tömb</li>
+</ul></li>
+<li>Minden szabálynál
+<ul>
+<li><code>cssText</code>: a szabály szöveges formája</li>
+<li><code>selectorText</code> (nem szabványos)</li>
+<li><code>style</code>: az adott szabály stíluslistája (mint az inner style)</li>
+</ul></li>
+<li>Ezekkel
+<ul>
+<li>új szabály vehető fel</li>
+<li>régi törölhető</li>
+<li>meglévő módosítható</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="stíluslapok-példa-2">Stíluslapok – példa</h2>
+<p><code>document.styleSheets</code></p>
+<p>DEMO (konzol)</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="stíluslapok-példa-3">Stíluslapok – példa</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-built_in">document</span>.styleSheets[<span class="hljs-number">3</span>].cssRules[<span class="hljs-number">0</span>].style.fontSize = <span class="hljs-string">'40px'</span>;</code></pre>
+<figure>
+<img src="./Webfejlesztés 2._files/stiluslapok2.png">
+</figure>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="animációk" class="new-section">Animációk</h2>
+<p>JavaScript, CSS3</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="animációk-1">Animációk</h2>
+<ul>
+<li>Elem adott stílusának kezdő és végállapota közötti adott idő alatt lejátszódó folyamatos(nak tűnő) átmenet.</li>
+<li>Nem rögtön a végállapotot állítjuk be, hanem az értékintervallumot diszkrét lépésekre bontjuk, és ezen értékeket adjuk az elem stílustulajdonságának.</li>
+<li>Hogyan?
+<ul>
+<li>Ciklus: nagyon gyors, felfüggeszti a felületet</li>
+<li>Időzítő: aszinkron módon, bizonyos időközönként</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="animáció-példa">Animáció példa</h2>
+<ul>
+<li>div szélességét állítsuk 500px-re</li>
+<li><p>Azonnali megoldás</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">binaris</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> d = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'doboz'</span>);
+  d.style.width = <span class="hljs-string">'500px'</span>;
+}</code></pre></li>
+<li><p>Ciklus</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ciklus</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> d = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'doboz'</span>);
+  <span class="hljs-keyword">var</span> w = <span class="hljs-built_in">parseInt</span>(<span class="hljs-built_in">window</span>.getComputedStyle(d).width, <span class="hljs-number">10</span>);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = w; i&lt;=<span class="hljs-number">500</span>; i++) {
+    d.style.width = i + <span class="hljs-string">'px'</span>;
+  }
+}</code></pre></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="animáció-javascripttel">Animáció JavaScripttel</h2>
+<ul>
+<li>Bizonyos időközönként változtatni a stílustulajdonságot</li>
+<li>→ <em>időzítő</em> használata</li>
+<li>Felület használható marad</li>
+<li>További szkriptek futnak</li>
+<li>Történetileg az első megoldás</li>
+<li>Paraméterei
+<ul>
+<li>időtartam</li>
+<li>(kezdőérték) → végértek</li>
+<li>stílustulajdonság</li>
+<li>hány lépésben (→ milyen lépésközzel)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="animáció-példa-időzítővel">Animáció – példa időzítővel</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">idozito</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> d = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'doboz'</span>);
+  <span class="hljs-keyword">var</span> w = <span class="hljs-built_in">parseInt</span>(<span class="hljs-built_in">window</span>.getComputedStyle(d).width, <span class="hljs-number">10</span>);
+  <span class="hljs-keyword">if</span> (w &lt; <span class="hljs-number">500</span>) {
+    d.style.width = (w + <span class="hljs-number">10</span>) + <span class="hljs-string">'px'</span>;
+    setTimeout(idozito, <span class="hljs-number">50</span>);
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="interpoláció">Interpoláció</h2>
+<pre class="txt"><code class="hljs stata">közbü<span class="hljs-keyword">ls</span>őÉrték = (vé<span class="hljs-keyword">g</span> - kezdet) * idő / tartam + kezdet;
+<span class="hljs-comment">//változás = vég - kezdet</span>
+<span class="hljs-comment">//készenlét állapota = idő/tartam</span></code></pre>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> ido, startIdo;
+<span class="hljs-keyword">var</span> start = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  startIdo = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();
+  run();
+};
+<span class="hljs-keyword">var</span> run = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> d = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'doboz'</span>);
+  ido = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime() - startIdo;
+  <span class="hljs-keyword">var</span> ertek = (veg - kezdet) * ido / tartam;
+  d.style.left = ertek + <span class="hljs-string">"px"</span>;
+  <span class="hljs-keyword">if</span> (ertek &lt; <span class="hljs-number">1</span>) {
+    <span class="hljs-built_in">window</span>.requestAnimationFrame(run);
+  }
+};</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="animáció-javascripttel-1">Animáció JavaScripttel</h2>
+<ul>
+<li>Hátrányai
+<ul>
+<li>Sok elem mozgatása lassú</li>
+<li>Jól kell megválasztani a lépésszámot</li>
+<li>Nehezebb optimalizálni</li>
+</ul></li>
+<li>(Cáfolat: <a href="http://julian.com/research/velocity/">velocity.js</a>)</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="css3-lehetőségek">CSS3 lehetőségek</h2>
+<ul>
+<li>Deklaratív módon
+<ul>
+<li>Transzformációk</li>
+<li>Átmenetek</li>
+<li>Animációk</li>
+</ul></li>
+<li>Böngészőtámogatottságuk egyre nagyobb
+<ul>
+<li>Mobil böngészők is</li>
+</ul></li>
+<li>Ha nem támogatják, akkor sincs baj, az ezzel járó többlet nincs kihasználva</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="css3-transzformációk">CSS3 transzformációk</h2>
+<ul>
+<li>Nem animáció</li>
+<li>Újabb stílustulajdonság: <code>transform</code></li>
+<li>2D transzformációk
+<ul>
+<li><code>skew</code>, <code>scale</code>, <code>rotate</code>, <code>translate</code></li>
+</ul></li>
+<li>3D transzformációk
+<ul>
+<li><code>translate3d</code>, <code>scale3d</code>, <code>rotateX</code>, <code>rotateY</code>, <code>rotateZ</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="d-transzformációk">2D transzformációk</h2>
+<pre class="css"><code class="hljs"><span class="hljs-id">#skew</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">transform</span>:<span class="hljs-value"> <span class="hljs-function">skew</span>(<span class="hljs-number">20deg</span>)</span></span>;
+}</span>
+<span class="hljs-id">#scale</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">transform</span>:<span class="hljs-value"> <span class="hljs-function">scale</span>(<span class="hljs-number">0.9</span>,<span class="hljs-number">0.5</span>)</span></span>;
+}</span>
+<span class="hljs-id">#rotate</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">transform</span>:<span class="hljs-value"> <span class="hljs-function">rotate</span>(<span class="hljs-number">90deg</span>)</span></span>;
+}</span>
+<span class="hljs-id">#translate</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">transform</span>:<span class="hljs-value"> <span class="hljs-function">translate</span>(<span class="hljs-number">50px</span>, <span class="hljs-number">60px</span>)</span></span>;
+}</span></code></pre>
+<style type="text/css">
+.reveal .doboz2d {
+  width: 100px;
+  height: 150px;
+  border: 2px solid orange;
+  float: left;
+  margin: 30px;
+  font-size: 16px;
+}
+#skew {
+  transform: skew(20deg);
+}
+#scale {
+  transform: scale(0.9,0.5);
+}
+#rotate {
+  transform: rotate(90deg);
+}
+#translate {
+  transform: translate(50px, 60px);
+}
+</style>
+<div id="skew" class="doboz2d">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+</div>
+<div id="scale" class="doboz2d">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+</div>
+<div id="rotate" class="doboz2d">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+</div>
+<div id="translate" class="doboz2d">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="d-transzformációk-1">3D transzformációk</h2>
+<pre class="css"><code class="hljs"><span class="hljs-id">#alap</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">perspective</span>:<span class="hljs-value"> <span class="hljs-number">800px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">perspective-origin</span>:<span class="hljs-value"> <span class="hljs-number">50%</span> <span class="hljs-number">100px</span></span></span>;
+}</span>
+<span class="hljs-id">#scale</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">transform</span>:<span class="hljs-value"> <span class="hljs-function">scale3d</span>(<span class="hljs-number">0.9</span>,<span class="hljs-number">0.5</span>,<span class="hljs-number">0.1</span>)</span></span>;
+}</span>
+<span class="hljs-id">#translate</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">transform</span>:<span class="hljs-value"> <span class="hljs-function">translate3d</span>(<span class="hljs-number">50px</span>, <span class="hljs-number">60px</span>, <span class="hljs-number">100px</span>)</span></span>;
+}</span>
+<span class="hljs-id">#rotateX</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">transform</span>:<span class="hljs-value"> <span class="hljs-function">rotateX</span>(<span class="hljs-number">45deg</span>)</span></span>;
+}</span>
+<span class="hljs-id">#rotateY</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">transform</span>:<span class="hljs-value"> <span class="hljs-function">rotateY</span>(<span class="hljs-number">45deg</span>)</span></span>;
+}</span>
+<span class="hljs-id">#rotateZ</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">transform</span>:<span class="hljs-value"> <span class="hljs-function">rotateZ</span>(<span class="hljs-number">45deg</span>)</span></span>;
+}</span></code></pre>
+<p>DEMO</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="átmenetek">Átmenetek</h2>
+<ul>
+<li><code>transition</code> stílustulajdonság</li>
+<li>Az adott tulajdonság folytonos átmenettel megy egyik állapotból a másikba</li>
+<li>Böngésző végzi el, optimalizált módon</li>
+<li>Hatékonyabb</li>
+<li>Deklaratív</li>
+<li>Ha nem támogatott, akkor rögtön felveszi az értéket</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="átmenetek-1">Átmenetek</h2>
+<ul>
+<li><code>transition</code> részei
+<ul>
+<li><code>transition-property</code>: melyik tulajdonság vagy all</li>
+<li><code>transition-duration</code>: mennyi idő alatt</li>
+<li><code>transition-timing-function</code>: milyen módon</li>
+<li><code>transition-delay</code>: mennyi idő múlva</li>
+</ul></li>
+<li>Vendor prefixek: <code>-moz-</code>, <code>-webkit-</code>, <code>-ms-</code>, <code>-o-</code>
+<ul>
+<li>pl. <code>-webkit-transition</code></li>
+</ul></li>
+<li>Mindegyik tulajdonság animálása: <code>all</code></li>
+<li>Nem mindegyik tulajdonságok animálható</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="animáció-példa-transition">Animáció – példa transition</h2>
+<pre class="css"><code class="hljs"><span class="hljs-class">.doboz</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">2px</span> solid orange</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">transition</span>:<span class="hljs-value"> width <span class="hljs-number">1s</span> ease-in-out <span class="hljs-number">0s</span></span></span>;
+}</span></code></pre>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">atmenet</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> d = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'doboz'</span>);
+  d.style.width = <span class="hljs-string">'500px'</span>;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="animáció-példa-transition-1">Animáció – példa transition</h2>
+<pre class="css"><code class="hljs"><span class="hljs-class">.doboz</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">height</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">2px</span> solid orange</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">transition</span>:<span class="hljs-value"> width <span class="hljs-number">1s</span> ease-in-out <span class="hljs-number">0s</span></span></span>;
+}</span>
+<span class="hljs-class">.doboz</span><span class="hljs-pseudo">:hover</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">500px</span></span></span>;
+}</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="javascript-és-transition">JavaScript és transition</h2>
+<ul>
+<li><p><code>transition</code> tulajdonság JavaScriptből is hozzáadható</p>
+<pre class="js"><code class="hljs javascript">elem.style.transition = <span class="hljs-string">'all 1s linear 0s'</span>;</code></pre></li>
+<li><p>Animáció vége esemény: <code>transitionend</code></p>
+<pre class="js"><code class="hljs javascript">elem.addEventListener(<span class="hljs-string">'transitionend'</span>, fuggveny, <span class="hljs-literal">false</span>);</code></pre></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="css3-animáció">CSS3 animáció</h2>
+<ul>
+<li>Az átmenet két pont közötti egyszeri átmenetet tesz lehetővé, valamilyen matematikai elmozdulás-idő görbe alapján.</li>
+<li>CSS3 animáció
+<ul>
+<li>Két végállapot közötti állapotokat definiál (kulcskockák)</li>
+<li>Ismétlődő végrehajtás</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="css3-animáció-példa">CSS3 animáció példa</h2>
+<pre class="css"><code class="hljs"><span class="hljs-at_rule">@<span class="hljs-keyword">keyframes</span> anim </span>{
+  0% <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">1px</span> solid orange</span></span>;
+  }</span>
+  50% <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">200px</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> blue</span></span>;
+  }</span>
+  100% <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> <span class="hljs-number">30px</span> solid orange</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> green</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">600px</span></span></span>;
+  }</span>
+}
+<span class="hljs-comment">/*...*/</span>
+<span class="hljs-class">.doboz</span><span class="hljs-pseudo">:hover</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">animation-name</span>:<span class="hljs-value"> anim</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">animation-duration</span>:<span class="hljs-value"> <span class="hljs-number">1s</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">animation-iteration-count</span>:<span class="hljs-value"> <span class="hljs-number">4</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">animation-direction</span>:<span class="hljs-value"> alternate</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">animation-timing-function</span>:<span class="hljs-value"> ease-in-out</span></span>;
+}</span></code></pre>
+<p>DEMO</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="css3-animáció-és-javascript">CSS3 animáció és JavaScript</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/AnimationEvent"><code>AnimationEvent</code></a></p>
+<ul>
+<li><code>animationstart</code></li>
+<li><code>animationend</code></li>
+<li><code>animationiteration</code></li>
+</ul>
+<p><code>e.elapsedTime</code></p>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="segítség-a-beadandóhoz" class="new-section">Segítség a beadandóhoz</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="svg-vonalak">SVG vonalak</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG">SVG elemek</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths"><code>&lt;path&gt;</code></a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dasharray"><code>stroke-dasharray</code></a> és <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/stroke-dashoffset"><code>stroke-dashoffset</code></a></li>
+<li><a href="http://jsbin.com/mimices/edit?html,css,output">Saját példa</a></li>
+<li><a href="https://jakearchibald.com/2013/animated-line-drawing-svg/">Vonalanimáció</a></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="drag-and-drop">Drag and drop</h2>
+<p><a href="http://jsbin.com/bebaweb/edit?html,js,output">Példa</a></p>
+<ol type="1">
+<li><code>draggable</code> attribútum</li>
+<li><code>dragstart</code> esemény: drag adatok tárolása</li>
+<li><code>dragover</code> esemény: dropzone kijelölése</li>
+<li><code>dragleave</code> esemény: dropzone elhagyása</li>
+<li><code>drop</code> esemény: ejtés</li>
+<li><code>dragend</code> esemény: drag adatok alaphelyzetbe</li>
+</ol>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="összefoglalás" class="new-section">Összefoglalás</h2>
+<ul>
+<li>Nyelvi elemek és szolgáltatások
+<ul>
+<li>Névtelen függvények</li>
+<li>Reguláris kifejezések</li>
+<li>Időzítők</li>
+</ul></li>
+<li>Stílusok
+<ul>
+<li>style attribútum</li>
+<li>class attribútum</li>
+<li>stíluslapok</li>
+<li>animációk</li>
+</ul></li>
+</ul>
+</section>
+
+      </div>
+
+    <div class="backgrounds" style="background-image: url(&quot;hatter.jpg&quot;); background-size: 2460px 800px; background-position: -19.5357px 0px;"><div class="slide-background slide level1 past" data-loaded="true" style="display: block;"></div><div class="slide-background slide level1 present" data-loaded="true" style="display: block;"></div><div class="slide-background slide level1 future" data-loaded="true" style="display: block;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: block;" data-loaded="true"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div></div><div class="progress" style="display: block;"><span style="width: 24.3929px;"></span></div><aside class="controls" style="display: block;"><button class="navigate-left enabled" aria-label="previous slide"></button><button class="navigate-right enabled" aria-label="next slide"></button><button class="navigate-up" aria-label="above slide"></button><button class="navigate-down" aria-label="below slide"></button></aside><div class="slide-number" style="display: block;"><span class="slide-number-a">2</span></div><div class="speaker-notes" data-prevent-swipe=""></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px 1px 1px 1px);">
+
+JavaScript beadandó
+
+
+
+Fénytörő fejtörő
+
+
+Határidő: 2017. április 9. éjfél
+</div></div>
+
+    <script src="./Webfejlesztés 2._files/head.min.js.letöltés"></script>
+    <script src="./Webfejlesztés 2._files/reveal.js.letöltés"></script>
+
+    <script>
+
+      // var newSectionBackgroundColor = '#085536';
+      // var newSectionBackgroundColor = '#FFC000';
+      var newSectionBackgroundColor = '#D4A71C';
+
+      function setDataBackground() {
+        var h2s = document.querySelectorAll('section > h2[data-background], section > h1[data-background]');
+        for (var i = 0; i < h2s.length; i++) { 
+          var section = h2s[i].parentNode; 
+          section.setAttribute('data-background', h2s[i].getAttribute('data-background')); 
+        }
+      }
+
+      function setSectionClass() {
+        var h2s = document.querySelectorAll('section > h2.new-section');
+        console.log(h2s)
+        for (var i = 0; i < h2s.length; i++) { 
+          var section = h2s[i].parentNode; 
+          section.classList.add('new-section'); 
+          section.setAttribute('data-background', newSectionBackgroundColor); 
+          // console.log(section);
+        }
+      }
+
+      setSectionClass();
+      setDataBackground();
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+        multiplex: {
+          secret: null, 
+          id: 'bdc20834708290c0', // Obtained from socket.io server
+          url: '//webprogramozas.inf.elte.hu:1948' // Location of socket.io server
+        },
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // parallaxBackgroundImage: 'https://sadelserradilmener.files.wordpress.com/2010/10/jersey-city-panorama-lq.jpg',
+        // parallaxBackgroundSize: '4142px 900px',
+
+        // parallaxBackgroundImage: 'https://upload.wikimedia.org/wikipedia/commons/d/d8/Budapest_from_Gellert_Hill_MC.jpg',
+        // parallaxBackgroundSize: '3595px 800px',
+
+        // parallaxBackgroundImage: 'https://speeddemon2.files.wordpress.com/2012/06/auto_panorama1-version-2.jpg',
+        // parallaxBackgroundSize: '2784px 800px',
+        
+        // parallaxBackgroundImage: 'http://orig10.deviantart.net/c2ac/f/2013/029/f/8/griffith_park__iphone_panorama_by_danlev-d5t48mq.jpg',
+        // parallaxBackgroundSize: '4274px 800px',
+        
+        // parallaxBackgroundImage: 'rainforest2.jpg',
+        // parallaxBackgroundSize: '2484px 800px',
+
+        // parallaxBackgroundImage: 'rainforest3.jpg',
+        // parallaxBackgroundSize: '3483px 800px',
+
+        parallaxBackgroundImage: 'hatter.jpg',
+        parallaxBackgroundSize: '2460px 800px',
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../revealjs/plugin/zoom-js/zoom.js', async: true },
+          { src: '../revealjs/plugin/notes/notes.js', async: true },
+          { src: '//cdn.socket.io/socket.io-1.3.5.js', async: true },
+          { src: '../revealjs/plugin/multiplex/client.js', async: true },
+        ]
+      });
+
+    </script><script type="text/javascript" src="./Webfejlesztés 2._files/highlight.js.letöltés"></script><script type="text/javascript" src="./Webfejlesztés 2._files/zoom.js.letöltés"></script><script type="text/javascript" src="./Webfejlesztés 2._files/notes.js.letöltés"></script><script type="text/javascript" src="./Webfejlesztés 2._files/socket.io-1.3.5.js.letöltés"></script><script type="text/javascript" src="./Webfejlesztés 2._files/client.js.letöltés"></script>
+
+  
+
+</body></html>

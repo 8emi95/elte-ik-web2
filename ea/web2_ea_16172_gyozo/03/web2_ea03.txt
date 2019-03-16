@@ -1,0 +1,83 @@
+2017.02.27.
+3. Web2 EA
+
+Eseménykezelés (finomítása)
+--------------
+
+11: adott a hivatkozások listája
+shift + katt -> konzolra írja ki alul az url-t (???)
+
+12: konzolra kéne kiírni a linkeket
+13: id-t hozzárendelünk
+14: link1-het mutat1 fv stb
+
+15: lényeg mutatKozos-ben
+direkt hivatkozás az adott linkre
+egy fv elég lenne
+
+17: this kulcsszó
+egy közös eseménykezelő fv
+
+19: esemény körülményeinek, paramétereinek lekérdezése -> eseményobjektum
+
+26: alapértelemzett máveletek - észre sem veszem
+
+28: shift - prevent default műv
+
+30: ne egyesével kelljen hozzárendelni
+3x vmi -> általánosítás
+
+
+31: ha vhová kattintok akk az összes szülőelemén is meghívódik
+egy kattintás sok klikk eseményt generál
+nemcsak ahol kiváltódik, hanem magasabb szinten is kezeljük
+33: vmelyik közüs szülőnek (itt ul) egy id
+this => lista
+lehet látni h a target a, li vagy ul
+kezelési és kiváltási szint között n db elem beékelődhet, de tudnom kell honnan jött
+
+34: span bárhol lehet, honnan tudom h linken belüli spnra kattintottam?
+matches - css selector illeszkedik-e egy adott dom elemre
+35: delegálás - más szinten ??? az eseménykezelőt mint amelyirke vonatkozik
+36: ink return fn.call(target, e); ???
+
+
+Böngésző-függetlenség
+---------------------
+*nekünk ezzel annyira nem kell foglalkozni ???*
+
+39: feature detection: az adott feature hasnálható-e
+
+??? API meglétét így vizsgáljuk ???
+
+
+Nyelvi elemek
+-------------
+
+47: isNan - number-e
+ékezetes karakterek kódolása
+
+50: amíg tudja parse-olni a stringet, addig átalakítja
+
+52: objektumok nagybetűvel kezdődnek
+min év hónap nap kell
+toLocaleString - lokális beállításoknak megfelelőre (magyar pl)
+
+55: split tömböt ad vissza
+
+57: Math.random() 0-1 közötti szám
+
+60: névtelen fv
+fv js-ben első osztályú nyelvi elme, úgy viselkedik mint egy objektum
+ne nevesítsük, hanem helyben fejtsük ki (fv-literál)
+62: változónak adom értékül a fvliterált
+
+63: általánosítani kéne
+64: tulajdonságfv-t hívok meg a feltételben
+
+66: some - optimista eldöntés
+
+68: forEAch ált iterálos, azért működik
+maphez tömb kell
+Array.from() tömbszerű obj-ból valódi tömböt csinál
+mátrix - külső map minden sorhoz újabb sort(?)

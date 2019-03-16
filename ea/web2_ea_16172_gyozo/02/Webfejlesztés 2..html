@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)http://webprogramozas.inf.elte.hu/webfejl2/ea/02/#/webfejleszts-2. -->
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>Webfejlesztés 2.</title>
+
+    <meta name="description" content="Hour of Code előadás, Csorna">
+    <meta name="author" content="Horváth Győző">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/reveal.css">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2.css" id="theme">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2(1).css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <!-- <link rel="stylesheet" href="../revealjs/lib/css/obsidian.css"> -->
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/github.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../revealjs/css/print/pdf.css' : '../revealjs/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script><link rel="stylesheet" type="text/css" href="./Webfejlesztés 2._files/paper.css">
+
+    <!--[if lt IE 9]>
+    <script src="../revealjs/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body style="transition: -webkit-transform 0.8s ease;">
+
+    <div class="reveal convex center has-parallax-background" role="application" data-transition-speed="default" data-background-transition="fade">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides" style="width: 960px; height: 700px; left: 50%; top: 50%; bottom: auto; right: auto; transform: translate(-50%, -50%) scale(0.757286);">
+
+<section id="webfejlesztés-2." class="slide level1 present" style="top: 126px; display: block;">
+<h1>Webfejlesztés 2.</h1>
+<!-- # Webfejlesztés 2. {data-background="http://codecondo.com/wp-content/uploads/2014/04/12-Courses-for-Starting-Your-Web-Development-Journey.jpg"} -->
+<!-- # Webfejlesztés 2. {data-background="http://oofva.com/wp-content/uploads/2015/04/bamboo_stone-1920x1080.jpg"} -->
+<!-- # Webfejlesztés 2. {data-background="http://fengshuinexus.com/wp-content/uploads/2015/02/feng-shui.jpg"} -->
+<!-- # Webfejlesztés 2. {data-background="http://wallpapercave.com/wp/RsKeIvx.jpg"} -->
+<h3 id="a-html-programozás-alapjai">2. A HTML programozás alapjai</h3>
+<p><small> Horváth Győző<br>
+Egyetemi adjunktus<br>
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba<br>
+Tel: (1) 372-2500/1816<br>
+horvath.gyozo@inf.elte.hu<br>
+</small></p>
+<!-- 
+
+<div class="equal">
+<div class="span6">
+
+</div>
+<div class="span6">
+
+</div>
+</div>
+
+<div class="span8 text-center">
+    
+</div>
+
+ -->
+</section>
+<section class="slide level1 future" style="top: 116px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés">Ismétlés</h2>
+<ul>
+<li>JavaScript nyelvi elemei
+<ul>
+<li>elemi és összetett típusok</li>
+<li>vezérlési szerkezetek</li>
+<li>operátorok</li>
+</ul></li>
+<li>Alapvető kommunikáció
+<ul>
+<li>beolvasás (<code>prompt</code>, <code>confirm</code>)</li>
+<li>kiírás (<strong><code>console.log</code></strong>, <code>alert</code>, <code>document.writeln</code>)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 0px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="felépítés">Felépítés</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>[✔] JavaScript nyelv</li>
+<li>JavaScript és HTML kapcsolata</li>
+</ul>
+</div>
+<div class="span6">
+<figure>
+<img src="./Webfejlesztés 2._files/felepites.png">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="egyszerű-példa-helló-név">Egyszerű példa: Helló név!</h2>
+<ul>
+<li>Feladat
+<ul>
+<li>Bekérni a nevet, pl. "Senki bácsi"</li>
+<li>Kiírni: "Hello Senki bácsi!"</li>
+</ul></li>
+<li>Eddigi tudásunkkal
+<ul>
+<li><code>prompt</code> és <code>alert</code></li>
+</ul></li>
+</ul>
+<pre class="js"><code>var nev = prompt('Hogy hívnak?', 'Senki bácsi');
+alert('Hello ' + nev + '!');</code></pre>
+<input type="button" id="btnHelloNaiv" value="Próba">
+<script>
+document.getElementById('btnHelloNaiv').addEventListener('click', helloNaiv, false);
+function helloNaiv(e) {
+    var nev = prompt('Hogy hívnak?', 'Senki bácsi');
+    alert('Hello ' + nev + '!');    
+}    
+</script>
+</section>
+<section class="slide level1 future" data-background="disgusted-baby.jpg" style="top: 330px; display: none;" data-background-image="disgusted-baby.jpg" hidden="" aria-hidden="true">
+
+<h2 id="de-nem-így-szokták-megoldani" data-background="disgusted-baby.jpg">... de nem így szokták megoldani</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="egyszerű-példa-helló-név-1">Egyszerű példa: Helló név!</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Űrlap
+<ul>
+<li>Gomb lenyomása</li>
+<li>Érték kiolvasása</li>
+<li>Eredmény megjelenítése</li>
+</ul></li>
+</ul>
+</div>
+<div class="span6">
+<form style="border: 5px solid white;">
+Név: <input type="text" id="nev"> <br> <input type="button" value="Köszönj!" id="gomb" onclick="hello()"> <br> <span id="kimenet"></span>
+</form>
+<script>
+function $(selector) {
+    return document.querySelector(selector);
+}
+function nevbolUdvozles(nev) {
+  return `Hello ${nev}!`;
+}
+function hello() {
+  var nev = $('#nev').value;
+  var udvozles = nevbolUdvozles(nev);
+  $('#kimenet').innerHTML = udvozles;
+}
+</script>
+</div>
+</div>
+<pre class="html"><code>&lt;form&gt;
+  Név: &lt;input type="text"&gt; 
+  &lt;br&gt;
+  &lt;input type="button" value="Köszönj!"&gt;
+&lt;/form&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-lépései">Megoldás lépései</h2>
+<ol type="1">
+<li><code>[ ]</code> Reagálni a gomb lenyomására.</li>
+<li><code>[ ]</code> Kiolvasni a szöveges beviteli mező értékét (beolvasás).</li>
+<li><code>[✔]</code> Előállítani a bemenet alapján a kimenetet, azaz az üdvözlő szöveget (feldolgozás).</li>
+<li><code>[ ]</code> Megjeleníteni az üdvözlő szöveget (kiírás).</li>
+</ol>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kérdések-a-megoldáshoz">Kérdések a megoldáshoz</h2>
+<ul>
+<li>Hogyan lehet a gomb lenyomására reagálni?</li>
+<li>Hogyan tudom a szöveges mező értékét kiolvasni? (valaminek a valamije)
+<ul>
+<li>JavaScriptből hogyan érem el a szöveges mezőt? (tetszőleges HTML dokumentumbeli elemre hivatkozás)</li>
+<li>Ha elértem a szöveges mezőt, akkor hogyan tudom a benne lévő értéket kiolvasni? (tulajdonság)</li>
+</ul></li>
+<li>Hogyan tudom az eredményt nem felugró ablakkal megjeleníteni, hanem a dokumentumban?</li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="elemek-elérése" class="new-section">Elemek elérése</h2>
+<!-- ## Elemek elérése {.new-section data-background="https://wallpaperscraft.com/image/tree_branches_sun_beams_green_light_52162_3840x2400.jpg" } -->
+<!-- ## Elemek elérése {.new-section data-background="http://www.byronjorjorian.com/gallery/Trees/110605_053.jpg" } -->
+<p>Dokumentum Objektum Modell (DOM)</p>
+<div class="span9 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/appletree.jpg">
+</figure>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="elemek-elérése-1">Elemek elérése</h2>
+<ul>
+<li>Hogyan tud a JavaScript egy tetszőleges HTML elemet elérni?</li>
+<li>Leíró nyelv vs Programozási nyelv → API</li>
+<li>Ez nem a JavaScript nyelvben van definiálva.</li>
+<li>Ezt a JavaScriptet futtató környezet biztosítja, ami most a böngésző</li>
+<li>A böngésző tesz lehetővé olyan kapcsolódási pontokat (interfészeket), amelyen keresztül a HTML dokumentum JavaScripttel módosítható.</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="elemek-elérése-2">Elemek elérése</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Kétféle interfész
+<ul>
+<li>DOM</li>
+<li>(BOM)</li>
+</ul></li>
+</ul>
+</div>
+<div class="span6">
+<figure>
+<img src="./Webfejlesztés 2._files/interface.png">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="dom">DOM</h2>
+<ul>
+<li>A HTML dokumentum is egy fastruktúra
+<ul>
+<li>Minden elemnek legfeljebb 1 szülője van</li>
+<li>Minden elemnek lehetnek gyerekei</li>
+</ul></li>
+<li>Az oldal betöltésekor a böngésző minden HTML elemnek létrehoz egy objektumot.</li>
+<li>Ezeket az objektumokat ugyanolyan fastruktúrába rendezi, mint az eredeti elemeket.</li>
+<li>Kialakul egy objektum-hierarchia.</li>
+<li>Ez a DOM.</li>
+<li>A megjelenítés a DOM alapján történik.</li>
+<li>Az objektumok JavaScript objektumok.</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="html-mint-faszerkezet">HTML mint faszerkezet</h2>
+<div class="equal">
+<div class="span8">
+<pre class="html"><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form id="form1"&gt;
+      Név: &lt;input type="text" name="nev" id="nev"&gt;
+      &lt;br&gt;
+      &lt;input type="button" value="Köszönj!" name="gomb" id="nev"&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+<div class="span4">
+<figure>
+<img src="./Webfejlesztés 2._files/hello_tags.png">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="dom-1">DOM</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/hello_dom.png">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="felület">Felület</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/hello_screenshot.png">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="sematikus-kapcsolatrendszer">Sematikus kapcsolatrendszer</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/sematikus_kapcsolatrendszer.png">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="élő-kapcsolat">Élő kapcsolat</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/elo_kapcsolat.png">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="document-object-model-dom">Document Object Model – DOM</h2>
+<ul>
+<li>Dokumentum Objektum Modell</li>
+<li>Korszerű, minden böngésző támogatja</li>
+<li>Szabványos interfész fastruktúra alapú hierarchiához
+<ul>
+<li>DOM Level 1 (1998)</li>
+<li>DOM Level 2 (2000)</li>
+<li>DOM Level 3 (2004)</li>
+<li>DOM Events Level 2 (2000)</li>
+</ul></li>
+<li>Tulajdonságok, metódusok és események</li>
+<li>HTML, XML</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="dom-műveletek">DOM műveletek</h2>
+<ul>
+<li>Rengeteg művelet (elemek, attribútumok)
+<ul>
+<li>bejárás</li>
+<li>létrehozás</li>
+<li>módosítás</li>
+<li>törlés</li>
+</ul></li>
+<li>DOM gyökere: document</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="egy-elem-kiválasztása">Egy elem kiválasztása</h2>
+<ul>
+<li>Azonosító (id) alapján
+<ul>
+<li><code>document.getElementById('id')</code></li>
+<li>a leggyorsabb</li>
+</ul></li>
+<li>CSS szelektor segítségével
+<ul>
+<li><code>document.querySelector('szelektor')</code></li>
+<li>a legáltalánosabb</li>
+</ul></li>
+</ul>
+<pre class="html"><code>Név: &lt;input type="text" id="nev"&gt;</code></pre>
+<pre class="js"><code>document.getElementById('nev')
+document.querySelector('#nev')
+document.querySelector('input[type=text]')
+document.querySelector('body &gt; form:nth-child(1) &gt; input:nth-child(1)')
+
+// Változóba kimentve
+var nev = document.querySelector('#nev');</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="több-elem-kiválasztása">Több elem kiválasztása</h2>
+<ul>
+<li>név alapján</li>
+<li>elemnév alapján</li>
+<li>stílusosztály alapján</li>
+<li>CSS szelektor segítségével
+<ul>
+<li><code>document.querySelectorAll('szelektor')</code></li>
+</ul></li>
+</ul>
+<pre class="js"><code>var inputs = document.querySelectorAll('input');
+console.log(inputs);  // Tömbszerű objektum
+
+// Iterálás
+for (var i = 0; i &lt; inputs.length; i++) {
+  var input = inputs[i];
+  console.log(input.innerHTML);
+}
+
+// Iterálás (ES6)
+for (var input of inputs) {
+  console.log(input.innerHTML);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="elemek-elérése-összefoglalás">Elemek elérése – összefoglalás</h2>
+<ul>
+<li>BÁRMELYIK elem elérhető JavaScriptből</li>
+<li>kiválasztás CSS szelektorokkal</li>
+<li>Egy elem: id-t kell adni neki
+<ul>
+<li><code>document.getElementById('id')</code></li>
+<li><code>document.querySelector('#id')</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="elemek-elérése-3" class="new-section">Elemek elérése</h2>
+<p>Böngésző Objektum Modell (BOM)</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="browser-object-model-bom">Browser Object Model – BOM</h2>
+<ul>
+<li>Nem szabványos, de minden böngésző támogatja</li>
+<li>Bővebben később lesz szó róla</li>
+<li>Elemek elérésének módja elavult benne.</li>
+<li>Limitált hozzáférés a dokumentum elemeihez</li>
+<li>Régi megközelítés
+<ul>
+<li>Mind a mai napig sok ilyen kóddal lehet találkozni</li>
+<li>Ne használjuk!</li>
+</ul></li>
+<li>A name attribútum alapján működik</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="bom">BOM</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/bom_hierarchia.png">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="bom-1">BOM</h2>
+<ul>
+<li>Tömbök indexelése
+<ul>
+<li>számokkal</li>
+<li>name attribútummal</li>
+</ul></li>
+</ul>
+<pre class="html"><code>&lt;form name="form1"&gt;
+  Név: &lt;input type="text" name="nev"&gt; 
+  &lt;br&gt;
+  &lt;input type="button" value="Köszönj!" name="gomb"&gt;
+&lt;/form&gt;</code></pre>
+<pre class="js"><code>window.document.forms[0].elements[0]
+window.document.forms['form1'].elements['nev']
+document.forms['form1'].elements['nev']
+document.form1.nev</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tulajdonságok" class="new-section">Tulajdonságok</h2>
+<p>Attribútum-programozás</p>
+<p>Analóg, felfedező, referencia alapú módszer</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="mit-tud-egy-dom-objektum">Mit tud egy DOM objektum?</h2>
+<ul>
+<li>A szabvány meghatározza, hogy egy DOM <em>objektum</em> mit tud</li>
+<li>Objektum
+<ul>
+<li>tulajdonságok</li>
+<li>metódusok</li>
+</ul></li>
+<li>Minket főleg a tulajdonságok érdekelnek</li>
+</ul>
+<figure>
+<img src="./Webfejlesztés 2._files/htmltodom.png">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szabványos-módszer">Szabványos módszer</h2>
+<ul>
+<li>DOM HTMLElement</li>
+<li><a href="http://www.w3.org/TR/DOM-Level-2-HTML/html.html">W3C DOM szabvány</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Gecko_DOM_Reference">MDN DOM referencia</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Gecko_DOM_Reference#HTML_interfaces">MDN DOM referencia HTML elemekkel foglalkozó része</a></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="analóg-módszer">Analóg módszer</h2>
+<ul>
+<li>Elnevezési konvenció: általában minden DOM objektumnak olyan tulajdonságai vannak, amilyen attribútumai a neki megfelelő HTML elemnek.</li>
+<li>Átírási szabály: camel case
+<ul>
+<li>ezEgyÖsszetettSzó</li>
+<li>elsőKicsiÖsszetételnélNagyBetűk</li>
+<li>pl. <code>getElementById</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="analóg-módszer-input-mező">Analóg módszer – input mező</h2>
+<div class="equal">
+<div class="span6">
+<h3 id="html-attribútum">HTML attribútum</h3>
+<ul>
+<li>id</li>
+<li>name</li>
+<li>type</li>
+<li>value</li>
+<li>readonly</li>
+<li>maxlength</li>
+</ul>
+</div>
+<div class="span6">
+<h3 id="javascript-tulajdonság">JavaScript tulajdonság</h3>
+<ul>
+<li>id</li>
+<li>name</li>
+<li>type</li>
+<li>value</li>
+<li>readOnly</li>
+<li>maxLength</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="felfedező-módszer">Felfedező módszer</h2>
+<ul>
+<li>JavaScript konzolban vizsgáljuk meg az elemet</li>
+<li>DOM fül</li>
+<li>Böngésző specifikus tulajdonságok is megjelenhetnek → óvatosan ezzel a módszerrel</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="felfedező-módszer-1">Felfedező módszer</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/felfedezo.png">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-input-mező-értéke">Példa: input mező értéke</h2>
+<p>HTML</p>
+<pre class="html"><code>&lt;input type="text" name="nev" id="nev"&gt;</code></pre>
+<p>JavaScript</p>
+<pre class="js"><code>document.querySelector('#nev').value
+
+// Például:
+var nev = document.querySelector('#nev').value;
+
+// Írható olvasható tulajdonság
+document.querySelector('#nev').value = 'Győző';</code></pre>
+<p><input type="text" name="nev" id="pelda_nev"></p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tulajdonságok---összefoglalás">Tulajdonságok - összefoglalás</h2>
+<ul>
+<li>HTML attribútumok olvasása/írása</li>
+<li>Módszer
+<ul>
+<li>Funkcionalitás (pl. érték)</li>
+<li>Megfelelő attribútum (pl. <code>value</code>)</li>
+<li>Megfelelő tulajdonság (pl. <code>value</code>)</li>
+<li>Olvasása/írása (lekérdezés/értékadás)</li>
+</ul></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseménykezelés" class="new-section">Eseménykezelés</h2>
+<p>Inline, tradícionális, szabványos, IE specifikus módszer</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="esemény-és-eseménykezelő">Esemény és eseménykezelő</h2>
+<ul>
+<li>Akció-reakció elve</li>
+<li>Akció – kiváltó ok
+<ul>
+<li>Környezet (böngésző) eleme (pl. oldalbetöltődés)</li>
+<li>Felhasználó cselekvése (pl. kattintás, egérmozgatás)</li>
+</ul></li>
+<li>Reakció = <strong>események</strong>
+<ul>
+<li>HTML elemek jelzései (gomb: kattintás történt)</li>
+</ul></li>
+<li>Ezekre az eseményekre lehet feliratkozni <strong>eseménykezelő</strong> függvényekkel</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="események-típusai">Események típusai</h2>
+<ul>
+<li>Egéresemények
+<ul>
+<li>click</li>
+<li>dblclick</li>
+<li>mouseup</li>
+<li>mousedown</li>
+<li>mouseover</li>
+<li>mousemove</li>
+<li>mouseout</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="események-típusai-1">Események típusai</h2>
+<ul>
+<li>Billentyűzetesemények
+<ul>
+<li>keydown</li>
+<li>keyup</li>
+<li>keypress</li>
+</ul></li>
+<li>Oldal események
+<ul>
+<li>load (window, frame, object, image)</li>
+<li>unload (window, frame)</li>
+<li>abort (image, object)</li>
+<li>error (object, image, frame)</li>
+<li>resize (document)</li>
+<li>scroll (document)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="események-típusai-2">Események típusai</h2>
+<ul>
+<li>Űrlap és űrlapelem események
+<ul>
+<li>submit (form)</li>
+<li>reset (form)</li>
+<li>select (input, textarea)</li>
+<li>change (input, select, textarea)</li>
+<li>focus (input, select, textarea, label, button)</li>
+<li>blur (input, select, textarea, label, button)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="események-típusai-3">Események típusai</h2>
+<ul>
+<li>Érintés események
+<ul>
+<li>touchstart</li>
+<li>touchend</li>
+<li>touchmove</li>
+<li>touchenter</li>
+<li>touchleave</li>
+<li>touchcancel</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseménykezelő-regisztrálása">Eseménykezelő regisztrálása</h2>
+<ul>
+<li>Inline módszer</li>
+<li>Tradícionális</li>
+<li>Szabványos</li>
+<li>IE specifikus</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="inline-módszer">Inline módszer</h2>
+<ul>
+<li>HTML attribútumként jelenik meg az eseménykezelő</li>
+<li>Történetileg az első módszer</li>
+<li>Mindenhol működik</li>
+</ul>
+<pre class="html"><code>&lt;!-- Általában --&gt;
+&lt;elem ontípus="javascript kód"&gt;
+
+&lt;!-- Például --&gt;
+&lt;input type="button" id="gomb" onclick="hello()"&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tradícionális-módszer">Tradícionális módszer</h2>
+<ul>
+<li>Programozottan rendelhető eseménykezelő egy elem eseményéhez</li>
+<li>Nem szabványos, de minden böngésző támogatja</li>
+</ul>
+<pre class="js"><code>elem.ontípus = függvény;
+
+// És NEM:
+elem.ontípus = függvény();
+
+// Törlés
+elem.ontípus = null;
+
+// Például
+document.querySelector('#gomb').onclick = hello;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tradícionális-módszer-1">Tradícionális módszer</h2>
+<ul>
+<li>Előnye
+<ul>
+<li>Minden böngésző ismeri</li>
+</ul></li>
+<li>Hátránya
+<ul>
+<li>Nem szabványos</li>
+<li>Egy elemhez csak egy eseménykezelő köthető</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szabványos-módszer-1">Szabványos módszer</h2>
+<ul>
+<li><code>addEventListener</code>, <code>removeEventListener</code></li>
+<li>Paraméterek
+<ul>
+<li>Esemény típusa</li>
+<li>Eseménykezelő függvény</li>
+<li>Elkapás iránya</li>
+</ul></li>
+</ul>
+<pre class="js"><code>// Hozzáadás/regisztrálás
+elem.addEventListener('típus', fuggveny, false);
+// Elvétel/leiratkozás
+elem.removeEventListener('típus', fuggveny, false);
+
+// Például
+var gomb = document.querySelector('#gomb');
+gomb.addEventListener('click', hello, false);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="microsoft-módszer">Microsoft módszer</h2>
+<ul>
+<li>Hasonló a szabványhoz, de kevesebbet tud</li>
+<li><code>attachEvent</code>, <code>detachEvent</code></li>
+</ul>
+<pre class="js"><code>// Hozzáadás/regisztrálás
+elem.attachEvent('ontípus', fuggveny);
+// Elvétel/leiratkozás
+elem.detachEvent('ontípus', fuggveny);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-gombra-kattintás">Példa: gombra kattintás</h2>
+<pre class="html"><code>&lt;form id="form1"&gt;
+  Név: &lt;input type="text" id="nev"&gt;
+  &lt;br&gt;
+  &lt;input type="button" value="Köszönj!" id="gomb" onclick="hello()"&gt;
+&lt;/form&gt;
+
+&lt;script type="text/javascript"&gt;
+function hello() {
+  //...
+}
+&lt;/script&gt;</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kiírás-a-dokumentumba" class="new-section">Kiírás a dokumentumba</h2>
+<p>innerHTML</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kiírás-a-dokumentumba-1">Kiírás a dokumentumba</h2>
+<ul>
+<li><code>console.log</code> nem látszik</li>
+<li><code>alert()</code> csúnya</li>
+<li><code>document.writeln()</code> lezárt dokumentumra nem működik: újat nyit
+<ul>
+<li>a dokumentum betöltése során szabad csak használni</li>
+</ul></li>
+<li>ÚJ: <code>innerHTML</code>
+<ul>
+<li>az elemeken belüli HTML tartalom</li>
+<li>írható, olvasható</li>
+</ul></li>
+</ul>
+<pre class="js"><code>elem.innerHTML = 'Tetszőleges &lt;i&gt;HTML&lt;/i&gt; szöveg'; //írás
+console.log(elem.innerHTML); //olvasás</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="innerhtml">innerHTML</h2>
+<pre class="js"><code>var p = document.querySelector('p');
+
+// Olvasás
+console.log(p.innerHTML);
+
+// Írás
+p.innerHTML = 'Tetszőleges &lt;i&gt;HTML&lt;/i&gt; szöveg';</code></pre>
+<figure>
+<img src="./Webfejlesztés 2._files/innerhtml.gif">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-innerhtml">Példa – innerHTML</h2>
+<pre class="html"><code>&lt;form id="form1"&gt;
+  Név: &lt;input type="text" id="nev"&gt;
+  &lt;br&gt;
+  &lt;input type="button" value="Köszönj!" id="gomb" onclick="hello()"&gt;
+  &lt;br&gt;
+  &lt;span id="kimenet"&gt;&lt;/span&gt;
+&lt;/form&gt;</code></pre>
+<pre class="js"><code>document.getElementById('kimenet').innerHTML = 'Hello világ!';</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példafeladat-megoldása" class="new-section">Példafeladat megoldása</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás">Megoldás</h2>
+<pre class="html"><code>&lt;form id="form1"&gt;
+  Név: &lt;input type="text" id="nev"&gt; &lt;br&gt;
+  &lt;input type="button" value="Köszönj!" id="gomb" onclick="hello()"&gt;
+  &lt;br&gt;
+  &lt;span id="kimenet"&gt;&lt;/span&gt;
+&lt;/form&gt;
+&lt;script&gt;
+function nevbolUdvozles(nev) {
+  return `Hello ${nev}!`;
+}
+function hello() {
+  //Beolvasás
+  var nev = document.querySelector('#nev').value;
+  //Feldolgozás
+  var udvozles = nevbolUdvozles(nev);
+  //Kiírás
+  document.querySelector('#kimenet').innerHTML = udvozles;
+}
+&lt;/script&gt;</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="finomítások" class="new-section">Finomítások</h2>
+<p><code>$()</code> és <code>$$()</code> függvény</p>
+<p>HTML és JavaScript szétválasztása</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="és-függvény"><code>$()</code> és <code>$$()</code> függvény</h2>
+<ul>
+<li><code>document.querySelector()</code>
+<ul>
+<li>hosszú, olvashatatlanná teszi a kódot</li>
+<li>könnyen elgépelhető</li>
+</ul></li>
+<li><code>$()</code> függvény
+<ul>
+<li><code>document.querySelector()</code> helyett</li>
+<li>egy elem lekérdezése</li>
+</ul></li>
+<li><code>$$()</code> függvény
+<ul>
+<li><code>document.querySelectorAll()</code> helyett</li>
+<li>több elem lekérdezése</li>
+</ul></li>
+</ul>
+<pre class="js"><code>document.querySelector('#id')  ---&gt;  $('#id')</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="és-függvény-1"><code>$()</code> és <code>$$()</code> függvény</h2>
+<p>Csomagoló függvények:</p>
+<pre class="js"><code>function $(selector) {
+    return document.querySelector(selector);
+}
+
+function $$(selector) {
+    return document.querySelectorAll(selector);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa">Példa</h2>
+<pre class="html"><code>&lt;form&gt;
+  Név: &lt;input type="text" id="nev"&gt;
+  &lt;br&gt;
+  &lt;input type="button" value="Köszönj!" id="gomb" onclick="hello()"&gt;
+  &lt;br&gt;
+  &lt;span id="kimenet"&gt;&lt;/span&gt;
+&lt;/form&gt;
+&lt;script&gt;
+function $(selector) {
+    return document.querySelector(selector);
+}
+function nevbolUdvozles(nev) {
+  return `Hello ${nev}!`;
+}
+function hello() {
+  var nev = $('#nev').value;
+  var udvozles = nevbolUdvozles(nev);
+  $('#kimenet').innerHTML = udvozles;
+}
+&lt;/script&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szétválasztás">Szétválasztás</h2>
+<ul>
+<li>HTML – szerkezet</li>
+<li>CSS – megjelenés</li>
+<li>JavaScript – viselkedés</li>
+</ul>
+<p>
+</p>
+<ul>
+<li>HTML és CSS szétválasztása</li>
+<li>HTML és JavaScript szétválasztása
+<ul>
+<li>JavaScript kódot külön állományba tenni</li>
+<li>HTML kódban csak hivatkozás maradhat külső állományra</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szétválasztás-1.-lépés">Szétválasztás – 1. lépés</h2>
+<p>Függvénydefiníciók külön állományba</p>
+<pre><code data-trim="" data-noescape="">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;&lt;/title&gt;
+    <mark>&lt;script src="hello.js"&gt;&lt;/script&gt;</mark>
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form&gt;
+      Név: &lt;input type="text" id="nev"&gt;
+      &lt;br&gt;
+      &lt;input type="button" value="Köszönj!" id="gomb" <mark>onclick="hello()"</mark>&gt;
+      &lt;br&gt;
+      &lt;span id="kimenet"&gt;&lt;/span&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szétválasztás-2.-lépés">Szétválasztás – 2. lépés</h2>
+<ul>
+<li>Inline eseménykezelők megszüntetése
+<ul>
+<li>Programozott hozzárendelés – szabványos modell</li>
+</ul></li>
+<li>Szkript a <code>&lt;head&gt;</code>-ben
+<ul>
+<li>Az elemek még nem elérhetők</li>
+<li>Az oldal betöltése után kell hozzárendelni az eseménykezelőket</li>
+<li><code>window</code> objektum <code>load</code> eseménykezelő függvényben</li>
+</ul></li>
+<li>Szkript a <code>&lt;/body&gt;</code> előtt közvetlenül
+<ul>
+<li>minden elem elérhető</li>
+<li>nincs további teendő</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szétválasztás-html">Szétválasztás – HTML</h2>
+<p>Szkript a <code>&lt;/body&gt;</code> előtt</p>
+<pre><code data-trim="" data-noescape="">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form&gt;
+      Név: &lt;input type="text" id="nev"&gt;
+      &lt;br&gt;
+      &lt;input type="button" value="Köszönj!" id="gomb"&gt;
+      &lt;br&gt;
+      &lt;span id="kimenet"&gt;&lt;/span&gt;
+    &lt;/form&gt;
+    <mark>&lt;script src="hello.js"&gt;&lt;/script&gt;</mark>
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szétválasztás-javascript">Szétválasztás – JavaScript</h2>
+<ul>
+<li><code>&lt;/body&gt;</code> előtt működik</li>
+<li><code>&lt;head&gt;</code>-ben → még nem működik</li>
+</ul>
+<pre><code data-trim="" data-noescape="">//Függvénydefiníciók
+function $(selector) {
+    return document.querySelector(selector);
+}
+function nevbolUdvozles(nev) {
+  return `Hello ${nev}!`;
+}
+function hello() {
+  var nev = $('#nev').value;
+  var udvozles = nevbolUdvozles(nev);
+  $('#kimenet').innerHTML = udvozles;
+}
+<mark>//Eseménykezelők regisztrálása</mark>
+<mark>$('#gomb').addEventListener('click', hello, false);</mark></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szétválasztás-html-1">Szétválasztás – HTML</h2>
+<p>Szkript a <code>&lt;head&gt;</code>-ben</p>
+<pre><code data-trim="" data-noescape="">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;&lt;/title&gt;
+    <mark>&lt;script src="hello.js"&gt;&lt;/script&gt;</mark>
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form&gt;
+      Név: &lt;input type="text" id="nev"&gt;
+      &lt;br&gt;
+      &lt;input type="button" value="Köszönj!" id="gomb"&gt;
+      &lt;br&gt;
+      &lt;span id="kimenet"&gt;&lt;/span&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szétválasztás-javascript-1">Szétválasztás – JavaScript</h2>
+<p>Szkript a <code>&lt;head&gt;</code>-ben</p>
+<pre><code data-trim="" data-noescape="">//Segédfüggvények
+function $(selector) {
+    return document.querySelector(selector);
+}
+//Feldolgozó függvények
+function nevbolUdvozles(nev) {
+  return `Hello ${nev}!`;
+}
+//Eseménykezelő függvények
+function hello() {
+    var nev = $('#nev').value;
+    var udvozles = nevbolUdvozles(nev);
+    $('#kimenet').innerHTML = udvozles;
+}
+<mark>function init() {
+    //Eseménykezelők regisztrálása
+    $('#gomb').addEventListener('click', hello, false);
+}
+window.addEventListener('load', init, false);</mark></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="elvárás">Elvárás</h2>
+<ul>
+<li>Külön HTML és JavaScript állomány</li>
+<li>szkript a <code>&lt;/body&gt;</code> előtt (progresszív betöltés)</li>
+<li><code>$()</code> és <code>$$()</code> segédfüggvények</li>
+<li>Három rész
+<ul>
+<li>adatok (felületfüggetlenül)</li>
+<li>eseménykezelők</li>
+<li>HTML generálók</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="feladatmegoldás-lépései">Feladatmegoldás lépései</h2>
+<ol type="1">
+<li>Tervezés
+<ul>
+<li>Specifikáció (adatok)</li>
+<li>Felületterv</li>
+</ul></li>
+<li>Adatszerkezetek és feldolgozó függvények (felületfüggetlen)</li>
+<li>HTML-t előállító függvények</li>
+<li>Eseménykezelők kialakítása
+<ul>
+<li>Melyik elem melyik eseményére kell mit reagálni</li>
+<li>Regisztrálás</li>
+</ul></li>
+</ol>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="feladatmegoldás-lépései-1">Feladatmegoldás lépései</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/architektura.png">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-egyszerű-todo-lista">Példa: egyszerű todo lista</h2>
+<form>
+<input type="text" name="todo" id="txtTodo"> <input type="button" value="Hozzáad" id="btnAdd">
+</form>
+<ul id="ulLista">
+</ul>
+<script>
+// Segédfüggvények
+function $(selector) {
+    return document.querySelector(selector);
+}
+
+function $$(selector) {
+    return document.querySelectorAll(selector);
+}
+
+// Eseménykezelők
+$('#btnAdd').addEventListener('click', onButtonClick, false);
+
+function onButtonClick(e) {
+    // Beolvasás
+    var todoText = $('#txtTodo').value;
+    // Feldolgozás
+    addTodo(todoText);
+    // Kiírás
+    $('#ulLista').innerHTML = genList( getList() )
+    // $('#ulLista').innerHTML += genLi( todoText );
+}
+
+// Adatok
+var list = [];
+
+function addTodo(todo) {
+    list.push(todo);
+}
+
+function getList() {
+    return list;
+}
+
+// HTML generálók
+function genList(list) {
+    var s = '';
+    for (var todo of list) {
+        s += genLi(todo);
+    }
+    return s;
+}
+
+function genLi(todo) {
+    return `<li>${todo}</li>`;
+}
+</script>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="felületi-elemek">Felületi elemek</h2>
+<pre class="html"><code>&lt;!-- ... --&gt;
+&lt;body&gt;
+    &lt;input type="text" name="todo" id="txtTodo"&gt;
+    &lt;input type="button" value="Hozzáad" id="btnAdd"&gt;
+    &lt;ul id="ulLista"&gt;&lt;/ul&gt;
+    &lt;script src="todo.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;!-- ... --&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="segédfüggvények">Segédfüggvények</h2>
+<pre class="js"><code>// Segédfüggvények
+function $(selector) {
+    return document.querySelector(selector);
+}
+
+function $$(selector) {
+    return document.querySelectorAll(selector);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="adatok">Adatok</h2>
+<pre class="js"><code>// Adatok
+var list = [];
+
+function addTodo(todo) {
+    list.push(todo);
+}
+
+function getList() {
+    return list;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="html-generálók">HTML generálók</h2>
+<pre class="js"><code>// HTML generálók
+function genList(list) {
+    var s = '';
+    for (var todo of list) {
+        s += genLi(todo);
+    }
+    return s;
+}
+
+function genLi(todo) {
+    return `&lt;li&gt;${todo}&lt;/li&gt;`;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseménykezelők-vezérlők">Eseménykezelők (vezérlők)</h2>
+<pre class="js"><code>// Eseménykezelők
+$('#btnAdd').addEventListener('click', onButtonClick, false);
+
+function onButtonClick(e) {
+    // Beolvasás
+    var todoText = $('#txtTodo').value;
+    // Feldolgozás
+    addTodo(todoText);
+    // Kiírás
+    $('#ulLista').innerHTML = genList( getList() )
+    // $('#ulLista').innerHTML += genLi( todoText );
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="egyben">Egyben</h2>
+<pre class="js"><code>// Segédfüggvények
+function $(selector) {
+    return document.querySelector(selector);
+}
+
+function $$(selector) {
+    return document.querySelectorAll(selector);
+}
+
+/////////////////////////////////////////////////
+
+// Eseménykezelők
+$('#btnAdd').addEventListener('click', onButtonClick, false);
+
+function onButtonClick(e) {
+    // Beolvasás
+    var todoText = $('#txtTodo').value;
+    // Feldolgozás
+    addTodo(todoText);
+    // Kiírás
+    $('#ulLista').innerHTML = genList( getList() )
+    // $('#ulLista').innerHTML += genLi( todoText );
+}
+
+/////////////////////////////////////////////////
+
+// Adatok
+var list = [];
+
+function addTodo(todo) {
+    list.push(todo);
+}
+
+function getList() {
+    return list;
+}
+
+/////////////////////////////////////////////////
+
+// HTML generálók
+function genList(list) {
+    var s = '';
+    for (var todo of list) {
+        s += genLi(todo);
+    }
+    return s;
+}
+
+function genLi(todo) {
+    return `&lt;li&gt;${todo}&lt;/li&gt;`;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="javascript-fájl-felépítése">JavaScript fájl felépítése</h2>
+<p>Blokkok megjegyzéssel elválasztva:</p>
+<ul>
+<li>segédfüggvények (<code>$()</code> és <code>$$()</code>)</li>
+<li>eseménykezelő függvények és regisztrálásuk</li>
+<li>adatok és adatkezelő függvények</li>
+<li>HTML-t előállító függvények</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="elvárások">Elvárások</h2>
+<ul>
+<li>az adatokhoz (beállítás/lekérdezés) csak függvényeken keresztül férünk hozzá, direkt elérés nincs</li>
+<li>a HTML-t előállító függvények minden szükséges információt paraméterként kapnak meg, és annak megfelelő HTML-t generálnak</li>
+<li>az eseménykezelő olvas és ír a felhasználói felületre, és hívja az adat és HTML blokk függvényeit</li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="összefoglalás" class="new-section">Összefoglalás</h2>
+<ul>
+<li>HTML programzás = DOM programozás</li>
+<li>DOM programozás
+<ul>
+<li>elemek elérése (<code>$()</code>)</li>
+<li>tulajdonságaik módosítása (attribútumprogramozás)</li>
+<li>belső részének megváltoztatása (<code>innerHTML</code>)</li>
+</ul></li>
+<li>Eseménykezelés (szabványosan, <code>addEventListener</code>)</li>
+<li>HTML és JavaScript szétválasztása</li>
+<li>JavaScript: adatok/HTML generálók/eseménykezelők</li>
+</ul>
+<!-- 
+
+- elemek szerkesztésére több példa
+- összetettebb feladatokra több példa
+
+ -->
+</section>
+
+      </div>
+
+    <div class="backgrounds" style="background-image: url(&quot;hatter.jpg&quot;); background-size: 2460px 800px; background-position: 0px 0px;"><div class="slide-background slide level1 present" data-loaded="true" style="display: block;"></div><div class="slide-background slide level1 future" data-loaded="true" style="display: block;"></div><div class="slide-background slide level1 future" data-loaded="true" style="display: block;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" data-background-hash="disgusted-baby.jpgnullnullnullnullnullnullnullnull" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div></div><div class="progress" style="display: block;"><span style="width: 0px;"></span></div><aside class="controls" style="display: block;"><button class="navigate-left" aria-label="previous slide"></button><button class="navigate-right enabled" aria-label="next slide"></button><button class="navigate-up" aria-label="above slide"></button><button class="navigate-down" aria-label="below slide"></button></aside><div class="slide-number" style="display: block;"><span class="slide-number-a">1</span></div><div class="speaker-notes" data-prevent-swipe=""></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px 1px 1px 1px);">
+Webfejlesztés 2.
+
+
+
+
+2. A HTML programozás alapjai
+ Horváth Győző
+Egyetemi adjunktus
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba
+Tel: (1) 372-2500/1816
+horvath.gyozo@inf.elte.hu
+
+
+</div></div>
+
+    <script src="./Webfejlesztés 2._files/head.min.js.letöltés"></script>
+    <script src="./Webfejlesztés 2._files/reveal.js.letöltés"></script>
+
+    <script>
+
+      // var newSectionBackgroundColor = '#085536';
+      // var newSectionBackgroundColor = '#FFC000';
+      var newSectionBackgroundColor = '#D4A71C';
+
+      function moveAttributesFromH2ToSection() {
+        var h2s = document.querySelectorAll('section > h2, section > h1');
+        for (var i = 0; i < h2s.length; i++) { 
+          var h2 = h2s[i];
+          if (h2.hasAttributes()) {
+            var section = h2s[i].parentNode;
+            var attrs = h2.attributes;
+            for(var j = attrs.length - 1; j >= 0; j--) {
+              if (attrs[j].name != 'id') {
+                section.setAttribute(attrs[j].name, attrs[j].value);
+              } 
+            }
+          } 
+        }
+      }
+
+      // function setDataBackground() {
+      //   var h2s = document.querySelectorAll('section > h2[data-background], section > h1[data-background]');
+      //   for (var i = 0; i < h2s.length; i++) { 
+      //     var section = h2s[i].parentNode; 
+      //     section.setAttribute('data-background', h2s[i].getAttribute('data-background')); 
+      //   }
+      // }
+
+      // function setVideoBackground() {
+      //   var h2s = document.querySelectorAll('section > h2[data-background-video], section > h1[data-background-video]');
+      //   for (var i = 0; i < h2s.length; i++) { 
+      //     var section = h2s[i].parentNode; 
+      //     section.setAttribute('data-background-video', h2s[i].getAttribute('data-background-video')); 
+      //   }
+      // }
+
+      function setSectionClass() {
+        var h2s = document.querySelectorAll('section > h2.new-section');
+        console.log(h2s)
+        for (var i = 0; i < h2s.length; i++) { 
+          var section = h2s[i].parentNode; 
+          section.classList.add('new-section'); 
+          section.setAttribute('data-background', newSectionBackgroundColor); 
+          // console.log(section);
+        }
+      }
+
+      setSectionClass();
+      moveAttributesFromH2ToSection();
+      // setDataBackground();
+      // setVideoBackground();
+
+
+      Reveal.addEventListener('slidechanged', function(event) {
+        // console.log(event.currentSlide)               
+        if(event.currentSlide.getAttribute('data-background-iframe')) {
+          document.querySelector('.reveal > .backgrounds').style.zIndex = 1;
+        } else {
+          document.querySelector('.reveal > .backgrounds').style.zIndex = 0;
+        }                  
+      });
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        backgroundTransition: 'fade', 
+
+        multiplex: {
+          secret: null, 
+          id: '40860ad4b3de62ec', // Obtained from socket.io server
+          url: '//webprogramozas.inf.elte.hu:1948' // Location of socket.io server
+        },
+
+        parallaxBackgroundImage: 'hatter.jpg',
+        parallaxBackgroundSize: '2460px 800px', 
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../revealjs/plugin/zoom-js/zoom.js', async: true },
+          { src: '../revealjs/plugin/notes/notes.js', async: true },
+          // { src: '//cdn.socket.io/socket.io-1.3.5.js', async: true },
+          // { src: '../revealjs/plugin/multiplex/client.js', async: true },
+        ]
+      });
+
+    </script><script type="text/javascript" src="./Webfejlesztés 2._files/highlight.js.letöltés"></script><script type="text/javascript" src="./Webfejlesztés 2._files/zoom.js.letöltés"></script><script type="text/javascript" src="./Webfejlesztés 2._files/notes.js.letöltés"></script>
+
+  
+
+</body></html>

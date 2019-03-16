@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)http://webprogramozas.inf.elte.hu/webfejl2/gyak/pelda_zh.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>Webfejlesztés 2.</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="./Webfejlesztés 2._files/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="./Webfejlesztés 2._files/targy.css" rel="stylesheet" media="screen">
+		<link href="./Webfejlesztés 2._files/bootstrap-responsive.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="brand" href="http://webprogramozas.inf.elte.hu/webfejl2/gyak/pelda_zh.html#">Webprogramozás szerver</a>
+					<ul class="nav">
+						<li class="active"><a href="http://webprogramozas.inf.elte.hu/webfejl2.html">Webfejlesztés 2.</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/weaf1.html">Webes alkalmazásfejlesztés 1.</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	    <div class="container">
+	    	<div class="well">
+				<h1>Webfejlesztés 2.</h1>
+			</div>
+	    	<div class="row">
+	    		<div class="span3">
+				    <ul class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="125">
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#altalanos">Általános információk</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#szamonkeres">Számonkérés</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#eloadas">Előadások</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#gyakorlat">Gyakorlatok</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#segedanyag">Segédanyagok</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.html#oktatok">Oktatók</a></li>
+					</ul>
+	    		</div>		
+	    		<div class="span9">
+	    			<section>
+						
+
+	    				<h1 id="webfejlesztés-2.-zárthelyi-dolgozat">Példa zárthelyi dolgozat</h1>
+	    				<h2 id="tudnivalók">Tudnivalók</h2>
+	    				<ul>
+	    					<li>A feladatot a webprogramozas.inf.elte.hu szerveren kell elvégezni PHP és JavaScript segítségével.</li>
+	    					<li>A megoldást egy <code>wf2zh</code> nevű mappába készítsd el a public_html mappán belül!</li>
+	    					<li>A megoldások plágiumellenőrzésen esnek át a zh után. A gyanúsan hasonló megoldást adó hallgatókat megkérhetjük zh-ik megvédésére.</li>
+	    					<li>A megoldáshoz bármilyen segédanyag felhasználható, kivéve a humán segítséget!</li>
+	    					<li>A megoldások elkészítésére 105 perc áll rendelkezésre.</li>
+	    					<li>Értékelés: 1 + a megoldott részfeladatok száma.</li>
+	    					<li>Az értékelés helyben történik.</li>
+	    					<li>Lényeg a működő alkalmazás, kinézet, kód szépsége nem számít.</li>
+	    				</ul>
+	    				<h2 id="feladat">Feladat</h2>
+	    				<p>Készíts névjegyeket tároló alkalmazást. Az adatokat szerveroldalon fájlban tároljuk.</p>
+	    				<ol style="list-style-type: decimal">
+	    					<li><p>Készíts űrlapot, amelyen egy új névjegy adatai vehetők fel! Ehhez meg kell adni a következő adatokat:</p>
+	    						<ul>
+	    							<li>név (kötelező)</li>
+	    							<li>telefonszám (csak számot tartalmazhat)</li>
+	    							<li>cím (ez lehet egy egyszerű szöveges beviteli mező, nem kell városra, utcára, stb-re bontani).</li>
+	    							<li>email (van benne @ jel). </li>
+	    						</ul>
+	    						<p>A fenti adatok mellett tároljuk a rögzítés időpontját is és egy egyedi sorszámot (pl. amit a time() függvény állít elő)! A tárolásnál készülj fel arra, hogy akár több email cím is érkezhet (ld. 3. feladat)! Az eddig felvett névjegyeket listázd is ki!</p>
+	    					</li>
+	    					<li><p>Az előző feladatbeli űrlapon végezd el az adatok helyességének ellenőrzését JavaScript vagy PHP oldalon. (Megjegyzés: egy valós alkalmazásban szerveroldalon mindig kell ellenőrizni!) A névjegyek listájánál pedig legyen lehetőség egy szűrőfeltétel megadására, amelynek hatására csak azok a névjegyek jelennek meg, amelyek neve részben tartalmazza a szűrőmező szövegét (ld. strstr() függvény)!</p></li>
+	    					<li><p>A névjegyet rögzítő oldalt bővítsd a következő funkciókkal JavaScript segítségével! Tegyél fel egy gombot, melyre kattintva az otthoni címet átmásolja a munkahelyi cím mezőbe! Egy másik gomb segítségével pedig legyen lehetőség újabb email mezőket felvenni!</p></li>
+	    					<li><p>Legyen lehetőség egy meglévő névjegy adatait módosítani! A lista oldalon kattinthassunk egy névjegyre, és ekkor jelenjen meg egy külön oldalon a módosításért felelős űrlap. A névjegyeket a sorszámuk azonosítja.</p>
+	    					</li>
+	    				</ol>
+
+
+					</section>
+	    		</div>
+	    	</div>
+		</div>
+		
+		<script src="./Webfejlesztés 2._files/jquery.min.js.download"></script>
+		<script src="./Webfejlesztés 2._files/bootstrap.min.js.download"></script>
+	
+</body></html>

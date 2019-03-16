@@ -1,0 +1,111 @@
+function $(id) {
+	return document.getElementById(id);
+}
+
+function init() {
+	$("szam").addEventListener('keypress', csakSzam, false);
+	$("par").addEventListener('click', parKatt, false);
+	$("szuro").addEventListener('keyup', szures, false);
+	
+	$("amoba").addEventListener('click', jeloles, false);
+}
+
+var nextPlayer = "X";
+
+function jeloles(e) {
+	console.log(e.target.innerHTML);
+	if(e.target.innerHTML == "&nbsp;") {
+		e.target.innerHTML = nextPlayer;
+		winCheck();
+		nextPlayer = nextPlayer == "X" ? "O" : "X";
+	}
+}
+
+function winCheck() {
+	var isWin = false;
+	for(var i = 0; i < 3; i++) {
+		if($(i.toString() + '0').innerHTML != "&nbsp;" && $(i.toString() + '0').innerHTML == $(i.toString() + '1').innerHTML && $(i.toString() + '1').innerHTML == $(i.toString() + '2').innerHTML) {
+			isWin = true;
+		}
+	}
+	
+	for(var i = 0; i < 3; i++) {
+		if($('0'+ i.toString()).innerHTML != "&nbsp;" && $('0' + i.toString()).innerHTML == $('1' + i.toString()).innerHTML && $('1' + i.toString()).innerHTML == $('2' + i.toString()).innerHTML) {
+			isWin = true;
+		}
+	}
+	
+	if($('00').innerHTML != "&nbsp;" && $('00').innerHTML == $('11').innerHTML && $('11').innerHTML == $('22').innerHTML) {
+		isWin = true;
+	}
+		
+	if($('02').innerHTML != "&nbsp;" && $('02').innerHTML == $('11').innerHTML && $('11').innerHTML == $('20').innerHTML) {
+		isWin = true;
+	}
+	
+	if(isWin) {
+		alert(nextPlayer + " nyert!");
+	}
+}
+
+function csakSzam(e) {
+	console.log(e);
+	if(e.which > 57 || e.which == 32) {
+		e.preventDefault();
+	}
+}
+
+function parKatt(e) {
+	console.log(e); //a
+	console.log(e.type); //b
+	console.log(e.button); //c
+	console.log(e.pageX, e.pageY); //d
+	console.log(e.target); //e
+	if(e.target.tagName == 'SPAN') {
+		console.log(e.target.innerHTML);
+	}
+	if (e.target.tagName == 'A') {
+		if (e.target.innerHTML == 'libero') {
+			e.preventDefault();
+		}
+	}
+}
+
+var filmek = [
+	{
+		cim: 'A hobbit',
+		ev: 2012
+	},
+	{
+		cim: 'A nagy ho-ho-ho-horgász',
+		ev: 1990
+	},
+	{
+		cim: 'A három testőr',
+		ev: 2000
+	}
+];
+
+function szures(e) {
+	var reszlet = this.value;
+	var cimek = szuresCimSzerint(filmek,reszlet);
+	$('filmLista').innerHTML = cimekbolHTMLLista(cimek);
+}
+
+function szuresCimSzerint(filmek, reszlet) {
+	var cimek = [];
+	for(var i = 0; i < filmek.length; i++) {
+		if(reszlet && filmek[i].cim.indexOf(reszlet) >= 0) {
+			cimek.push(filmek[i].cim);
+		}
+	}
+	return cimek;
+}
+
+function cimekbolHTMLLista(cimek) {
+	return cimek.length > 0
+		? '<li>' + cimek.join('</li><li>') + '</li>'
+		: '';
+}
+
+window.addEventListener('load', init, false);

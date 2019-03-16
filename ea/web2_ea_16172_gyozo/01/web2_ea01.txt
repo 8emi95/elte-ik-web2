@@ -1,0 +1,51 @@
+2017.02.13.
+1. Web2 EA
+
+http://webprogramozas.inf.elte.hu/webfejl2/ea/01/
+
+ézh: panelekbõl összesakkozható (beadból csak ûrlap pl), bármi használható
+
+ea: 45min + e
+
+34:
+1999 - .net
+	kliensoldalon nincs fejlõdés
+netscape hamvaiból phoenix (firebird/firefox)
+
+36: órán azt használjuk amit a gyakvezek mondani
+vs code (st3 konkurense) - gyõzõ
+
+37: chrome (lehet kedvencet használni)
+
+39: szabványokat nem érdemes olvasni (ecmascript)
+
+40: ES6 nagy lépés
+feature-ök stage-eken mennek kersztül, 4-esnél kerül szabványba
+
+42: noda.js nagyon korszerû
+
+44: <script> tag-es lefut szekvenciálisan?
+
+47: ha tudsz c++ben akk tudsz javascriptben
+
+48:
+szkriptnyelv: egy feladatra
+gyengén típusos: "int a" nem létezik, "var a" van, értéknek van típusa (nem a változónak)
+interpretált: nincs fordítási fázis, sorról sorra hajtja végig
+
+54: simán szánm (háttérben lebegõpontos de nincs külön double stb)
+
+60: dinamikus tömbök, nincs vége
+mátrix tömbök tömbje
+
+61: for ciklussal iterálunk tömbön
+
+62: objektumok fontosak
+
+63: [] hivatkozás asszociatív?
+
+65: for (.. in ..) objektumon iterálás
+
+67: egymásba ágyazhatók
+
+68: fv-nél típust nem jelzünk (se fv se pm)

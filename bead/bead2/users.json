@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Gertrúd",
+        "email": "no1fan@trasfortrash.com",
+        "password": "tft4lyfe"
+    },
+    {
+        "id": 2,
+        "name": "Katalin",
+        "email": "katalin@gmail.com",
+        "password": "IAMKatalin"
+    },
+    {
+        "id": 3,
+        "name": "Hashtag Jameson",
+        "email": "pplrcray@gmail.com",
+        "password": "hashtag"
+    },
+    {
+        "id": 4,
+        "name": "Hellen Thomas Eatons",
+        "email": "eatonsht@dku.edu",
+        "password": "eatonsdku"
+    }
+]

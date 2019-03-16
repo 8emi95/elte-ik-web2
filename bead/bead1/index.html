@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Amőba</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="style.css" title="default">
+    </head>
+    <body>
+        <script type="text/javascript" src="logic.js"></script>
+        <script type="text/javascript" src="controller.js"></script>
+
+        <div id="wrapper">
+            <h1 >Amőba</h1>
+
+            <h3>Leírás</h3>
+            <p id="rules">A játék célja a pályán három jelet egy sorban lerakni vízszintes, függőleges vagy átlós irányban, illetve ebben az ellenfelet (gép vagy másik személy) megakadályozni.</p>
+
+            <div id="mode">
+                <h3>Válassz játékmódot!</h3>
+
+                <table id="gameModes">
+                    <tr>
+                        <td><input class="leftButtons" type="button" id="humanOpponent" value="Kétszemélyes"></td>
+                        <td><p class="modeParagraphs">Két személy játszhat egymás ellen.</p></td>
+                    </tr>
+                    <tr>
+                        <td><input class="leftButtons" type="button" id="computerOpponent" value="Gépi ellenfél"></td>
+                        <td><p class="modeParagraphs">Egy személy játszhat a gép ellen.</p></td>
+                    </tr>
+                    <tr>
+                        <td><input class="leftButtons" type="button" id="demo" value="DEMO"></td>
+                        <td><p class="modeParagraphs">Egy személy játszhat a gép ellen, de amikor a gép nyerne 5 másodpercig van lehetőség a legutóbbi lépés visszavonására.</p></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="gameboard" style="display: none;">
+                <table>
+                    <tr>
+                        <td data-cellindex="0"></td>
+                        <td data-cellindex="1"></td>
+                        <td data-cellindex="2"></td>
+                    </tr>
+                    <tr>
+                        <td data-cellindex="3"></td>
+                        <td data-cellindex="4"></td>
+                        <td data-cellindex="5"></td>
+                    </tr>
+                    <tr>
+                        <td data-cellindex="6"></td>
+                        <td data-cellindex="7"></td>
+                        <td data-cellindex="8"></td>
+                    </tr>
+                </table>
+                <input class="buttons" type="button" id="undoButton" value="Visszavonás" style="display: none;">
+                <p id="message" style="display: block;"></p>
+                <p id="animation" style="display: block;"></p>
+                <input class="buttons" type="button" id="newGameButton" value="Új játék" style="display: none;">
+                <div id="backImage">
+                    <img src="door.png" alt="Visszalépés a főoldalra" id="backButton">
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </body>
+</html>

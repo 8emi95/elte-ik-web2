@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)http://webprogramozas.inf.elte.hu/webfejl2/ea/13/#/webfejleszts-2. -->
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>Webfejlesztés 2.</title>
+
+    <meta name="description" content="Hour of Code előadás, Csorna">
+    <meta name="author" content="Horváth Győző">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/reveal.css">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2.css" id="theme">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2(1).css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <!-- <link rel="stylesheet" href="../revealjs/lib/css/obsidian.css"> -->
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/github.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../revealjs/css/print/pdf.css' : '../revealjs/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script><link rel="stylesheet" type="text/css" href="./Webfejlesztés 2._files/paper.css">
+
+    <!--[if lt IE 9]>
+    <script src="../revealjs/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body style="transition: -webkit-transform 0.8s ease;">
+
+    <div class="reveal convex center has-parallax-background" role="application" data-transition-speed="default" data-background-transition="fade">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides" style="width: 960px; height: 700px; left: 50%; top: 50%; bottom: auto; right: auto; transform: translate(-50%, -50%) scale(0.757286);">
+
+<section id="webfejlesztés-2." class="slide level1 present" style="top: 96.5px; display: block;">
+<h1>Webfejlesztés 2.</h1>
+<h3 id="adatbázis-kezelés-osztályok.-kitekintés">Adatbázis-kezelés, osztályok. Kitekintés</h3>
+<p><small> Horváth Győző<br>
+Egyetemi adjunktus<br>
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba<br>
+Tel: (1) 372-2500/1816<br>
+horvath.gyozo@inf.elte.hu </small></p>
+</section>
+<section class="slide level1 future" style="top: 111px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="időpontok">Időpontok</h2>
+<ul>
+<li>Évfolyam zh
+<ul>
+<li>2017. május 30. kedd, 13-16, Lovarda, Nyelvi és Adatbázis labor</li>
+</ul></li>
+<li>Pót zh
+<ul>
+<li>2017. június 6. kedd, 9-12, Lovarda</li>
+</ul></li>
+<li>PHP beadandó
+<ul>
+<li>2017. május 28. éjfél</li>
+<li>2017. május 21. éjfél (+2 pont)</li>
+</ul></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 224.5px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés" class="new-section">Ismétlés</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés-1">Ismétlés</h2>
+<div class="span7 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/server_client_php_file.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés-2">Ismétlés</h2>
+<div class="span10 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/php_adatok_5.png" alt="">
+</figure>
+</div>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="adatbázisok" class="new-section">Adatbázisok</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="fájl-vs-adatbázis">Fájl vs adatbázis</h2>
+<div class="equal">
+<div class="span6">
+<h3 id="fájl">Fájl</h3>
+<ul>
+<li>bármikor elérhető, nincs szükség plusz szoftverekre</li>
+<li>könnyen értelmezhető (ember, program)</li>
+<li>könnyen használható</li>
+<li>viszonylag kis méretű</li>
+</ul>
+</div>
+<div class="span6">
+<h3 id="adatbázis">Adatbázis</h3>
+<ul>
+<li>biztonságos</li>
+<li>típusos adatok</li>
+<li>bonyolult adatszerkezetek</li>
+<li>összetett kereshetőség</li>
+<li>fejlett konkurenciakezelés</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="adatbázis-kezelő-rendszerek">Adatbázis-kezelő rendszerek</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Adatbázis-kezelők
+<ul>
+<li>MySQL</li>
+<li>PostgreSQL</li>
+<li>MSSQL</li>
+<li>Oracle</li>
+<li>SQLite</li>
+<li>stb.</li>
+</ul></li>
+<li>Specifikus függvények PHP-ban</li>
+<li>SQL utasítások</li>
+</ul>
+</div>
+<div class="span6">
+<figure>
+<img src="./Webfejlesztés 2._files/server_client_php_file.png" alt="">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="sql-utasítások">SQL utasítások</h2>
+<pre class="sql"><code class="hljs"><span class="hljs-comment">-- Tábla létrehozása</span>
+<span class="hljs-operator"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> filmek (
+  <span class="hljs-keyword">id</span> <span class="hljs-built_in">integer</span> primary <span class="hljs-keyword">key</span>,
+  cim <span class="hljs-built_in">varchar</span>(<span class="hljs-number">40</span>),
+  rendezo <span class="hljs-built_in">varchar</span>(<span class="hljs-number">20</span>),
+  ev <span class="hljs-built_in">integer</span>);</span>
+
+<span class="hljs-comment">-- Lekérdezés</span>
+<span class="hljs-operator"><span class="hljs-keyword">select</span> <span class="hljs-keyword">id</span>, cim <span class="hljs-keyword">from</span> filmek;</span>
+<span class="hljs-operator"><span class="hljs-keyword">select</span> <span class="hljs-keyword">id</span>, cim <span class="hljs-keyword">from</span> filmek <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> &gt; <span class="hljs-number">10</span>;</span>
+
+<span class="hljs-comment">-- Beszúrás</span>
+<span class="hljs-operator"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> filmek (cim, rendezo, ev) 
+  <span class="hljs-keyword">values</span> (<span class="hljs-string">'A hobbit 2'</span>, <span class="hljs-string">'Michael Jackson'</span>, <span class="hljs-number">2013</span>);</span>
+
+<span class="hljs-comment">-- Módosítás</span>
+<span class="hljs-operator"><span class="hljs-keyword">update</span> filmek 
+  <span class="hljs-keyword">set</span> cim = <span class="hljs-string">'A hobbit: Smaug Pusztasága'</span>, 
+      rendezo = <span class="hljs-string">'Peter Jackson'</span> 
+  <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = <span class="hljs-number">11</span>;</span>
+
+<span class="hljs-comment">-- Törlés</span>
+<span class="hljs-operator"><span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> filmek <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = <span class="hljs-number">12</span>;</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="feldolgozás-lépései">Feldolgozás lépései</h2>
+<ul>
+<li>kapcsolódás az adatbázis-kezelő rendszerhez</li>
+<li>az adatbázis kiválasztása</li>
+<li>SQL utasítások futtatása az adatbázis-kezelő rendszerben</li>
+<li>az SQL utasítás eredményének lekérdezése (ha van)</li>
+<li>a kapcsolat bontása</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="sqlite">SQLite</h2>
+<ul>
+<li>Átmenet a fájl és adatbázis között</li>
+<li>adatbázis = fájl</li>
+<li>Verziók
+<ul>
+<li>SQLite 2: minden szöveg (kivéve elsődeleges kulcs)</li>
+<li>SQLite 3: típusok, összetettebb SQL utasítások</li>
+</ul></li>
+<li>Kis projekteknél gyakori</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="sqlite-függvények-php-ban">SQLite függvények PHP-ban</h2>
+<ul>
+<li><code>$db = sqlite_open($fájlnév)</code>: megnyitja vagy létrehozza az adatbázist</li>
+<li><code>sqlite_close($db)</code>: adatbázis bezárása</li>
+<li><code>$eredmény = sqlite_query($db, $sql)</code>: SQL utasítás futtatására szolgál</li>
+<li><code>$siker = sqlite_exec($db, $exec)</code>: visszatérési érték nélküli SQL utasítások futtatására szolgál</li>
+<li><code>$tömb = sqlite_fetch_array($eredmény)</code>: eredménysorok lekérdezése</li>
+<li><code>$tömb = sqlite_array_query($db, $sql)</code>: eredménysorok tömbben</li>
+<li><code>sqlite_escape_string($s)</code>: érzékeny karakterek kódolása</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="segédfüggvények">Segédfüggvények</h2>
+<pre class="php"><code class="hljs"><span class="hljs-comment">//Adatbázis megnyitása</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">adatbazis_nyit</span><span class="hljs-params">(<span class="hljs-variable">$fajlnev</span>)</span> </span>{
+  <span class="hljs-variable">$db</span> = sqlite_open(<span class="hljs-variable">$fajlnev</span>, <span class="hljs-number">0666</span>, <span class="hljs-variable">$sqliteerror</span>);
+  <span class="hljs-keyword">if</span> (!<span class="hljs-variable">$db</span>) {
+    <span class="hljs-keyword">die</span>(<span class="hljs-variable">$sqliteerror</span>);
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-variable">$db</span>;
+}
+
+<span class="hljs-comment">//Adatbázis-kapcsolat bezárása  </span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">adatbazis_zar</span><span class="hljs-params">(<span class="hljs-variable">$db</span>)</span> </span>{
+  sqlite_close(<span class="hljs-variable">$db</span>);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="segédfüggvények-1">Segédfüggvények</h2>
+<pre class="php"><code class="hljs"><span class="hljs-comment">//Tábla létrehozása, ha még nem létezik</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tabla_init</span><span class="hljs-params">(<span class="hljs-variable">$fajlnev</span>, <span class="hljs-variable">$tablanev</span>, <span class="hljs-variable">$create_sql</span>)</span> </span>{
+  <span class="hljs-variable">$db</span> = adatbazis_nyit(<span class="hljs-variable">$fajlnev</span>);
+
+  <span class="hljs-variable">$siker</span> = <span class="hljs-keyword">true</span>;
+  <span class="hljs-variable">$result</span> = sqlite_query(<span class="hljs-variable">$db</span>, 
+    <span class="hljs-string">"SELECT name FROM sqlite_master 
+     WHERE type='table' AND name='{$tablanev}'"</span>);
+  <span class="hljs-keyword">if</span> (sqlite_num_rows(<span class="hljs-variable">$result</span>) == <span class="hljs-number">0</span>) {
+    <span class="hljs-variable">$siker</span> = sqlite_exec(<span class="hljs-variable">$db</span>, <span class="hljs-variable">$create_sql</span>);
+  }
+
+  adatbazis_zar(<span class="hljs-variable">$db</span>);
+
+  <span class="hljs-keyword">return</span> <span class="hljs-variable">$siker</span>;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="segédfüggvények-2">Segédfüggvények</h2>
+<pre class="php"><code class="hljs"><span class="hljs-comment">//Lekérdezés végrehajtása, eredmény tömbbe</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lekerdezes_tombbe</span><span class="hljs-params">(<span class="hljs-variable">$sql</span>)</span> </span>{
+  <span class="hljs-variable">$db</span> = adatbazis_nyit(<span class="hljs-string">'filmek.sqlite'</span>);
+  <span class="hljs-variable">$ered</span> = sqlite_array_query(<span class="hljs-variable">$db</span>, <span class="hljs-variable">$sql</span>, SQLITE_ASSOC);
+  adatbazis_zar(<span class="hljs-variable">$db</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-variable">$ered</span>;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="feladat">Feladat</h2>
+<ul>
+<li>Adott filmek listája. Minden filmről tároljuk a címét, rendezőjét és megjelenési évét.</li>
+<li>Listázzuk ki a nyilvántartásunkban lévő filmeket!</li>
+<li>Adjunk lehetőséget új film felvételére!</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="lista-oldal">Lista oldal</h2>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-comment">//Feldolgozó függvények</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">osszes_film</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">//???</span>
+}
+
+<span class="hljs-comment">//A "fõprogram"</span>
+<span class="hljs-variable">$filmek</span> = osszes_film();
+
+<span class="hljs-comment">//Kiírás</span>
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;meta charset=<span class="hljs-string">"utf-8"</span>&gt;
+  &lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Filmlista&lt;/h1&gt;
+    &lt;a href=<span class="hljs-string">"ujfilm.php"</span>&gt;Új film...&lt;/a&gt;
+    &lt;table&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Cím&lt;/th&gt;
+        &lt;th&gt;Rendezo&lt;/th&gt;
+        &lt;th&gt;Év&lt;/th&gt;
+      &lt;/tr&gt;
+      <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$filmek</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$f</span>) : <span class="hljs-preprocessor">?&gt;</span>
+      &lt;tr&gt;
+        &lt;td&gt;<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$f</span>[<span class="hljs-string">'cim'</span>]; <span class="hljs-preprocessor">?&gt;</span>&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$f</span>[<span class="hljs-string">'rendezo'</span>]; <span class="hljs-preprocessor">?&gt;</span>&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$f</span>[<span class="hljs-string">'ev'</span>]; <span class="hljs-preprocessor">?&gt;</span>&lt;/td&gt;
+      &lt;/tr&gt;
+      <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-preprocessor">?&gt;</span>
+    &lt;/table&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="lista-oldal-lényegi-rész">Lista oldal – lényegi rész</h2>
+<p>Adatbázis</p>
+<pre class="php"><code class="hljs"><span class="hljs-comment">//Tábla inicializálása</span>
+<span class="hljs-variable">$filmek_create_sql</span> = <span class="hljs-string">'create table filmek (
+                        id integer primary key,
+                        cim,
+                        rendezo,
+                        ev)'</span>;
+tabla_init(<span class="hljs-string">'filmek.sqlite'</span>, <span class="hljs-string">'filmek'</span>, <span class="hljs-variable">$filmek_create_sql</span>);
+
+<span class="hljs-comment">//Feldolgozó függvények</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">osszes_film</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">return</span> lekerdezes_tombbe(<span class="hljs-string">'select * from filmek'</span>);
+}</code></pre>
+<p>Fájl</p>
+<pre class="php"><code class="hljs"><span class="hljs-comment">//Feldolgozó függvény</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">osszes_film</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">return</span> fajlbol_betolt(<span class="hljs-string">'filmek.json'</span>);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="új-film-oldal">Új film oldal</h2>
+<pre class="php"><code class="hljs">&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;meta charset=<span class="hljs-string">"utf-8"</span>&gt;
+  &lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Új film&lt;/h1&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable">$hibak</span>) : <span class="hljs-preprocessor">?&gt;</span>
+    &lt;ul&gt;
+      <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$hibak</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$hiba</span>) : <span class="hljs-preprocessor">?&gt;</span>
+      &lt;li&gt;<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$hiba</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/li&gt;
+      <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-preprocessor">?&gt;</span>
+    &lt;/ul&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-preprocessor">?&gt;</span>
+    &lt;form action=<span class="hljs-string">""</span> method=<span class="hljs-string">"post"</span>&gt;
+      Cím: &lt;br&gt;
+      &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"cim"</span> value=<span class="hljs-string">"&lt;?php echo $cim; ?&gt;"</span>&gt; &lt;br&gt;
+      Rendező: &lt;br&gt;
+      &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"rendezo"</span> value=<span class="hljs-string">"&lt;?php echo $rendezo; ?&gt;"</span>&gt; &lt;br&gt;
+      Év: &lt;br&gt;
+      &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"ev"</span> value=<span class="hljs-string">"&lt;?php echo $ev; ?&gt;"</span>&gt; &lt;br&gt;
+      &lt;input type=<span class="hljs-string">"submit"</span>&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt; </code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="új-film-oldal-1">Új film oldal</h2>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-comment">//Feldolgozó függvények</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">film_beszur</span><span class="hljs-params">(<span class="hljs-variable">$cim</span>, <span class="hljs-variable">$rendezo</span>, <span class="hljs-variable">$ev</span>)</span> </span>{
+  <span class="hljs-comment">//???</span>
+}
+<span class="hljs-comment">//--------</span>
+<span class="hljs-comment">//A "főprogram"</span>
+<span class="hljs-variable">$hibak</span> = <span class="hljs-keyword">array</span>();
+<span class="hljs-variable">$cim</span> = <span class="hljs-string">''</span>;
+<span class="hljs-variable">$rendezo</span> = <span class="hljs-string">''</span>;
+<span class="hljs-variable">$ev</span> = <span class="hljs-string">''</span>;
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$_POST</span>) {
+  <span class="hljs-variable">$cim</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'cim'</span>];
+  <span class="hljs-variable">$rendezo</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'rendezo'</span>];
+  <span class="hljs-variable">$ev</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'ev'</span>];
+  <span class="hljs-keyword">if</span> (<span class="hljs-variable">$cim</span> == <span class="hljs-string">''</span>) {
+    <span class="hljs-variable">$hibak</span>[] = <span class="hljs-string">'Cím kötelező!'</span>;
+  }
+  <span class="hljs-keyword">if</span> (<span class="hljs-variable">$rendezo</span> == <span class="hljs-string">''</span>) {
+    <span class="hljs-variable">$hibak</span>[] = <span class="hljs-string">'Rendező kötelező!'</span>;
+  }
+  <span class="hljs-keyword">if</span> (!is_numeric(<span class="hljs-variable">$ev</span>) || strlen(<span class="hljs-variable">$ev</span>) != <span class="hljs-number">4</span>) {
+    <span class="hljs-variable">$hibak</span>[] = <span class="hljs-string">'Rossz évszám!'</span>;
+  }
+  <span class="hljs-keyword">if</span> (!<span class="hljs-variable">$hibak</span>) {
+    <span class="hljs-keyword">if</span> (film_beszur(<span class="hljs-variable">$cim</span>, <span class="hljs-variable">$rendezo</span>, <span class="hljs-variable">$ev</span>)) {
+      header(<span class="hljs-string">'Location: lista_fajl.php'</span>);
+    };
+  }
+}
+<span class="hljs-preprocessor">?&gt;</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="új-film-oldal-lényegi-rész">Új film oldal – lényegi rész</h2>
+<p>Adatbázis</p>
+<pre class="php"><code class="hljs"><span class="hljs-comment">//Tábla inicializálása</span>
+<span class="hljs-comment">//...</span>
+<span class="hljs-comment">//Feldolgozó függvények</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">film_beszur</span><span class="hljs-params">(<span class="hljs-variable">$cim</span>, <span class="hljs-variable">$rendezo</span>, <span class="hljs-variable">$ev</span>)</span> </span>{
+  <span class="hljs-variable">$cim</span> = sqlite_escape_string(<span class="hljs-variable">$cim</span>);
+  <span class="hljs-variable">$rendezo</span> = sqlite_escape_string(<span class="hljs-variable">$rendezo</span>);
+  <span class="hljs-variable">$ev</span> = sqlite_escape_string(<span class="hljs-variable">$ev</span>);
+
+  <span class="hljs-variable">$db</span> = adatbazis_nyit(<span class="hljs-string">'filmek.sqlite'</span>);
+  <span class="hljs-variable">$result</span> = sqlite_exec(<span class="hljs-variable">$db</span>, 
+    <span class="hljs-string">"insert into filmek (id, cim, rendezo, ev) values (
+      null,
+      '{$cim}',
+      '{$rendezo}',
+      '{$ev}'
+     )"</span>);
+  adatbazis_zar(<span class="hljs-variable">$db</span>);
+  <span class="hljs-keyword">return</span> <span class="hljs-variable">$result</span>;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="új-film-oldal-lényegi-rész-1">Új film oldal – lényegi rész</h2>
+<p>Fájl</p>
+<pre class="php"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">film_beszur</span><span class="hljs-params">(<span class="hljs-variable">$cim</span>, <span class="hljs-variable">$rendezo</span>, <span class="hljs-variable">$ev</span>)</span> </span>{
+  <span class="hljs-variable">$filmek</span> = fajlbol_betolt(<span class="hljs-string">'filmek.json'</span>);
+  <span class="hljs-variable">$filmek</span>[] = <span class="hljs-keyword">array</span>(
+    <span class="hljs-string">'cim'</span>    =&gt;  <span class="hljs-variable">$cim</span>,
+    <span class="hljs-string">'rendezo'</span>  =&gt;  <span class="hljs-variable">$rendezo</span>,
+    <span class="hljs-string">'ev'</span>    =&gt;  <span class="hljs-variable">$ev</span>,
+  );
+  <span class="hljs-keyword">return</span> fajlba_ment(<span class="hljs-string">'filmek.json'</span>, <span class="hljs-variable">$filmek</span>);
+}</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="osztályok-php-ban" class="new-section">Osztályok PHP-ban</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kódszervezés-objektumokkal">Kódszervezés objektumokkal</h2>
+<ul>
+<li>Problémák
+<ul>
+<li>névütközés</li>
+<li>globális változók</li>
+</ul></li>
+<li>→ egységbe zárás</li>
+<li>Objektumok</li>
+<li>Klasszikus OOP
+<ul>
+<li>Osztályok</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="objektum-orientáltság-php-ban">Objektum-orientáltság PHP-ban</h2>
+<ul>
+<li>osztályok (<code>class</code>),</li>
+<li>láthatóság szabályozása (<code>public</code>, <code>protected</code>, <code>private</code>),</li>
+<li>konstruktorok, destruktorok (<code>__construct</code>, <code>__destruct</code>),</li>
+<li>statikus adattagok és metódusok (<code>static</code>),</li>
+<li>absztrakt osztályok (<code>abstract</code>),</li>
+<li>interfészek (<code>interface</code>),</li>
+<li>öröklés (<code>extends</code>),</li>
+<li>stb.</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="osztályok-létrehozása">Osztályok létrehozása</h2>
+<pre class="php"><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Gyerek</span> </span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-variable">$kor</span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-variable">$nev</span>;
+
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(<span class="hljs-variable">$nev</span>, <span class="hljs-variable">$kor</span>)</span> </span>{
+    <span class="hljs-variable">$this</span>-&gt;nev = <span class="hljs-variable">$nev</span>;
+    <span class="hljs-variable">$this</span>-&gt;kor = <span class="hljs-variable">$kor</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bemutatkozik</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"A nevem: {$this-&gt;nev}\n"</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">alszik</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"Zzzzzzz....\n"</span>;
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="objektum-példányosítása">Objektum példányosítása</h2>
+<pre class="php"><code class="hljs"><span class="hljs-variable">$zsofi</span> = <span class="hljs-keyword">new</span> Gyerek(<span class="hljs-string">'Zsófia'</span>, <span class="hljs-number">7</span>);
+<span class="hljs-variable">$matyi</span> = <span class="hljs-keyword">new</span> Gyerek(<span class="hljs-string">'Mátyás'</span>, <span class="hljs-number">2</span>);
+
+<span class="hljs-variable">$zsofi</span>-&gt;bemutatkozik();
+<span class="hljs-variable">$matyi</span>-&gt;bemutatkozik();
+
+<span class="hljs-variable">$zsofi</span>-&gt;nev = <span class="hljs-string">'Zsozsó'</span>;
+<span class="hljs-variable">$zsofi</span>-&gt;bemutatkozik();</code></pre>
+<pre class="txt"><code class="hljs groovy">A <span class="hljs-string">nevem:</span> Zsófia
+A <span class="hljs-string">nevem:</span> Mátyás
+A <span class="hljs-string">nevem:</span> Zsozsó</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="getterek-és-setterek">Getterek és setterek</h2>
+<div class="equal">
+<div class="span6">
+<pre class="php"><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Gyerek</span> </span>{
+  <span class="hljs-keyword">private</span> <span class="hljs-variable">$kor</span>;
+  <span class="hljs-keyword">private</span> <span class="hljs-variable">$nev</span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(<span class="hljs-variable">$nev</span>, <span class="hljs-variable">$kor</span>)</span> </span>{
+    <span class="hljs-variable">$this</span>-&gt;nev = <span class="hljs-variable">$nev</span>;
+    <span class="hljs-variable">$this</span>-&gt;kor = <span class="hljs-variable">$kor</span>;
+  }
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getNev</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;nev;
+  }
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setNev</span><span class="hljs-params">(<span class="hljs-variable">$value</span>)</span> </span>{
+    <span class="hljs-variable">$this</span>-&gt;nev = <span class="hljs-variable">$value</span>;
+  }  
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getKor</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;kor;
+  }
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setKor</span><span class="hljs-params">(<span class="hljs-variable">$value</span>)</span> </span>{
+    <span class="hljs-variable">$this</span>-&gt;kor = <span class="hljs-variable">$value</span>;
+  }  
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bemutatkozik</span><span class="hljs-params">()</span> </span>{ <span class="hljs-comment">/*...*/</span> }
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">alszik</span><span class="hljs-params">()</span> </span>{ <span class="hljs-comment">/*...*/</span> }
+}</code></pre>
+</div>
+<div class="span6">
+<pre class="php"><code class="hljs"><span class="hljs-variable">$sari</span> = <span class="hljs-keyword">new</span> Gyerek(<span class="hljs-string">'Sári'</span>, <span class="hljs-number">7</span>);
+<span class="hljs-variable">$sari</span>-&gt;bemutatkozik();
+
+<span class="hljs-variable">$sari</span>-&gt;setNev(<span class="hljs-string">'Sarah'</span>);
+<span class="hljs-variable">$sari</span>-&gt;bemutatkozik();</code></pre>
+<pre class="txt"><code class="hljs groovy">A <span class="hljs-string">nevem:</span> Sári
+A <span class="hljs-string">nevem:</span> Sarah</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="öröklés">Öröklés</h2>
+<div class="equal">
+<div class="span6">
+<pre class="php"><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ovodas</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Gyerek</span> </span>{
+  <span class="hljs-keyword">private</span> <span class="hljs-variable">$jel</span>;
+
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(<span class="hljs-variable">$nev</span>, <span class="hljs-variable">$kor</span>, <span class="hljs-variable">$jel</span>)</span> </span>{
+    <span class="hljs-keyword">parent</span>::__construct(<span class="hljs-variable">$nev</span>, <span class="hljs-variable">$kor</span>);
+    <span class="hljs-variable">$this</span>-&gt;jel = <span class="hljs-variable">$jel</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getJel</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;jel;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setJel</span><span class="hljs-params">(<span class="hljs-variable">$value</span>)</span> </span>{
+    <span class="hljs-variable">$this</span>-&gt;jel = <span class="hljs-variable">$value</span>;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">miAJeled</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"A jelem: {$this-&gt;jel}\n"</span>;
+  }
+}</code></pre>
+</div>
+<div class="span6">
+<pre class="php"><code class="hljs"><span class="hljs-variable">$zsofi</span> = <span class="hljs-keyword">new</span> Gyerek(<span class="hljs-string">'Zsófia'</span>,<span class="hljs-number">7</span>);
+<span class="hljs-variable">$zsofi</span>-&gt;bemutatkozik();
+
+<span class="hljs-variable">$david</span> = <span class="hljs-keyword">new</span> Ovodas(<span class="hljs-string">'Dávid'</span>,<span class="hljs-number">4</span>,<span class="hljs-string">'perec'</span>);
+<span class="hljs-variable">$david</span>-&gt;bemutatkozik();
+<span class="hljs-variable">$david</span>-&gt;miAJeled();</code></pre>
+<pre class="txt"><code class="hljs groovy">A <span class="hljs-string">nevem:</span> Zsófia
+A <span class="hljs-string">nevem:</span> Dávid
+A <span class="hljs-string">jelem:</span> perec</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa">Példa</h2>
+<ul>
+<li>Filmek listázása</li>
+<li>Új film beszúrása</li>
+<li>Osztályokba szervezve</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="fileio.php">fileio.php</h2>
+<pre class="php"><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileIO</span> </span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fajlbol_betolt</span><span class="hljs-params">(<span class="hljs-variable">$fajlnev</span>, <span class="hljs-variable">$alap</span> = array<span class="hljs-params">()</span>)</span> </span>{
+    <span class="hljs-variable">$s</span> = @file_get_contents(<span class="hljs-variable">$fajlnev</span>);
+    <span class="hljs-keyword">return</span> (<span class="hljs-variable">$s</span> === <span class="hljs-keyword">false</span> 
+      ? <span class="hljs-variable">$alap</span> 
+      : json_decode(<span class="hljs-variable">$s</span>, <span class="hljs-keyword">true</span>));
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fajlba_ment</span><span class="hljs-params">(<span class="hljs-variable">$fajlnev</span>, <span class="hljs-variable">$adat</span>)</span> </span>{
+    <span class="hljs-variable">$s</span> = json_encode(<span class="hljs-variable">$adat</span>);
+    <span class="hljs-keyword">return</span> file_put_contents(<span class="hljs-variable">$fajlnev</span>, <span class="hljs-variable">$s</span>, LOCK_EX);
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="filmadat.php">filmadat.php</h2>
+<pre class="php"><code class="hljs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FilmAdat</span> </span>{
+  <span class="hljs-keyword">private</span> <span class="hljs-variable">$filmek</span>;
+  <span class="hljs-keyword">private</span> <span class="hljs-variable">$fajlnev</span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(<span class="hljs-variable">$fajlnev</span> = <span class="hljs-string">''</span>)</span> </span>{
+    <span class="hljs-keyword">if</span> (!<span class="hljs-variable">$fajlnev</span>) {
+      <span class="hljs-keyword">die</span>(<span class="hljs-string">'Nincs adatfájl!'</span>);
+    }
+    <span class="hljs-variable">$this</span>-&gt;fajlnev = <span class="hljs-variable">$fajlnev</span>;
+    <span class="hljs-variable">$this</span>-&gt;filmek = FileIO::fajlbol_betolt(<span class="hljs-variable">$this</span>-&gt;fajlnev);
+  }
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__destruct</span><span class="hljs-params">()</span> </span>{
+    FileIO::fajlba_ment(<span class="hljs-variable">$this</span>-&gt;fajlnev, <span class="hljs-variable">$this</span>-&gt;filmek);
+  }
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">osszes_film</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;filmek;
+  }
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">film_beszur</span><span class="hljs-params">(<span class="hljs-variable">$cim</span>, <span class="hljs-variable">$rendezo</span>, <span class="hljs-variable">$ev</span>)</span> </span>{
+    <span class="hljs-variable">$this</span>-&gt;filmek[] = <span class="hljs-keyword">array</span>(
+      <span class="hljs-string">'cim'</span>      =&gt;  <span class="hljs-variable">$cim</span>,
+      <span class="hljs-string">'rendezo'</span>  =&gt;  <span class="hljs-variable">$rendezo</span>,
+      <span class="hljs-string">'ev'</span>       =&gt;  <span class="hljs-variable">$ev</span>,
+    );
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="lista_fajl.php">lista_fajl.php</h2>
+<pre class="php"><code class="hljs">define(<span class="hljs-string">'TOKEN'</span>, <span class="hljs-string">'Védelem'</span>);
+
+<span class="hljs-keyword">include</span>(<span class="hljs-string">'kozos/fileio.php'</span>);
+<span class="hljs-keyword">include</span>(<span class="hljs-string">'adat/filmadat.php'</span>);
+
+<span class="hljs-variable">$fajlnev</span> = dirname(<span class="hljs-keyword">__FILE__</span>) . <span class="hljs-string">'/filmek.json'</span>;
+<span class="hljs-variable">$filmadat</span> = <span class="hljs-keyword">new</span> FilmAdat(<span class="hljs-variable">$fajlnev</span>);
+<span class="hljs-variable">$filmek</span> = <span class="hljs-variable">$filmadat</span>-&gt;osszes_film();
+
+<span class="hljs-keyword">include</span>(<span class="hljs-string">'kimenet/lista_sablon.php'</span>);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ujfilm_fajl.php">ujfilm_fajl.php</h2>
+<pre class="php"><code class="hljs">define(<span class="hljs-string">'TOKEN'</span>, <span class="hljs-string">'Védelem'</span>);
+<span class="hljs-keyword">include</span>(<span class="hljs-string">'kozos/fileio.php'</span>);
+<span class="hljs-keyword">include</span>(<span class="hljs-string">'adat/filmadat.php'</span>);
+<span class="hljs-comment">//---------</span>
+<span class="hljs-variable">$fajlnev</span> = dirname(<span class="hljs-keyword">__FILE__</span>) . <span class="hljs-string">'/filmek.json'</span>;
+<span class="hljs-variable">$hibak</span> = <span class="hljs-keyword">array</span>();
+<span class="hljs-variable">$cim</span> = <span class="hljs-string">''</span>;
+<span class="hljs-variable">$rendezo</span> = <span class="hljs-string">''</span>;
+<span class="hljs-variable">$ev</span> = <span class="hljs-string">''</span>;
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$_POST</span>) {
+  <span class="hljs-variable">$cim</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'cim'</span>];
+  <span class="hljs-variable">$rendezo</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'rendezo'</span>];
+  <span class="hljs-variable">$ev</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'ev'</span>];
+  <span class="hljs-keyword">if</span> (<span class="hljs-variable">$cim</span> == <span class="hljs-string">''</span>) {
+    <span class="hljs-variable">$hibak</span>[] = <span class="hljs-string">'Cím kötelező!'</span>;
+  }
+  <span class="hljs-keyword">if</span> (<span class="hljs-variable">$rendezo</span> == <span class="hljs-string">''</span>) {
+    <span class="hljs-variable">$hibak</span>[] = <span class="hljs-string">'Rendező kötelező!'</span>;
+  }
+  <span class="hljs-keyword">if</span> (!is_numeric(<span class="hljs-variable">$ev</span>) || strlen(<span class="hljs-variable">$ev</span>) != <span class="hljs-number">4</span>) {
+    <span class="hljs-variable">$hibak</span>[] = <span class="hljs-string">'Rossz évszám!'</span>;
+  }
+  <span class="hljs-keyword">if</span> (!<span class="hljs-variable">$hibak</span>) {
+    <span class="hljs-variable">$filmadat</span> = <span class="hljs-keyword">new</span> FilmAdat(<span class="hljs-variable">$fajlnev</span>);
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$filmadat</span>-&gt;film_beszur(<span class="hljs-variable">$cim</span>, <span class="hljs-variable">$rendezo</span>, <span class="hljs-variable">$ev</span>)) {
+      header(<span class="hljs-string">'Location: lista_fajl.php'</span>);
+    };
+  }
+}
+<span class="hljs-keyword">include</span>(<span class="hljs-string">'kimenet/ujfilm_sablon.php'</span>);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="adatbázis-absztrakció">Adatbázis absztrakció</h2>
+<p><a href="http://php.net/manual/en/book.pdo.php">PHP PDO</a></p>
+<pre class="php"><code class="hljs"><span class="hljs-keyword">try</span> {
+  <span class="hljs-variable">$dbh</span> = <span class="hljs-keyword">new</span> PDO(<span class="hljs-string">'sqlite:./filmek.sqlite'</span>);
+} <span class="hljs-keyword">catch</span> (PDOException <span class="hljs-variable">$e</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">'Connection failed: '</span> . <span class="hljs-variable">$e</span>-&gt;getMessage();
+}
+
+<span class="hljs-variable">$dbh</span>-&gt;exec(<span class="hljs-string">'create table if not exists filmek (
+                        id integer primary key,
+                        cim,
+                        rendezo,
+                        ev)'</span>);
+<span class="hljs-variable">$dbh</span>-&gt;exec(<span class="hljs-string">"insert into filmek (cim, rendezo, ev) values ('alma', 'korte', 1980)"</span>);
+
+<span class="hljs-variable">$sth</span> = <span class="hljs-variable">$dbh</span>-&gt;query(<span class="hljs-string">"select * from filmek"</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$sth</span>-&gt;fetchAll();
+print_r(<span class="hljs-variable">$result</span>);
+<span class="hljs-variable">$dbh</span> = <span class="hljs-keyword">null</span>;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="adatbázis-absztrakció-1">Adatbázis absztrakció</h2>
+<p>Pl. <a href="http://medoo.in/">Medoo</a></p>
+<pre class="php"><code class="hljs"><span class="hljs-keyword">require_once</span> <span class="hljs-string">'medoo.php'</span>;
+ 
+<span class="hljs-variable">$database</span> = <span class="hljs-keyword">new</span> medoo([
+  <span class="hljs-string">'database_type'</span> =&gt; <span class="hljs-string">'sqlite'</span>,
+  <span class="hljs-string">'database_file'</span> =&gt; <span class="hljs-string">'my/database/path/database.db'</span>
+]);
+
+<span class="hljs-variable">$datas</span> = <span class="hljs-variable">$database</span>-&gt;select(<span class="hljs-string">"account"</span>, [
+  <span class="hljs-string">"user_name"</span>,
+  <span class="hljs-string">"email"</span>
+], [
+  <span class="hljs-string">"user_id[&gt;]"</span> =&gt; <span class="hljs-number">100</span>
+]);
+ 
+<span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$datas</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$data</span>)
+{
+  <span class="hljs-keyword">echo</span> <span class="hljs-variable">$data</span>[<span class="hljs-string">"user_name"</span>] . <span class="hljs-string">" - "</span> . <span class="hljs-variable">$data</span>[<span class="hljs-string">"email"</span>];
+}</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="json-kommunikáció" class="new-section">JSON kommunikáció</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="feltöltés">Feltöltés</h2>
+<ul>
+<li>Tetszőleges adatszerkezet
+<ul>
+<li>objektum, tömb</li>
+</ul></li>
+<li>Sorosítás → szöveg
+<ul>
+<li><code>sz = JSON.stringify(adat)</code></li>
+</ul></li>
+<li>Felküldés
+<ul>
+<li>Űrlap</li>
+<li>AJAX</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="felküldés-űrlap">Felküldés – űrlap</h2>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"formMent"</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">""</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"post"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"hidden"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"adat"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"adat"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Mentés"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></code></pre>
+<pre class="js"><code class="hljs javascript"><span class="hljs-comment">//Eseménykezelők hozzárendelése</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span> (<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'formMent'</span>).addEventListener(<span class="hljs-string">'submit'</span>, mentes, <span class="hljs-literal">false</span>);
+}
+<span class="hljs-comment">//Elküldéskor</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mentes</span> (<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">var</span> adat = ...;
+  $(<span class="hljs-string">'adat'</span>).value = <span class="hljs-built_in">JSON</span>.stringify(adat);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="felküldés-ajax">Felküldés – AJAX</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-comment">//Eseménykezelők hozzárendelése</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span> (<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'gombMent'</span>).addEventListener(<span class="hljs-string">'click'</span>, mentes, <span class="hljs-literal">false</span>);
+}
+<span class="hljs-comment">//Elküldéskor</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mentes</span> (<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">var</span> adat = ...;
+  <span class="hljs-keyword">var</span> s = <span class="hljs-built_in">JSON</span>.stringify(adat);
+  ajax({
+    url: <span class="hljs-string">'mentes.php'</span>,
+    mod: <span class="hljs-string">'post'</span>,
+    postadat: <span class="hljs-string">'adat='</span> + s,
+    siker: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-comment">//...</span>
+    }
+  });
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="fogadás-űrlap-ajax">Fogadás – űrlap, AJAX</h2>
+<pre class="php"><code class="hljs"><span class="hljs-variable">$s</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">'adat'</span>];
+<span class="hljs-comment">//s feldolgozása, elmentése, pl.</span>
+<span class="hljs-variable">$tomb</span>[] = <span class="hljs-variable">$s</span>;
+
+<span class="hljs-comment">// vagy</span>
+
+<span class="hljs-variable">$adat</span> = json_decode(<span class="hljs-variable">$s</span>, <span class="hljs-keyword">true</span>);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="leküldés-ajax">Leküldés – AJAX</h2>
+<p>Szerver</p>
+<pre class="php"><code class="hljs"><span class="hljs-variable">$s</span> = json_encode(<span class="hljs-variable">$adat</span>);
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$s</span>;</code></pre>
+<p>Kliens</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">leker</span>(<span class="hljs-params">e</span>) </span>{
+  ajax({
+    url: <span class="hljs-string">'leker.php'</span>,
+    mod: <span class="hljs-string">'get'</span>,
+    getadat: <span class="hljs-string">'azon=12'</span>,
+    siker:  <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xhr, text</span>) </span>{
+      <span class="hljs-keyword">var</span> json = <span class="hljs-built_in">JSON</span>.parse(text);
+      <span class="hljs-built_in">console</span>.log(json);
+      <span class="hljs-comment">//JSON feldolgozása</span>
+    }
+  });
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="leküldés-szkript">Leküldés – szkript</h2>
+<p>Verzió 1.</p>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+  <span class="hljs-variable">$s</span> = json_encode(<span class="hljs-variable">$adat</span>);
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;script&gt;
+  <span class="hljs-keyword">var</span> adat = <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$s</span>; <span class="hljs-preprocessor">?&gt;</span>
+&lt;/script&gt;</code></pre>
+<p>Verzió 2.</p>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-variable">$id</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">'id'</span>];
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;!-- ... --&gt;
+  &lt;script type=<span class="hljs-string">"text/javascript"</span> src=<span class="hljs-string">"adat.php?id=&lt;?php echo $id; ?&gt;"</span>&gt;&lt;/script&gt;
+  &lt;!-- ... --&gt;
+&lt;/head&gt;</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="felhasználói-objektumok" class="new-section">Felhasználói objektumok</h2>
+<p>Felhasználói objektumok, öröklés</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="objektumliterál">Objektumliterál</h2>
+<p>Egyedi objektumok megadása</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> ubul = {
+  nev: <span class="hljs-string">'Ubul'</span>,
+  kor: <span class="hljs-number">13</span>,
+  bemutatkozik: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'A nevem: '</span> + <span class="hljs-keyword">this</span>.nev);
+  },
+  alszik: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Zzzzzz...'</span>);
+  }
+};
+
+<span class="hljs-built_in">console</span>.log(ubul.nev);
+ubul.bemutatkozik();
+ubul.alszik();</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="objektumgenerátor-függvény">Objektumgenerátor függvény</h2>
+<p>Ha több ugyanolyan objektumra van szükség</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ember</span>(<span class="hljs-params">nev, kor</span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    nev: nev,
+    kor: kor,
+    bemutatkozik: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'A nevem: '</span> + <span class="hljs-keyword">this</span>.nev);
+    },
+    alszik: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Zzzzzz...'</span>);
+    }
+  };
+}
+
+<span class="hljs-keyword">var</span> ubul = ember(<span class="hljs-string">'Ubul'</span>, <span class="hljs-number">13</span>);
+<span class="hljs-keyword">var</span> dome = ember(<span class="hljs-string">'Döme'</span>, <span class="hljs-number">8</span>);
+ubul.bemutatkozik();
+dome.bemutatkozik();</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="objektumkonstruktor-függvény">Objektumkonstruktor függvény</h2>
+<p>Objektumorientált-jellegű szintaxis</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Ember</span>(<span class="hljs-params">nev, kor</span>) </span>{
+  <span class="hljs-keyword">this</span>.nev = nev;
+  <span class="hljs-keyword">this</span>.kor = kor;
+  <span class="hljs-keyword">this</span>.bemutatkozik = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'A nevem: '</span> + <span class="hljs-keyword">this</span>.nev);
+  };
+  <span class="hljs-keyword">this</span>.alszik = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Zzzzzz...'</span>);
+  };
+}
+
+<span class="hljs-keyword">var</span> ubul = <span class="hljs-keyword">new</span> Ember(<span class="hljs-string">'Ubul'</span>, <span class="hljs-number">13</span>);
+<span class="hljs-keyword">var</span> dome = <span class="hljs-keyword">new</span> Ember(<span class="hljs-string">'Döme'</span>, <span class="hljs-number">8</span>);
+ubul.bemutatkozik();
+dome.bemutatkozik();</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="prototípus">Prototípus</h2>
+<div class="equal">
+<div class="span10">
+<ul>
+<li>JavaScriptben minden objektumnak van egy rejtett hivatkozása, amin keresztül egy objektum tartozik hozzá</li>
+<li>Prototípus objektum</li>
+<li>Ebben lévő tulajdonságok és függvények elérhetők</li>
+<li>Prototípusnak is lehet prototípusa</li>
+<li>→prototípus láncolat</li>
+<li>Konstruktorfüggvény prototype tulajdonsága</li>
+</ul>
+</div>
+<div class="span2">
+<figure>
+<img src="./Webfejlesztés 2._files/prototipus.png" alt="">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="objektumkonstruktor-függvény-1">Objektumkonstruktor függvény</h2>
+<p>Hatékonyabb metódusmegadás</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Ember</span>(<span class="hljs-params">nev, kor</span>) </span>{
+  <span class="hljs-keyword">this</span>.nev = nev;
+  <span class="hljs-keyword">this</span>.kor = kor;
+}
+Ember.prototype.bemutatkozik = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'A nevem: '</span> + <span class="hljs-keyword">this</span>.nev);
+};
+Ember.prototype.alszik = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Zzzzzz...'</span>);
+};
+
+<span class="hljs-keyword">var</span> ubul = <span class="hljs-keyword">new</span> Ember(<span class="hljs-string">'Ubul'</span>, <span class="hljs-number">13</span>);
+<span class="hljs-keyword">var</span> dome = <span class="hljs-keyword">new</span> Ember(<span class="hljs-string">'Döme'</span>, <span class="hljs-number">8</span>);
+ubul.bemutatkozik();
+dome.bemutatkozik();</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="öröklés-1">Öröklés</h2>
+<p>Konstruktorfüggvénnyel</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Gyerek</span>(<span class="hljs-params">nev, kor, jel</span>) </span>{
+  <span class="hljs-keyword">this</span>.base = Ember;
+  <span class="hljs-keyword">this</span>.base(nev, kor);
+  <span class="hljs-keyword">this</span>.jel = jel;
+}
+Gyerek.prototype = <span class="hljs-keyword">new</span> Ember();
+Gyerek.prototype.miAJeled = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'A jelem: '</span> + <span class="hljs-keyword">this</span>.jel);
+}
+
+<span class="hljs-keyword">var</span> ubul = <span class="hljs-keyword">new</span> Ember(<span class="hljs-string">'Ubul'</span>, <span class="hljs-number">13</span>);
+ubul.bemutatkozik();
+<span class="hljs-keyword">var</span> bruno = <span class="hljs-keyword">new</span> Gyerek(<span class="hljs-string">'Brúnó'</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'labda'</span>);
+bruno.bemutatkozik();
+bruno.miAJeled();</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="öröklés-2">Öröklés</h2>
+<p>ECMAScript 5: Object.create() metódussal</p>
+<div class="equal">
+<div class="span6">
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> ubul = {
+  nev: <span class="hljs-string">'Ubul'</span>,
+  kor: <span class="hljs-number">13</span>,
+  bemutatkozik: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'A nevem: '</span> + <span class="hljs-keyword">this</span>.nev);
+  },
+  alszik: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Zzzzzz...'</span>);
+  }
+};</code></pre>
+</div>
+<div class="span6">
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> bruno = <span class="hljs-built_in">Object</span>.create(ubul);
+bruno.jel = <span class="hljs-string">'labda'</span>;
+bruno.miAJeled = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'A jelem: '</span> + <span class="hljs-keyword">this</span>.jel);
+}
+
+ubul.bemutatkozik();
+ubul.alszik();
+bruno.bemutatkozik();
+bruno.miAJeled();</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ecmascript-6-class">ECMAScript 6 class</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Ember</span> </span>{
+  constructor(nev, kor) {
+    <span class="hljs-keyword">this</span>.nev = nev;
+    <span class="hljs-keyword">this</span>.kor = kor;
+  }
+  bemutatkozik() {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'A nevem: '</span> + <span class="hljs-keyword">this</span>.nev);
+  }
+  alszik() {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Zzzzzz...'</span>);
+  }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Gyerek</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Ember</span> </span>{
+  constructor(nev, kor, jel) {
+    <span class="hljs-keyword">super</span>(nev, kor);
+    <span class="hljs-keyword">this</span>.jel = jel;
+  }
+  miAJeled() {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'A jelem: '</span> + <span class="hljs-keyword">this</span>.jel);
+  }
+}
+<span class="hljs-keyword">var</span> ubul = <span class="hljs-keyword">new</span> Ember(<span class="hljs-string">'Ubul'</span>, <span class="hljs-number">13</span>);
+ubul.bemutatkozik();
+<span class="hljs-keyword">var</span> bruno = <span class="hljs-keyword">new</span> Gyerek(<span class="hljs-string">'Brúnó'</span>, <span class="hljs-number">3</span>, <span class="hljs-string">'labda'</span>);
+bruno.bemutatkozik();
+bruno.miAJeled();</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hivatkozások">Hivatkozások</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Working_with_Objects" class="uri">https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Working_with_Objects</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Details_of_the_Object_Model" class="uri">https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Details_of_the_Object_Model</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Inheritance_Revisited" class="uri">https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Inheritance_Revisited</a></li>
+<li><a href="https://babeljs.io/docs/learn-es6/#classes" class="uri">https://babeljs.io/docs/learn-es6/#classes</a></li>
+<li><a href="http://es6-features.org/#ClassDefinition" class="uri">http://es6-features.org/#ClassDefinition</a></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="jquery" class="new-section">jQuery</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="javascript-keretrendszer">JavaScript keretrendszer</h2>
+<ul>
+<li>Probléma
+<ul>
+<li>Böngészők közötti különbségek</li>
+<li>Alacsony szintű műveletek</li>
+<li>API körülményessége</li>
+</ul></li>
+<li>Megoldás: keretrendszer
+<ul>
+<li>Absztrakt műveletek elfedik a böngészők különbözőségét</li>
+<li>Magas szintű műveletek definiálhatók</li>
+<li>Tömör, beszédes API</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="jquery-1">jQuery</h2>
+<ul>
+<li>Legnépszerűbb JavaScript keretrendszer
+<ul>
+<li>DOM kezelés</li>
+</ul></li>
+<li>Elemek kiválasztása</li>
+<li>Fa bejárása</li>
+<li>Elemek manipulálása
+<ul>
+<li>Stílusok kezelése, animációk</li>
+<li>Eseménykezelés</li>
+<li>AJAX</li>
+<li>Segédfüggvények</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="jquery-függvény">jQuery() függvény</h2>
+<ul>
+<li><code>jQuery()</code> vagy <code>$()</code> függvény
+<ul>
+<li>Elemek kiválasztása</li>
+<li>Elemek létrehozása</li>
+<li>Futtatás az oldal betöltése után</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="elemek-kiválasztása">Elemek kiválasztása</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-comment">// Eddig</span>
+$(<span class="hljs-string">'valami'</span>)
+
+<span class="hljs-comment">// jQuery</span>
+$(<span class="hljs-string">'valami'</span>)
+
+<span class="hljs-comment">// Általában</span>
+$(<span class="hljs-string">'CSS szelektor'</span>)</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="művelet-a-kiválasztott-elemekkel">Művelet a kiválasztott elemekkel</h2>
+<ul>
+<li><code>$()</code> függvény az elemek tömbjével tér vissza</li>
+<li>A további jQuery metódusok ezen a tömbön értelmezettek</li>
+</ul>
+<pre class="js"><code class="hljs javascript">$(<span class="hljs-string">'#valami'</span>).html(<span class="hljs-string">'szöveg'</span>);
+$(<span class="hljs-string">'input'</span>).val(<span class="hljs-string">'alma'</span>);
+$(<span class="hljs-string">'a'</span>).eq(<span class="hljs-number">0</span>).attr(<span class="hljs-string">'href'</span>);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="jquery-stílusmanipuláció">jQuery – stílusmanipuláció</h2>
+<pre class="js"><code class="hljs javascript">$(<span class="hljs-string">'#valami'</span>).css(<span class="hljs-string">'display'</span>, <span class="hljs-string">'none'</span>);
+$(<span class="hljs-string">'#valami'</span>).css({
+  color: <span class="hljs-string">'blue'</span>,
+  <span class="hljs-string">'background-color'</span>: <span class="hljs-string">'yellow'</span>
+});
+$(<span class="hljs-string">'#valami'</span>).css(<span class="hljs-string">'width'</span>)
+
+$(<span class="hljs-string">'#valami'</span>).addClass(<span class="hljs-string">'fontos'</span>);
+$(<span class="hljs-string">'#valami'</span>).removeClass(<span class="hljs-string">'fontos'</span>);
+$(<span class="hljs-string">'#valami'</span>).toggleClass(<span class="hljs-string">'fontos'</span>);
+$(<span class="hljs-string">'#valami'</span>).hasClass(<span class="hljs-string">'fontos'</span>)
+
+$(<span class="hljs-string">'#valami'</span>).height(<span class="hljs-number">100</span>);
+
+$(<span class="hljs-string">'div'</span>).hide();
+$(<span class="hljs-string">'div'</span>).fadeIn();</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="jquery-bejárás">jQuery – bejárás</h2>
+<pre class="js"><code class="hljs javascript">$(<span class="hljs-string">'#valami'</span>).children();
+$(<span class="hljs-string">'#valami'</span>).find(<span class="hljs-string">'li'</span>);
+
+$(<span class="hljs-string">'#valami'</span>).parent();
+$(<span class="hljs-string">'#valami'</span>).closest(<span class="hljs-string">'form'</span>);
+
+$(<span class="hljs-string">'#valami'</span>).siblings();
+$(<span class="hljs-string">'#valami'</span>).next();
+$(<span class="hljs-string">'#valami'</span>).nextAll();
+$(<span class="hljs-string">'#valami'</span>).prev();
+$(<span class="hljs-string">'#valami'</span>).prevAll();</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="jquery-elemek-létrehozása">jQuery – elemek létrehozása</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> $div = $(<span class="hljs-string">'&lt;div /&gt;'</span>);
+<span class="hljs-keyword">var</span> $div = $(<span class="hljs-string">'&lt;div id="valami"&gt;&lt;ul class="alma"&gt;&lt;/ul&gt;&lt;/div&gt;'</span>);
+
+$(<span class="hljs-string">'body'</span>).append($div);
+$(<span class="hljs-string">'body'</span>).prepend($div);
+$(<span class="hljs-string">'#spec'</span>).after($div);
+$(<span class="hljs-string">'#spec'</span>).before($div);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseménykezelés">Eseménykezelés</h2>
+<pre class="js"><code class="hljs javascript">$(<span class="hljs-string">'li'</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+  e.preventDefault();
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>);
+  <span class="hljs-comment">//...</span>
+});
+
+$(<span class="hljs-built_in">document</span>).on(<span class="hljs-string">'click'</span>, <span class="hljs-string">'li'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+  e.preventDefault();
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>);
+  <span class="hljs-comment">//...</span>
+});</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="oldal-betöltése">Oldal betöltése</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-comment">// Eddig</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// ...</span>
+  
+}
+<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'load'</span>, init, <span class="hljs-literal">false</span>);
+
+<span class="hljs-comment">// jQuery</span>
+$(init);
+
+<span class="hljs-comment">//vagy</span>
+
+$(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// DOM készen áll</span>
+  <span class="hljs-comment">// != window.onload</span>
+  <span class="hljs-comment">// ...</span>
+});</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ajax">AJAX</h2>
+<div class="equal">
+<div class="span6">
+<h3 id="eddig">Eddig</h3>
+<pre class="js"><code class="hljs javascript">ajax({
+  mod:      <span class="hljs-string">'post'</span>,
+  url:      <span class="hljs-string">'ping.php'</span>,
+  getadat:  <span class="hljs-string">'alma=piros'</span>,
+  postadat: <span class="hljs-string">'korte=sarga'</span>,
+  siker:    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xhr, text</span>) </span>{
+    $(<span class="hljs-string">'output'</span>).innerHTML = text;
+  }
+});</code></pre>
+</div>
+<div class="span6">
+<h3 id="jquery-2">jQuery</h3>
+<pre class="js"><code class="hljs javascript">$.ajax({
+  type:      <span class="hljs-string">'post'</span>,
+  url:       <span class="hljs-string">'ping.php'</span>,
+  data:  {
+    alma: <span class="hljs-string">'piros'</span>
+  },
+  dataType: <span class="hljs-string">'json'</span>,
+  success:  <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data, status, xhr</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(data);
+  }
+});</code></pre>
+</div>
+</div>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="alkalmazás-keretrendszerek" class="new-section">Alkalmazás keretrendszerek</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="magas-szintű-keretrendszerek">Magas szintű keretrendszerek</h2>
+<ul>
+<li>Egyoldalas alkalmazások</li>
+<li>MN- keretrendszerek
+<ul>
+<li>M: Modell (adatok)</li>
+<li>N: Nézet (felület)</li>
+</ul></li>
+<li>http://todomvc.com/</li>
+<li>Fontosabbak:
+<ul>
+<li>AngularJS</li>
+<li>React (Flux, Redux)</li>
+<li>Ember.JS</li>
+</ul></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eszközök" class="new-section">Eszközök</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eszközök-1">Eszközök</h2>
+<ul>
+<li>Linterek
+<ul>
+<li><a href="http://www.jslint.com/">JSLint</a></li>
+<li><a href="http://www.jshint.com/">JSHint</a></li>
+<li><a href="http://eslint.org/">ESLint</a></li>
+</ul></li>
+<li>Playgrounds
+<ul>
+<li><a href="http://jsfiddle.net/">JSFiddle</a></li>
+<li><a href="http://jsbin.com/">JSBin</a></li>
+</ul></li>
+<li>Kód rendezése
+<ul>
+<li><a href="http://jsbeautifier.org/">JSBeautifier</a></li>
+<li><a href="http://jsonformatter.curiousconcept.com/">JSON formatter</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eszközök-2">Eszközök</h2>
+<ul>
+<li>node.js</li>
+<li>npm (Node Package Manager)</li>
+<li>grunt, gulp – feladatfuttatók</li>
+<li>bower – kliensoldali függőségek kezelése</li>
+<li>browserify – modulcsomagoló</li>
+<li>webpack – modulcsomagoló</li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="moduláris-javascript" class="new-section">Moduláris JavaScript</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="névterek-modulok">Névterek, modulok</h2>
+<ul>
+<li>Névterek</li>
+<li>Objektumliterál</li>
+<li>Module: funkcionálisan önálló egység</li>
+<li>Példa
+<ul>
+<li>Pascal: unit</li>
+<li>C++: include</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="es6-modulok">ES6 modulok</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-comment">// math.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a + b;
+}</code></pre>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">import</span> { add } <span class="hljs-keyword">from</span> <span class="hljs-string">'./math'</span>;
+
+<span class="hljs-built_in">console</span>.log( add(<span class="hljs-number">32</span>, <span class="hljs-number">10</span>) );</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="javascript-nyelvi-kitekintés" class="new-section">JavaScript nyelvi kitekintés</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="nyelvek">Nyelvek</h2>
+<ul>
+<li>Amit tanultunk: ECMAScript 3 (főleg) és ECMAScript 5.1</li>
+<li>Jelenleg: ECMAScript 2016</li>
+<li>Jövő: ECMAScript évi frissítés</li>
+<li>Fordítás JavaScriptre
+<ul>
+<li><a href="https://github.com/jashkenas/coffeescript/wiki/list-of-languages-that-compile-to-js">Lista</a></li>
+<li>TypeScript</li>
+<li><a href="http://vps2.etotheipiplusone.com:30176/redmine/projects/emscripten-qt/wiki/Demos">Emscripten</a></li>
+<li><a href="http://webassembly.org/demo/">Webassembly</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szerveroldali-javascript" class="new-section">Szerveroldali JavaScript</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="node.js">Node.js</h2>
+<ul>
+<li>Google V8 JavaScript motorjára építve</li>
+<li>Parancssori JavaScript környezet</li>
+<li>Aszinkron</li>
+<li>→ gyors</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="webszerver">Webszerver</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-comment">// Require what we need</span>
+<span class="hljs-keyword">var</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">"http"</span>);
+
+<span class="hljs-comment">// Build the server</span>
+<span class="hljs-keyword">var</span> app = http.createServer(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">request, response</span>) </span>{
+  response.writeHead(<span class="hljs-number">200</span>, {
+    <span class="hljs-string">"Content-Type"</span>: <span class="hljs-string">"text/plain"</span>
+  });
+  response.end(<span class="hljs-string">"Hello world!\n"</span>);
+});
+
+<span class="hljs-comment">// Start that server, baby</span>
+app.listen(<span class="hljs-number">1337</span>, <span class="hljs-string">"localhost"</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Server running at http://localhost:1337/"</span>);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="valós-idejű-alkalmazások">Valós idejű alkalmazások</h2>
+<ul>
+<li>Websocket</li>
+<li><a href="http://socket.io/">Socket.io</a></li>
+<li>Példa
+<ul>
+<li><a href="http://multeor.com/">Multeor</a></li>
+</ul></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="php" class="new-section">PHP</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kódszervezés">Kódszervezés</h2>
+<ul>
+<li>MNV (MVC)
+<ul>
+<li>M: Modell (adat)</li>
+<li>N: Nézet (kimenet)</li>
+<li>V: Vezérlő (kérés fogadása, folyamat irányítása)</li>
+</ul></li>
+<li>MVC keretrendszerek
+<ul>
+<li>CodeIgniter</li>
+<li>Yii</li>
+<li>Symfony</li>
+<li>Laravel</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="nyelv">Nyelv</h2>
+<ul>
+<li>Típusos PHP?</li>
+<li><a href="http://hacklang.org/">Hack</a></li>
+<li><a href="http://hhvm.com/">HHVM</a></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tárgyak" class="new-section">Tárgyak</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tárgyak-1">Tárgyak</h2>
+<ul>
+<li>BSc
+<ul>
+<li>JavaScript technológiák speci</li>
+<li>Korszerű webfejlesztés speci</li>
+<li>Játékprogramok készítése</li>
+</ul></li>
+<li>MSc
+<ul>
+<li>Webes alkalmazásfejlesztés 1.</li>
+<li>Webes alkalmazásfejlesztés 2.</li>
+</ul></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="összefoglalás" class="new-section">Összefoglalás</h2>
+<ul>
+<li>Adatbázisok kezelése PHP-ban</li>
+<li>SQLite adatbázisok</li>
+<li>Osztályok és objektumok PHP-ban</li>
+<li>AJAX kommunikáció</li>
+<li>Kitekintés
+<ul>
+<li>JavaScript objektumok</li>
+<li>jQuery</li>
+</ul></li>
+</ul>
+</section>
+
+      </div>
+
+    <div class="backgrounds" style="background-image: url(&quot;hatter.jpg&quot;); background-size: 2460px 800px; background-position: 0px 0px;"><div class="slide-background slide level1 present" data-loaded="true" style="display: block;"></div><div class="slide-background slide level1 future" data-loaded="true" style="display: block;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: block;" data-loaded="true"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div></div><div class="progress" style="display: block;"><span style="width: 0px;"></span></div><aside class="controls" style="display: block;"><button class="navigate-left" aria-label="previous slide"></button><button class="navigate-right enabled" aria-label="next slide"></button><button class="navigate-up" aria-label="above slide"></button><button class="navigate-down" aria-label="below slide"></button></aside><div class="slide-number" style="display: block;"><span class="slide-number-a">1</span></div><div class="speaker-notes" data-prevent-swipe=""></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px 1px 1px 1px);">
+Webfejlesztés 2.
+Adatbázis-kezelés, osztályok. Kitekintés
+ Horváth Győző
+Egyetemi adjunktus
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba
+Tel: (1) 372-2500/1816
+horvath.gyozo@inf.elte.hu 
+</div></div>
+
+    <script src="./Webfejlesztés 2._files/head.min.js.download"></script>
+    <script src="./Webfejlesztés 2._files/reveal.js.download"></script>
+
+    <script>
+
+      // var newSectionBackgroundColor = '#085536';
+      // var newSectionBackgroundColor = '#FFC000';
+      var newSectionBackgroundColor = '#D4A71C';
+
+      function moveAttributesFromH2ToSection() {
+        var h2s = document.querySelectorAll('section > h2, section > h1');
+        for (var i = 0; i < h2s.length; i++) { 
+          var h2 = h2s[i];
+          if (h2.hasAttributes()) {
+            var section = h2s[i].parentNode;
+            var attrs = h2.attributes;
+            for(var j = attrs.length - 1; j >= 0; j--) {
+              if (attrs[j].name != 'id') {
+                section.setAttribute(attrs[j].name, attrs[j].value);
+              } 
+            }
+          } 
+        }
+      }
+
+      // function setDataBackground() {
+      //   var h2s = document.querySelectorAll('section > h2[data-background], section > h1[data-background]');
+      //   for (var i = 0; i < h2s.length; i++) { 
+      //     var section = h2s[i].parentNode; 
+      //     section.setAttribute('data-background', h2s[i].getAttribute('data-background')); 
+      //   }
+      // }
+
+      // function setVideoBackground() {
+      //   var h2s = document.querySelectorAll('section > h2[data-background-video], section > h1[data-background-video]');
+      //   for (var i = 0; i < h2s.length; i++) { 
+      //     var section = h2s[i].parentNode; 
+      //     section.setAttribute('data-background-video', h2s[i].getAttribute('data-background-video')); 
+      //   }
+      // }
+
+      function setSectionClass() {
+        var h2s = document.querySelectorAll('section > h2.new-section');
+        console.log(h2s)
+        for (var i = 0; i < h2s.length; i++) { 
+          var section = h2s[i].parentNode; 
+          section.classList.add('new-section'); 
+          section.setAttribute('data-background', newSectionBackgroundColor); 
+          // console.log(section);
+        }
+      }
+
+      setSectionClass();
+      moveAttributesFromH2ToSection();
+      // setDataBackground();
+      // setVideoBackground();
+
+
+      Reveal.addEventListener('slidechanged', function(event) {
+        // console.log(event.currentSlide)               
+        if(event.currentSlide.getAttribute('data-background-iframe')) {
+          document.querySelector('.reveal > .backgrounds').style.zIndex = 1;
+        } else {
+          document.querySelector('.reveal > .backgrounds').style.zIndex = 0;
+        }                  
+      });
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        backgroundTransition: 'fade', 
+
+        multiplex: {
+          secret: null, 
+          id: '7b6c0ae4497b7316', // Obtained from socket.io server
+          url: '//webprogramozas.inf.elte.hu:1948' // Location of socket.io server
+        },
+
+        parallaxBackgroundImage: 'hatter.jpg',
+        parallaxBackgroundSize: '2460px 800px', 
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../revealjs/plugin/zoom-js/zoom.js', async: true },
+          { src: '../revealjs/plugin/notes/notes.js', async: true },
+          // { src: '//cdn.socket.io/socket.io-1.3.5.js', async: true },
+          // { src: '../revealjs/plugin/multiplex/client.js', async: true },
+        ]
+      });
+
+    </script><script type="text/javascript" src="./Webfejlesztés 2._files/highlight.js.download"></script><script type="text/javascript" src="./Webfejlesztés 2._files/zoom.js.download"></script><script type="text/javascript" src="./Webfejlesztés 2._files/notes.js.download"></script>
+
+  
+
+</body></html>

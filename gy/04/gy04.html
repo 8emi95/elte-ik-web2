@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://ermi46.web.elte.hu/webf2/sablon/ -->
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>4. gyakorlat - Webfejlesztés 2.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha256-oqtj+Pkh1c3dgdH6V9qoS7qwhOy2UZfyVK0qGLa9dCc= sha512-izanB/WZ07hzSPmLkdq82m5xS7EH/qDMgl5aWR37EII+rJOi5c6ouJ3PYnrw6K+DWQcnMZ+nO1NqDr6SBKLBDg=="
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="http://ermi46.web.elte.hu/webf2/sablon/#">Webfejlesztés 2.</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1>4. gyakorlat <small>Webfejlesztés 2.</small></h1>
+    </div>
+
+    <h2>1. feladat</h2>
+    <p>Készíts egy űrlapot, amelyen egy nevet, életkort és egy érdeklődési területet kérünk be. A nevet és az életkort szöveges beviteli mezővel adható meg, az érdeklődési terület legördülő listából választható. Ennek első eleme “Kérem, válasszon!” feliratú.</p>
+    <p>a) A feladat az, hogy JavaScript segítségével ellenőrizzük, hogy a következő szabályok teljesülnek-e: név és érdeklődési terület megadása kötelező, életkornak csak számot fogadunk el. Az ellenőrzést elküldéskor végezzük el, a hibákat az űrlap felett egy listában jelenítsük meg.</p>
+    <div class="megoldas well">
+      <h4>Megoldas</h4>
+      <ul id="hibak"></ul>
+      <form id="form1">
+        Név: <input type="text" id="txtNev"> <br>
+        Kor: <input type="text" id="txtKor"> <br>
+        Érdeklődés:
+        <select id="selErd">
+          <option value="">Kérem, válasszon...</option>
+          <option value="sport">Sport</option>
+          <option value="film">Filmek</option>
+          <option value="auto">Versenyautó</option>
+        </select>
+        <input type="submit">
+      </form>
+    </div>
+
+
+    <h2>8. feladat</h2>
+    <p>Egy négyzetrácsos térképen el van dugva egy kincs. Kattintgatással keresd meg, hol van! A megtalálás után, a gép újra rejtse el a kincset!</p>
+    <p>a) A tábla legyen 2x2-es méretű!</p>
+    <p>b) Egy szöveges mezőben lehessen megadni, mekkora legyen a tábla. Egy gombra kattintva a megfelelő méretű táblázat jelenik meg.</p>
+    <p>c) Készítsünk számlálót, mely méri hány kattintásból találtuk meg a kincset!</p>
+    <div class="megoldas well">
+      <h3>Megoldas</h3>
+      <style>
+          #terkep td {
+            width: 20px;
+            height: 20px;
+            border: 1px solid black;
+            vertical-align: middle;
+            text-align: center;
+          }
+          </style>
+          <input type="text" id="txtN">
+          <input type="button" value="Új játék" id="btnUj">
+          <table id="terkep"></table>
+    </div>
+
+    <h3 id="feladat2">7. feladat</h3>
+    <p>Készíts egy képnézegetőt!</p>
+    <p>a. Az oldalon legyen egy kép és két gomb “Előző”, “Következő” felirattal. A gombokra kattintva változzon meg a kép. A képek forrását egy tömbben tároljuk.</p>
+    <p>b. Töltsük előre a következő képet.</p>
+    <p>c. Oldd meg a képváltás stílusátmenettel. Legegyszerűbb halványulással megoldani az átmenetet.</p>
+    <p>d. Ha nincs JavaScript, akkor egyáltalán ne jelenjen meg a képnézegető.</p>
+    <div class="megoldas well">
+      <h3>Megoldas</h3>
+      <div id="nezoke"></div>
+    </div>
+
+  </div>
+
+  <script src="./gy04.js"></script>
+
+</body>
+
+</html>

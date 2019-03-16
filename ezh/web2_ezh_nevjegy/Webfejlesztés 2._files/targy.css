@@ -1,0 +1,74 @@
+/*body {
+	padding-top: 60px;
+}
+
+ul.thumbnails {
+	text-align: center;
+}
+header {
+	padding: 20px 0;
+	text-align: center;
+}
+*/
+
+section {
+	padding-top: 0px;
+}
+section h1 {
+	font-size: 32px;
+	color: #444444;
+	border-bottom: 5px solid #D6E7EE;
+}
+section h2 {
+	font-size: 24px;
+}
+section h3 {
+	font-size: 18px;
+}
+section .figure img {
+	display: block;
+	margin: 20px auto;
+}
+.affix {
+	top: 60px;
+}
+@media (max-width: 767px) {
+	.affix {
+		top: 60px;
+		position: static;
+	}	
+}
+
+
+
+.jumbotron {
+	margin-bottom: 0;
+	background-color: #04356B;
+	color: white;
+}
+
+.feher {
+	background-color: white;
+}
+.sarga {
+	background-color: #EFB900;	/*EFB900*/
+	color: white;
+}
+.kek {
+	background-color: #007777;	
+	color: white;
+}
+#footer {
+	background-color: #333333;
+	color: white;
+}
+
+
+header {
+	background-color: #012348;
+	color: white;
+}
+header a, header a:hover, header a:focus, header a:active {
+	color: white;
+	background-color: #012348;
+}

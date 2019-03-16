@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)http://webprogramozas.inf.elte.hu/webfejl2/ea/08/#/webfejleszts-2. -->
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>Webfejlesztés 2.</title>
+
+    <meta name="description" content="Diasor az ELTE Webfejlesztés 2. tárgyához">
+    <meta name="author" content="Horváth Győző">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/reveal.css">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <!-- <link rel="stylesheet" href="../revealjs/lib/css/obsidian.css"> -->
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/github.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../revealjs/css/print/pdf.css' : '../revealjs/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script><link rel="stylesheet" type="text/css" href="./Webfejlesztés 2._files/paper.css">
+
+    <!--[if lt IE 9]>
+    <script src="../revealjs/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body style="transition: -webkit-transform 0.8s ease;">
+
+    <div class="reveal convex center" role="application" data-transition-speed="default" data-background-transition="fade">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides" style="width: 960px; height: 700px; left: 50%; top: 50%; bottom: auto; right: auto; transform: translate(-50%, -50%) scale(0.757286);">
+
+<section id="webfejlesztés-2." class="slide level1 present" style="top: 126px; display: block;">
+<h1>Webfejlesztés 2.</h1>
+<h3 id="bemenet-űrlapok">Bemenet, Űrlapok</h3>
+<p><small> Horváth Győző<br>
+Egyetemi adjunktus<br>
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba<br>
+Tel: (1) 372-2500/1816<br>
+horvath.gyozo@inf.elte.hu </small></p>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 224.5px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés" class="new-section">Ismétlés</h2>
+</section>
+<section class="slide level1 future" style="top: 62.5px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés-1">Ismétlés</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Dinamikus szerveroldali webprogramozás: program állítja elő a tartalmat (HTML)</li>
+<li>PHP nyelv
+<ul>
+<li>Adatszerkezetek</li>
+<li>Programozási tételek</li>
+</ul></li>
+<li>Kimenet (HTML)</li>
+</ul>
+</div>
+<div class="span6">
+<figure>
+<img src="./Webfejlesztés 2._files/kliens_szerver_php_output.png" alt="">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="http-kérés-és-válasz">HTTP kérés és válasz</h2>
+<div class="equal">
+<div class="span6">
+<h3 id="kérés">Kérés</h3>
+<pre class="txt"><code class="hljs http"><span class="hljs-request">GET <span class="hljs-string">/</span> HTTP/1.1</span>
+<span class="hljs-attribute">Host</span>: <span class="hljs-string">webprogramozas.inf.elte.hu</span>
+<span class="hljs-attribute">User-Agent</span>: <span class="hljs-string">Mozilla/5.0 (Windows NT 6.1; rv:19.0) Gecko/20100101 Firefox/19.0</span>
+<span class="hljs-attribute">Accept</span>: <span class="hljs-string">text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span>
+<span class="hljs-attribute">Accept-Language</span>: <span class="hljs-string">hu-hu,hu;q=0.8,en-US;q=0.5,en;q=0.3</span>
+<span class="hljs-attribute">Accept-Encoding</span>: <span class="hljs-string">gzip, deflate</span>
+<span class="hljs-attribute">Cookie</span>: <span class="hljs-string">__utma=159741371.1255432553.1308299517.1308299517.1308299517.1; __utma=32143338.2145495546.1326532899.1361177845.1362134456.25; __utmz=32143338.1361177845.24.12.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)</span>
+<span class="hljs-attribute">Connection</span>: <span class="hljs-string">keep-alive</span>
+   </code></pre>
+</div>
+<div class="span6">
+<h3 id="válasz">Válasz</h3>
+<pre class="txt"><code class="hljs http"><span class="hljs-status">HTTP/1.1 <span class="hljs-number">200</span> OK</span>
+<span class="hljs-attribute">Date</span>: <span class="hljs-string">Wed, 03 Apr 2013 07:11:56 GMT</span>
+<span class="hljs-attribute">Server</span>: <span class="hljs-string">Apache/2.2.10 (Linux/SUSE)</span>
+<span class="hljs-attribute">Last-Modified</span>: <span class="hljs-string">Wed, 20 Feb 2013 08:39:44 GMT</span>
+<span class="hljs-attribute">ETag</span>: <span class="hljs-string">"fe8438-6d6-4d623e65e9400"</span>
+<span class="hljs-attribute">Accept-Ranges</span>: <span class="hljs-string">bytes</span>
+<span class="hljs-attribute">Content-Length</span>: <span class="hljs-string">1750</span>
+<span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">text/html</span>
+
+<span class="handlebars"><span class="xml"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+    ...
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></span></span></code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="vázlat" class="new-section">Vázlat</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="bemeneti-adatok">Bemeneti adatok</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>CGI (PHP) programok bemenete</li>
+<li>CGI interfész</li>
+<li>Kliensről érkező adatok</li>
+<li>Űrlapok feldolgozása</li>
+</ul>
+</div>
+<div class="span6">
+<figure>
+<img src="./Webfejlesztés 2._files/kliens_szerver_php_input.png" alt="">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="php-programok-adatai">PHP programok adatai</h2>
+<div class="span11 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/php_adatok_1.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="common-gateway-interface" class="new-section">Common Gateway Interface</h2>
+<p>Szerveroldali bemenet</p>
+<p>Kiindulási pont</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="common-gateway-interface-cgi">Common Gateway Interface (CGI)</h2>
+<div class="equal">
+<div class="span7">
+<ul>
+<li>Azt határozza meg, hogy egy webszerver hogyan indíthat el egy programot és milyen módon cserél adatot vele.</li>
+<li><strong>Indítás</strong>: bináris állomány a kért erőforrás</li>
+<li><strong>Adatok</strong>
+<ul>
+<li>környezeti változók</li>
+<li>standard I/O</li>
+</ul></li>
+</ul>
+</div>
+<div class="span5">
+<figure>
+<img src="./Webfejlesztés 2._files/dinserver.png" alt="">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kérés-körülményei-és-http-fejlécek">Kérés körülményei és HTTP fejlécek</h2>
+<ul>
+<li>Kérés körülményei → környezeti változók
+<ul>
+<li>HTTP kérés metódusa → <code>REQUEST_METHOD</code></li>
+<li>kliens IP címe → <code>REMOTE_ADDRESS</code></li>
+<li>üzenettest hossza bájtban → <code>CONTENT_LENGTH</code></li>
+</ul></li>
+<li>HTTP fejlécek → környezeti változók
+<ul>
+<li><code>HTTP_*</code></li>
+<li>Pl. <code>Accept</code> fejléc → <code>HTTP_ACCEPT</code> környezeti változó</li>
+</ul></li>
+</ul>
+<pre class="txt"><code class="hljs accesslog"><span class="hljs-string">[REMOTE_ADDR]</span> =&gt; <span class="hljs-number">188.142.184.197</span>
+<span class="hljs-string">[REMOTE_PORT]</span> =&gt; <span class="hljs-number">49323</span>
+<span class="hljs-string">[REQUEST_METHOD]</span> =&gt; GET
+<span class="hljs-string">[HTTP_ACCEPT]</span> =&gt; text/html,application/xhtml+xml,application/xml;q=<span class="hljs-number">0</span>.<span class="hljs-number">9</span>,*/*;q=<span class="hljs-number">0</span>.<span class="hljs-number">8</span>
+<span class="hljs-string">[HTTP_ACCEPT_LANGUAGE]</span> =&gt; hu-hu,hu;q=<span class="hljs-number">0</span>.<span class="hljs-number">8</span>,en-US;q=<span class="hljs-number">0</span>.<span class="hljs-number">5</span>,en;q=<span class="hljs-number">0</span>.<span class="hljs-number">3</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="url">URL</h2>
+<ul>
+<li><p>Kérés URL-je (szabad paraméter: <code>&lt;query&gt;</code>)</p>
+<pre class="txt"><code class="hljs elixir">&lt;scheme&gt;<span class="hljs-symbol">://&lt;host&gt;</span><span class="hljs-symbol">:&lt;port&gt;/&lt;path&gt;</span>?&lt;query&gt;<span class="hljs-comment">#&lt;fragment&gt;</span></code></pre></li>
+<li>URL → környezeti változók (fontos: <code>QUERY_STRING</code>)
+<ul>
+<li><code>&lt;scheme&gt;</code> → <code>SERVER_PROTOCOL</code></li>
+<li><code>&lt;host&gt;</code> → <code>SERVER_NAME</code></li>
+<li><code>&lt;port&gt;</code> → <code>SERVER_PORT</code></li>
+<li><code>&lt;path&gt;</code> → <code>SCRIPT_NAME (PATH_INFO)</code></li>
+<li><code>&lt;query&gt;</code> → <code>QUERY_STRING</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="http-üzenettörzs">HTTP üzenettörzs</h2>
+<ul>
+<li>HTTP üzenettörzs szabad paraméter</li>
+<li><strong>Standard bemenet</strong>en jelenik meg</li>
+<li>Környezeti változó
+<ul>
+<li><code>CONTENT_LENGTH</code>: adatmennyiség hossza</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="környezeti-változók-példa">Környezeti változók – példa</h2>
+<pre class="txt"><code class="hljs scheme"><span class="hljs-list">[<span class="hljs-keyword">HTTP_HOST</span>] =&gt; webprogramozas.inf.elte.hu
+<span class="hljs-list">[<span class="hljs-keyword">HTTP_USER_AGENT</span>] =&gt; Mozilla/5.0 <span class="hljs-list">(<span class="hljs-keyword">Windows</span> NT <span class="hljs-number">6.1</span><span class="hljs-comment">; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0</span>
+<span class="hljs-list">[<span class="hljs-keyword">HTTP_ACCEPT</span>] =&gt; text/html,application/xhtml+xml,application/xml<span class="hljs-comment">;q=0.9,*/*;q=0.8</span>
+<span class="hljs-list">[<span class="hljs-keyword">HTTP_ACCEPT_LANGUAGE</span>] =&gt; hu-hu,hu<span class="hljs-comment">;q=0.8,en-US;q=0.5,en;q=0.3</span>
+<span class="hljs-list">[<span class="hljs-keyword">HTTP_ACCEPT_ENCODING</span>] =&gt; gzip, deflate
+<span class="hljs-list">[<span class="hljs-keyword">HTTP_REFERER</span>] =&gt; http://webprogramozas.inf.elte.hu/~gyozke/wf2/temp/
+<span class="hljs-list">[<span class="hljs-keyword">HTTP_COOKIE</span>] =&gt; WACID=1263304129000A11327866<span class="hljs-comment">; __utma=32143338.519822639.1361532995.1362426295.1363347264.4; __utmz=32143338.1362426295.3.3.utmcsr=google|utmccn=(organic)|utmcmd=organic|utmctr=(not%20provided)</span>
+<span class="hljs-list">[<span class="hljs-keyword">HTTP_CONNECTION</span>] =&gt; keep-alive
+<span class="hljs-list">[<span class="hljs-keyword">PATH</span>] =&gt; /usr/sbin:/bin:/usr/bin:/sbin
+<span class="hljs-list">[<span class="hljs-keyword">SERVER_SIGNATURE</span>] =&gt; &lt;address&gt;Apache/2.2.10 <span class="hljs-list">(<span class="hljs-keyword">Linux/SUSE</span>)</span> Server at webprogramozas.inf.elte.hu Port <span class="hljs-number">80</span>&lt;/address&gt;
+<span class="hljs-list">[<span class="hljs-keyword">SERVER_SOFTWARE</span>] =&gt; Apache/2.2.10 <span class="hljs-list">(<span class="hljs-keyword">Linux/SUSE</span>)</span>
+<span class="hljs-list">[<span class="hljs-keyword">SERVER_NAME</span>] =&gt; webprogramozas.inf.elte.hu
+<span class="hljs-list">[<span class="hljs-keyword">SERVER_ADDR</span>] =&gt; <span class="hljs-number">157.181</span>.161.8
+<span class="hljs-list">[<span class="hljs-keyword">SERVER_PORT</span>] =&gt; <span class="hljs-number">80</span>
+<span class="hljs-list">[<span class="hljs-keyword">REMOTE_ADDR</span>] =&gt; <span class="hljs-number">188.142</span>.184.197
+<span class="hljs-list">[<span class="hljs-keyword">DOCUMENT_ROOT</span>] =&gt; /srv/www/webprog
+<span class="hljs-list">[<span class="hljs-keyword">SERVER_ADMIN</span>] =&gt; root@webprogramozas.inf.elte.hu
+<span class="hljs-list">[<span class="hljs-keyword">SCRIPT_FILENAME</span>] =&gt; /home/gyozke/public_html/wf2/temp/getpost.php
+<span class="hljs-list">[<span class="hljs-keyword">REMOTE_PORT</span>] =&gt; <span class="hljs-number">49323</span>
+<span class="hljs-list">[<span class="hljs-keyword">GATEWAY_INTERFACE</span>] =&gt; CGI/1.1
+<span class="hljs-list">[<span class="hljs-keyword">SERVER_PROTOCOL</span>] =&gt; HTTP/1.1
+<span class="hljs-list">[<span class="hljs-keyword">REQUEST_METHOD</span>] =&gt; GET
+<span class="hljs-list">[<span class="hljs-keyword">QUERY_STRING</span>] =&gt; 
+<span class="hljs-list">[<span class="hljs-keyword">REQUEST_URI</span>] =&gt; /~gyozke/wf2/temp/getpost.php
+<span class="hljs-list">[<span class="hljs-keyword">SCRIPT_NAME</span>] =&gt; /~gyozke/wf2/temp/getpost.php
+<span class="hljs-list">[<span class="hljs-keyword">PHP_SELF</span>] =&gt; /~gyozke/wf2/temp/getpost.php
+<span class="hljs-list">[<span class="hljs-keyword">REQUEST_TIME</span>] =&gt; <span class="hljs-number">1365626159</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="cgi-összefoglalás">CGI összefoglalás</h2>
+<ul>
+<li>HTTP kérés részei kerülnek átadásra a programnak
+<ul>
+<li>környezeti változók</li>
+<li>standard bemenet</li>
+</ul></li>
+<li>Felhasználói információ hol érkezhet (általában)
+<ul>
+<li><code>QUERY_STRING</code></li>
+<li>HTTP üzenettörzs</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kliensről-érkező-adatok">Kliensről érkező adatok</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/input_folyamat.png" alt="">
+</figure>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="böngésző-és-http" class="new-section">Böngésző és HTTP</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kérésindítási-lehetőségek">Kérésindítási lehetőségek</h2>
+<ul>
+<li>Cím beírása (<code>GET</code>)</li>
+<li>Linkre kattintás (<code>GET</code>)</li>
+<li>Űrlap elküldése (<code>GET</code>, <code>POST</code>)</li>
+<li>JavaScript (<code>GET</code>, <code>POST</code>)
+<ul>
+<li>oldal újratöltés (<code>location</code>, <code>GET</code>)</li>
+<li>űrlap elküldés(<code>submit()</code> metódus, <code>GET</code>, <code>POST</code>)</li>
+<li>AJAX kérés (bármilyen HTTP metódus)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="címsor-és-hivatkozások">Címsor és hivatkozások</h2>
+<ul>
+<li><p>A megadott URL kerül elküldésre</p>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://server.hu/index.php?adat=ELTE"</span>&gt;</span>Valami<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span></code></pre></li>
+<li><p>Általános formája</p>
+<pre class="txt"><code class="hljs elixir">&lt;scheme&gt;<span class="hljs-symbol">://&lt;host&gt;</span><span class="hljs-symbol">:&lt;port&gt;/&lt;path&gt;</span>?&lt;query&gt;<span class="hljs-comment">#&lt;fragment&gt;</span></code></pre></li>
+<li><p>Például</p>
+<pre class="txt"><code class="hljs groovy"><span class="hljs-string">http:</span><span class="hljs-comment">//localhost/cgi-bin/cgi.exe</span>
+<span class="hljs-string">http:</span><span class="hljs-comment">//webprogramozas.inf.elte.hu/getpost.php</span>
+<span class="hljs-string">http:</span><span class="hljs-comment">//webprogramozas.inf.elte.hu/getpost.php?ELTE</span>
+<span class="hljs-string">http:</span><span class="hljs-comment">//webprogramozas.inf.elte.hu/getpost.php?adat=ELTE</span>
+<span class="hljs-string">https:</span><span class="hljs-comment">//tools.ietf.org/html/rfc3986#section-3.4</span>
+<span class="hljs-string">http:</span><span class="hljs-comment">//www.w3.org/TR/REC-html40/interact/forms.html#h-17.13</span></code></pre></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="form-elem"><code>&lt;form&gt;</code> elem</h2>
+<ul>
+<li>Attribútumok
+<ul>
+<li><code>action</code>: szerveroldali erőforrás megjelölése</li>
+<li><code>method</code>: HTTP metódus</li>
+<li><code>enctype</code>: a formadatok kódolása a küldés során</li>
+</ul></li>
+<li><code>enctype</code>
+<ul>
+<li><code>application/x-www-form-urlencoded</code> (alapértelmezett)</li>
+<li><code>multipart/form-data</code> (fájlfeltöltés, csak <code>POST</code> esetén)</li>
+<li><code>text/plain</code> (levélküldés)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlap-elküldése">Űrlap elküldése</h2>
+<ul>
+<li>Elküldés
+<ul>
+<li><code>submit</code> gomb megnyomása</li>
+<li>JavaScript: <code>form.submit()</code> meghívása</li>
+</ul></li>
+<li><ol type="1">
+<li>Elküldhető elemek kiválasztása</li>
+</ol>
+<ul>
+<li><code>name</code> attribútum (nagyon fontos)</li>
+<li>nem <code>disabled</code></li>
+<li>bejelölt checkbox</li>
+<li>bejelölt radio</li>
+<li>kiválasztott select</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlap-elküldése-folytatás">Űrlap elküldése (folytatás)</h2>
+<ul>
+<li><ol start="2" type="1">
+<li>Kérési adatok összeállítása</li>
+</ol>
+<ul>
+<li>Elküldhető formelemekből <code>név=érték</code> párokat készít</li>
+<li>ezeket <code>&amp;</code> jellel fűzi össze</li>
+</ul></li>
+<li><ol start="3" type="1">
+<li>Kérési adatok kódolása</li>
+</ol>
+<ul>
+<li>ld. <code>enctype</code> attribútum</li>
+<li>→ Kérésszöveg (Query String)</li>
+</ul></li>
+</ul>
+<pre class="txt"><code class="hljs ini"><span class="hljs-setting">alma=<span class="hljs-value">piros&amp;jelszo=titkos&amp;check1=ertek1&amp;check2=<span class="hljs-keyword">on</span></span></span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlap-elküldése-folytatás-1">Űrlap elküldése (folytatás)</h2>
+<ul>
+<li><ol start="4" type="1">
+<li>A kódolt kérési adatok elküldése</li>
+</ol>
+<ul>
+<li>GET
+<ul>
+<li>az <code>action</code>-ben megadott URL mögé fűzi egy <code>?</code>-lel</li>
+<li>A kérésszöveg az URL adatokat tárolására szolgáló <code>&lt;query&gt;</code> részben jelenik meg</li>
+<li>limitált méret az URL mérete miatt (2 kB)</li>
+</ul></li>
+<li>POST
+<ul>
+<li>a HTTP kérés <strong>üzenettörzs</strong>ében utazik a kérésszöveg</li>
+<li>sok adat küldhető</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><a href="http://www.w3.org/TR/REC-html40/interact/forms.html#h-17.13">Űrlapküldés a szabványban</a></p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlap-elküldése-példa">Űrlap elküldése – példa</h2>
+<p>Űrlap:</p>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">"http://localhost/cgi-bin/cgi.exe"</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"post"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"alma"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"piros"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"password"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"kek"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"hidden"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"jelszo"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"titkos"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"check1"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"ertek1"</span> <span class="hljs-attribute">checked</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"checkbox"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"check2"</span> <span class="hljs-attribute">checked</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></code></pre>
+<p>Kérésszöveg (Query string)</p>
+<pre class="txt"><code class="hljs ini"><span class="hljs-setting">alma=<span class="hljs-value">piros&amp;jelszo=titkos&amp;check1=ertek1&amp;check2=<span class="hljs-keyword">on</span></span></span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlapelemek">Űrlapelemek</h2>
+<ul>
+<li>Szöveges elemek
+<ul>
+<li><code>&lt;input&gt;</code> type: <code>text</code>, <code>password</code>, <code>hidden</code></li>
+<li><code>&lt;textarea&gt;</code></li>
+<li>mindig elküldésre kerülnek</li>
+<li>akár üres szöveggel is</li>
+<li>textareánál vigyázni kell: minden elküldésre kerül, ami a <code>&lt;textarea&gt;&lt;/textarea&gt;</code> elem között van</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlapelemek-1">Űrlapelemek</h2>
+<ul>
+<li><code>checkbox</code>, <code>radio</code>
+<ul>
+<li>csak bejelölve kerül elküldésre</li>
+<li>ha nincs <code>value</code> → <code>on</code> érték</li>
+</ul></li>
+<li><code>select</code>
+<ul>
+<li>csak bejelölve kerül elküldésre</li>
+<li>ha nincs <code>value</code> → <code>option</code> szövege az érték</li>
+<li><code>size</code>&gt;1 esetén ha nincs kiválasztva → nem küldi el</li>
+<li><code>multiple</code> esetén → ugyanazon névvel több név=érték pár (pl. <code>sel=alma&amp;sel=szilva</code>)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlapelemek-2">Űrlapelemek</h2>
+<ul>
+<li><code>submit</code>
+<ul>
+<li>ha van neve → elküldésre kerül az értékével (felirat)</li>
+</ul></li>
+<li><code>file</code>
+<ul>
+<li><code>enctype="multipart/form-data"</code></li>
+<li><code>method="POST"</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="adatküldési-lehetőségek-a-kliensen">Adatküldési lehetőségek a kliensen</h2>
+<ul>
+<li>GET
+<ul>
+<li>beírás, link: megfelelő URL „kézi” előállítása
+<ul>
+<li><code>http://pelda.com/index.php?alma=piros&amp;korte=sarga</code></li>
+</ul></li>
+<li>űrlap: automatikusan állnak elő a név=érték párok
+<ul>
+<li><code>method="get"</code>, <code>action="http://pelda.com/index.php"</code></li>
+<li><code>http://pelda.com/index.php?alma=piros&amp;korte=sarga</code></li>
+</ul></li>
+</ul></li>
+<li>POST
+<ul>
+<li>űrlap: automatikusan állnak elő a név=érték párok</li>
+<li>a kérésszöveg az üzenettörzsben utazik</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="felhasználói-adatok-a-http-kérésben">Felhasználói adatok a HTTP kérésben</h2>
+<p>URL</p>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">scheme</span>&gt;</span>://<span class="hljs-tag">&lt;<span class="hljs-title">host</span>&gt;</span>:<span class="hljs-tag">&lt;<span class="hljs-title">port</span>&gt;</span>/<span class="hljs-tag">&lt;<span class="hljs-title">path</span>&gt;</span>?<span class="hljs-tag">&lt;<span class="hljs-title">query</span>&gt;</span>#<span class="hljs-tag">&lt;<span class="hljs-title">fragment</span>&gt;</span></code></pre>
+<p>HTTP kérés (<code>&lt;query&gt;</code>, <code>üzenettest</code>)</p>
+<pre class="html"><code class="hljs xml">METÓDUS /<span class="hljs-tag">&lt;<span class="hljs-title">path</span>&gt;</span>?<span class="hljs-tag">&lt;<span class="hljs-title">query</span>&gt;</span> VERZIÓ
+Host: <span class="hljs-tag">&lt;<span class="hljs-title">host</span>&gt;</span>
+FEJLÉC: ÉRTÉK
+FEJLÉC: ÉRTÉK
+FEJLÉC: ÉRTÉK
+
+ÜZENETTEST</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="összefoglalás">Összefoglalás</h2>
+<ul>
+<li>Kérésszöveg
+<ul>
+<li>URL <code>&lt;query&gt;</code> részében</li>
+<li>Üzenettörzs</li>
+</ul></li>
+</ul>
+<div class="span9 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/input_folyamat_1.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="http-és-cgi" class="new-section">HTTP és CGI</h2>
+<p>Ld. CGI bemeneténél</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="http-kérés-leképezése">HTTP kérés leképezése</h2>
+<ul>
+<li>Szabad paraméterek
+<ul>
+<li>URL <code>&lt;query&gt;</code> része → <code>QUERY_STRING</code></li>
+<li>Üzenettörzs → Standard bemenet</li>
+</ul></li>
+</ul>
+<div class="span8 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/input_folyamat_2.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="cgi-programok" class="new-section">CGI programok</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="cgi">CGI</h2>
+<ul>
+<li>CGI kommunikációja
+<ul>
+<li>környezeti változók</li>
+<li>standard bemenet és kimenet</li>
+</ul></li>
+<li>Programoknak tudnia kell
+<ul>
+<li>környezeti változók értékeit lekérdezni</li>
+<li>olvasni a standard bemenetről</li>
+<li>írni a standard kimenetre</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="adatok-tipikus-beolvasása">Adatok tipikus beolvasása</h2>
+<ul>
+<li><code>REQUEST_METHOD</code> → <code>GET</code> vagy <code>POST</code></li>
+<li>GET
+<ul>
+<li><code>QUERY_STRING</code></li>
+</ul></li>
+<li>POST
+<ul>
+<li><code>CONTENT_LENGTH</code> hosszan</li>
+<li>standard inputról olvasni</li>
+<li><code>QUERY_STRING</code> is töltve lehet (URL függő)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-c-program">Példa – C++ program</h2>
+<ul>
+<li>Környezeti változó olvasása
+<ul>
+<li><code>getenv(str)</code></li>
+</ul></li>
+<li>Standard bemenetről olvasás karakterenként
+<ul>
+<li><code>fgetc(stdin)</code></li>
+</ul></li>
+<li>Szövegműveletek</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-c-program-1">Példa – C++ program</h2>
+<pre class="cpp"><code class="hljs">request_method = getenv(<span class="hljs-string">"REQUEST_METHOD"</span>);
+content_length_str = getenv(<span class="hljs-string">"CONTENT_LENGTH"</span>);
+content_length = atoi(content_length_str);
+query_string_get = getenv(<span class="hljs-string">"QUERY_STRING"</span>);
+<span class="hljs-built_in">string</span> query_string_post = <span class="hljs-string">""</span>;
+
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">strcmp</span>(request_method, <span class="hljs-string">"POST"</span>) == <span class="hljs-number">0</span>) {
+  <span class="hljs-keyword">int</span> db = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">char</span> c;
+  <span class="hljs-keyword">while</span> (db &lt; content_length &amp;&amp; EOF != (c = fgetc(<span class="hljs-built_in">stdin</span>))) {
+    query_string_post += c;
+    db++;
+  }
+}</code></pre>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="cgi-és-php" class="new-section">CGI és PHP</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="leképezés">Leképezés</h2>
+<ul>
+<li>Szabad paraméterek
+<ul>
+<li><code>QUERY_STRING</code> → <code>$_GET</code></li>
+<li>Standard bemenet → <code>$_POST</code></li>
+</ul></li>
+<li>Egyéb adatok
+<ul>
+<li>Környezeti változók → <code>$_SERVER</code></li>
+</ul></li>
+<li>Szuperglobális tömbök</li>
+</ul>
+<pre class="php"><code class="hljs"><span class="hljs-comment">// GET kérésszöveg: alma=piros&amp;korte=sarga</span>
+<span class="hljs-variable">$_GET</span>[<span class="hljs-string">'alma'</span>];  <span class="hljs-comment">//"piros"</span>
+<span class="hljs-variable">$_GET</span>[<span class="hljs-string">'korte'</span>]; <span class="hljs-comment">//"sarga"</span>
+
+<span class="hljs-comment">// POST kérésszöveg: alma=piros&amp;korte=sarga</span>
+<span class="hljs-variable">$_POST</span>[<span class="hljs-string">'alma'</span>];  <span class="hljs-comment">//"piros"</span>
+<span class="hljs-variable">$_POST</span>[<span class="hljs-string">'korte'</span>]; <span class="hljs-comment">//"sarga"</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szuperglobális-tömbök">Szuperglobális tömbök</h2>
+<ul>
+<li><code>$_GET</code>: <code>QUERY_STRING</code>ben érkező név=érték pároknak megfelelő tömb, ahol a név a kulcs.</li>
+<li><code>$_POST</code>: a standard inputon érkező név=érték pároknak megfelelő tömb, ahol a név a kulcs.</li>
+<li><code>$_SERVER</code>: az összes környezeti változót tartalmazza</li>
+<li><code>$_FILES</code>: a feltöltött fájlok helyét tartalmazza</li>
+<li><code>$_COOKIES</code>: a kliensről érkező sütik jelennek meg benne</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="összefoglalás-1">Összefoglalás</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/input_folyamat_teljes.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="get-példa">GET példa</h2>
+<p>Kliensen egy link</p>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"adat.php?oldal=12&amp;stilus=sotet"</span>&gt;</span>Példa hivatkozás<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span></code></pre>
+<div class="equal">
+<div class="span6">
+<p>PHP kód</p>
+<pre class="php"><code class="hljs">var_dump(<span class="hljs-variable">$_GET</span>);
+var_dump(<span class="hljs-variable">$_POST</span>);</code></pre>
+</div>
+<div class="span6">
+<p>Eredmény</p>
+<pre class="txt"><code class="hljs cpp"><span class="hljs-built_in">array</span>(<span class="hljs-number">2</span>) {
+  [<span class="hljs-string">"oldal"</span>]  =&gt; <span class="hljs-built_in">string</span>(<span class="hljs-number">2</span>) <span class="hljs-string">"12"</span>
+  [<span class="hljs-string">"stilus"</span>] =&gt; <span class="hljs-built_in">string</span>(<span class="hljs-number">5</span>) <span class="hljs-string">"sotet"</span>
+}
+<span class="hljs-built_in">array</span>(<span class="hljs-number">0</span>) {
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="post-példa">POST példa</h2>
+<p>Űrlap</p>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">"adat.php?oldal=42"</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"post"</span>&gt;</span>
+  Név: <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"nev"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"valaki"</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
+  Jelszó: <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"password"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"jelszo"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"titkos"</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"gomb"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"login"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></code></pre>
+<p>Eredménye</p>
+<pre class="txt"><code class="hljs cpp"><span class="hljs-built_in">array</span>(<span class="hljs-number">2</span>) {
+  [<span class="hljs-string">"oldal"</span>]  =&gt; <span class="hljs-built_in">string</span>(<span class="hljs-number">2</span>) <span class="hljs-string">"12"</span>
+}
+<span class="hljs-built_in">array</span>(<span class="hljs-number">3</span>) {
+  [<span class="hljs-string">"nev"</span>]    =&gt; <span class="hljs-built_in">string</span>(<span class="hljs-number">6</span>) <span class="hljs-string">"valaki"</span>
+  [<span class="hljs-string">"jelszo"</span>] =&gt; <span class="hljs-built_in">string</span>(<span class="hljs-number">6</span>) <span class="hljs-string">"titkos"</span>
+  [<span class="hljs-string">"gomb"</span>]   =&gt; <span class="hljs-built_in">string</span>(<span class="hljs-number">5</span>) <span class="hljs-string">"login"</span>
+}</code></pre>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="bemeneti-adatok-feldolgozása" class="new-section">Bemeneti adatok feldolgozása</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa">Példa</h2>
+<ul>
+<li>Kör kerületének kiszámítása</li>
+<li>Bemenet: sugár
+<ul>
+<li>Kötelező</li>
+</ul></li>
+<li>Kimenet: kerület
+<ul>
+<li>Valid oldalon jelenjen meg</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="elvárt-kimenet">Elvárt kimenet</h2>
+<pre class="html"><code class="hljs xml"><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Kerület<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Sugár = 10<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Kerület = 62.83<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás">1. megoldás</h2>
+<p>Az URL-ben adjuk át paraméterként</p>
+<pre class="txt"><code class="hljs groovy"><span class="hljs-string">http:</span><span class="hljs-comment">//pelda.hu/kerulet.php?sugar=10</span></code></pre>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+print_r(<span class="hljs-variable">$_GET</span>);
+print_r(<span class="hljs-variable">$_POST</span>);
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=<span class="hljs-string">"utf-8"</span>&gt;
+    &lt;title&gt;Kerulet&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+<span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-comment">//beolvasás</span>
+<span class="hljs-variable">$sugar</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">'sugar'</span>];
+<span class="hljs-comment">//feldolgozás</span>
+<span class="hljs-variable">$pi</span> = pi();
+<span class="hljs-variable">$ker</span> = <span class="hljs-number">2</span> * <span class="hljs-variable">$sugar</span> * <span class="hljs-variable">$pi</span>;
+<span class="hljs-comment">//kiiras</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;p&gt;Sugár = {$sugar}&lt;/p&gt;"</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;p&gt;Kerulet = {$ker}&lt;/p&gt;"</span>;
+<span class="hljs-preprocessor">?&gt;</span>
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-1">1. megoldás</h2>
+<div class="span7 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/form_1.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-2">2. megoldás</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Feldolgozás kivétele a kiírásból</li>
+<li>Kiírás és PHP logika szétválasztása</li>
+</ul>
+</div>
+<div class="span6">
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+print_r(<span class="hljs-variable">$_GET</span>);
+print_r(<span class="hljs-variable">$_POST</span>);
+
+<span class="hljs-comment">//beolvasás</span>
+<span class="hljs-variable">$sugar</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">'sugar'</span>];
+
+<span class="hljs-comment">//feldolgozás</span>
+<span class="hljs-variable">$pi</span> = pi();
+<span class="hljs-variable">$ker</span> = <span class="hljs-number">2</span> * <span class="hljs-variable">$sugar</span> * <span class="hljs-variable">$pi</span>;
+
+<span class="hljs-comment">//kiiras</span>
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=<span class="hljs-string">"utf-8"</span>&gt;
+    &lt;title&gt;Kerulet&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+<span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;p&gt;Sugár = {$sugar}&lt;/p&gt;"</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;p&gt;Kerulet = {$ker}&lt;/p&gt;"</span>;
+<span class="hljs-preprocessor">?&gt;</span>
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-3">3. megoldás</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Kiírás csiszolása</li>
+<li>Csak a valóban dinamikus tartalom legyen PHP-ban</li>
+</ul>
+</div>
+<div class="span6">
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+print_r(<span class="hljs-variable">$_GET</span>);
+print_r(<span class="hljs-variable">$_POST</span>);
+
+<span class="hljs-comment">//beolvasás</span>
+<span class="hljs-variable">$sugar</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">'sugar'</span>];
+
+<span class="hljs-comment">//feldolgozás</span>
+<span class="hljs-variable">$pi</span> = pi();
+<span class="hljs-variable">$ker</span> = <span class="hljs-number">2</span> * <span class="hljs-variable">$sugar</span> * <span class="hljs-variable">$pi</span>;
+
+<span class="hljs-comment">//kiiras</span>
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=<span class="hljs-string">"utf-8"</span>&gt;
+    &lt;title&gt;Kerulet&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Sugár = <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$sugar</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/p&gt;
+    &lt;p&gt;Kerület = <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$ker</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="html-sablon-alternatív-szintaxis">HTML sablon (alternatív szintaxis)</h2>
+<div class="equal">
+<div class="span6">
+<p>Kiírás</p>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$valtozo</span>; <span class="hljs-preprocessor">?&gt;</span>
+<span class="hljs-preprocessor">&lt;?</span>= <span class="hljs-variable">$valtozo</span>; <span class="hljs-preprocessor">?&gt;</span></code></pre>
+<p>Elágazás</p>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">if</span> (felt) : <span class="hljs-preprocessor">?&gt;</span>
+    HTML sablon kód
+<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">else</span> : <span class="hljs-preprocessor">?&gt;</span>
+    HTML sablon kód
+<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-preprocessor">?&gt;</span></code></pre>
+</div>
+<div class="span6">
+<p>Ciklus</p>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$tomb</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$el</span>) : <span class="hljs-preprocessor">?&gt;</span>
+    HTML sablon kód
+<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-preprocessor">?&gt;</span></code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-4">4. megoldás</h2>
+<ul>
+<li>Lényegi logika kiemelése</li>
+<li>Függvénybe zárása</li>
+<li>Elkülönítjük az adatok beolvasásától és kiírásától</li>
+</ul>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-comment">// Debugolás</span>
+print_r(<span class="hljs-variable">$_GET</span>);
+print_r(<span class="hljs-variable">$_POST</span>);
+
+<span class="hljs-comment">// Üzleti logika</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">kerulet</span><span class="hljs-params">(float <span class="hljs-variable">$sugar</span>)</span>: <span class="hljs-title">float</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * <span class="hljs-variable">$sugar</span> * pi();
+}
+
+<span class="hljs-comment">//beolvasás</span>
+<span class="hljs-variable">$sugar</span> = (float)<span class="hljs-variable">$_GET</span>[<span class="hljs-string">'sugar'</span>];
+
+<span class="hljs-comment">//feldolgozás</span>
+<span class="hljs-variable">$ker</span> = kerulet(<span class="hljs-variable">$sugar</span>);
+
+<span class="hljs-comment">//kiiras</span>
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=<span class="hljs-string">"utf-8"</span>&gt;
+    &lt;title&gt;Kerulet&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Sugár = <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$sugar</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/p&gt;
+    &lt;p&gt;Kerület = <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$ker</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="input-hiánya-és-formátuma">Input hiánya és formátuma</h2>
+<ul>
+<li><code>http://pelda.hu/kerulet.php</code> → PHP hibák</li>
+<li>Kezelni kell az input hiányát
+<ul>
+<li>Alapértelmezett érték</li>
+<li>Hibaüzenet</li>
+</ul></li>
+<li>Ha van input, akkor formátumellenőrzés</li>
+</ul>
+<div class="span7 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/form_2.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-5">5. megoldás</h2>
+<p>Alapértelmezett érték</p>
+<pre class="php"><code class="hljs"><span class="hljs-comment">// Segédfüggvény</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">is_empty</span><span class="hljs-params">(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$key</span>)</span> </span>{
+  <span class="hljs-keyword">return</span> !(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$input</span>[<span class="hljs-variable">$key</span>]) &amp;&amp; trim(<span class="hljs-variable">$input</span>[<span class="hljs-variable">$key</span>]) !== <span class="hljs-string">''</span>);
+}
+
+<span class="hljs-comment">// Ellenőrzés alapértelmezett értékkel</span>
+<span class="hljs-variable">$hiba</span> = <span class="hljs-string">''</span>;
+<span class="hljs-variable">$sugar</span> = <span class="hljs-keyword">null</span>;
+<span class="hljs-keyword">if</span> (is_empty(<span class="hljs-variable">$_GET</span>, <span class="hljs-string">'sugar'</span>)) {
+    <span class="hljs-variable">$sugar</span> = <span class="hljs-number">0.0</span>;
+} 
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!is_numeric(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">'sugar'</span>])) {
+    <span class="hljs-variable">$hiba</span> = <span class="hljs-string">'A sugár nem szám!'</span>;
+}
+<span class="hljs-keyword">else</span> {
+    <span class="hljs-variable">$sugar</span> = (float)<span class="hljs-variable">$_GET</span>[<span class="hljs-string">'sugar'</span>];
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-6">5. megoldás</h2>
+<p>Hibaüzenet</p>
+<pre class="php"><code class="hljs"><span class="hljs-comment">// Segédfüggvény</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">is_empty</span><span class="hljs-params">(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$key</span>)</span> </span>{
+  <span class="hljs-keyword">return</span> !(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$input</span>[<span class="hljs-variable">$key</span>]) &amp;&amp; trim(<span class="hljs-variable">$input</span>[<span class="hljs-variable">$key</span>]) !== <span class="hljs-string">''</span>);
+}
+
+<span class="hljs-comment">// Ellenőrzés alapértelmezett értékkel</span>
+<span class="hljs-variable">$hiba</span> = <span class="hljs-string">''</span>;
+<span class="hljs-variable">$sugar</span> = <span class="hljs-keyword">null</span>;
+<span class="hljs-keyword">if</span> (is_empty(<span class="hljs-variable">$_GET</span>, <span class="hljs-string">'sugar'</span>)) {
+    <span class="hljs-variable">$hiba</span> = <span class="hljs-string">'A sugár megadása kötelező'</span>;
+} 
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!is_numeric(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">'sugar'</span>])) {
+    <span class="hljs-variable">$hiba</span> = <span class="hljs-string">'A sugár nem szám!'</span>;
+}
+<span class="hljs-keyword">else</span> {
+    <span class="hljs-variable">$sugar</span> = (float)<span class="hljs-variable">$_GET</span>[<span class="hljs-string">'sugar'</span>];
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-7">5. megoldás</h2>
+<p>Kimenet: hibaüzenet kiírása</p>
+<pre class="php"><code class="hljs">&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=<span class="hljs-string">"utf-8"</span>&gt;
+    &lt;title&gt;Kerulet&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable">$hiba</span>) : <span class="hljs-preprocessor">?&gt;</span>
+      &lt;p&gt;<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$hiba</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/p&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">else</span> : <span class="hljs-preprocessor">?&gt;</span>
+      &lt;p&gt;Sugár = <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$sugar</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/p&gt;
+      &lt;p&gt;Kerület = <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$ker</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/p&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-preprocessor">?&gt;</span>
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="általánosítás">Általánosítás</h2>
+<ul>
+<li>Folyamat
+<ul>
+<li>Adatok ellenőrzése</li>
+<li>Beolvasás</li>
+<li>Feldolgozás</li>
+<li>Kiírás</li>
+</ul></li>
+<li>Több input esetén
+<ul>
+<li>bemeneti tömb (<code>$_GET</code> vagy <code>$_POST</code>)</li>
+<li>típusos adatok tömbje (<code>$data</code>)</li>
+<li>hibalista tömbje (<code>$errors</code>)</li>
+<li>hibalista (HTML <code>&lt;ul&gt;</code>)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="php-validáció-filter_">PHP validáció: <code>filter_*()</code></h2>
+<p><code>filter_var()</code> és <code>filter_var_array()</code></p>
+<p><a href="http://php.net/manual/en/book.filter.php">Dokumentáció</a></p>
+<pre class="php"><code class="hljs"><span class="hljs-comment">// is_numeric helyett</span>
+<span class="hljs-keyword">if</span> (!filter_var(<span class="hljs-variable">$input</span>[<span class="hljs-string">'sugar'</span>], FILTER_VALIDATE_FLOAT)) {
+    <span class="hljs-variable">$hiba</span> = <span class="hljs-string">'A sugár nem szám!'</span>;
+}
+
+<span class="hljs-comment">// Összetettebb: szűrés és validálás</span>
+<span class="hljs-variable">$email</span> = filter_var(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">'email'</span>], FILTER_SANITIZE_EMAIL);
+<span class="hljs-keyword">if</span> (!filter_var(<span class="hljs-variable">$email</span>, FILTER_VALIDATE_EMAIL)) {
+    <span class="hljs-variable">$hiba</span> = <span class="hljs-string">"Nem jó e-mail formátum!"</span>; 
+}
+
+<span class="hljs-comment">// Opciók</span>
+filter_var(<span class="hljs-variable">$string</span>, FILTER_VALIDATE_REGEXP, [
+    <span class="hljs-string">"options"</span>=&gt;[
+        <span class="hljs-string">"regexp"</span>=&gt;<span class="hljs-string">"/^M(.*)/"</span>,
+    ],
+]);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="php-filterek">PHP filterek</h2>
+<ul>
+<li>FILTER_DEFAULT (szöveg)</li>
+<li>FILTER_VALIDATE_BOOLEAN</li>
+<li>FILTER_VALIDATE_EMAIL</li>
+<li>FILTER_VALIDATE_FLOAT</li>
+<li>FILTER_VALIDATE_INT</li>
+<li>FILTER_VALIDATE_IP</li>
+<li>FILTER_VALIDATE_MAC</li>
+<li>FILTER_VALIDATE_REGEXP</li>
+<li>FILTER_VALIDATE_URL</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="általános-feldolgozási-logika">Általános feldolgozási logika</h2>
+<pre class="php"><code class="hljs"><span class="hljs-variable">$errors</span> = [];
+<span class="hljs-variable">$input</span> = <span class="hljs-variable">$_GET</span>;
+
+<span class="hljs-comment">//Ellenőrzés</span>
+<span class="hljs-keyword">if</span> (validate(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$data</span>, <span class="hljs-variable">$errors</span>)) {
+
+    <span class="hljs-comment">//Beolvasás</span>
+    <span class="hljs-variable">$sugar</span> = <span class="hljs-variable">$data</span>[<span class="hljs-string">'sugar'</span>];
+
+    <span class="hljs-comment">// Feldolgozás</span>
+    <span class="hljs-variable">$ker</span> = kerulet(<span class="hljs-variable">$sugar</span>);
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// Hiba: $errors tömb</span>
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kézi-validálás">“Kézi” validálás</h2>
+<pre class="php"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validate</span><span class="hljs-params">(<span class="hljs-variable">$input</span>, &amp;<span class="hljs-variable">$data</span>, &amp;<span class="hljs-variable">$errors</span>)</span> </span>{
+  <span class="hljs-comment">// sugár vizsgálata</span>
+  <span class="hljs-variable">$data</span>[<span class="hljs-string">'sugar'</span>] = <span class="hljs-keyword">null</span>;
+  <span class="hljs-keyword">if</span> (is_empty(<span class="hljs-variable">$input</span>, <span class="hljs-string">'sugar'</span>)) {
+    <span class="hljs-variable">$errors</span>[] = <span class="hljs-string">'Az a megadása kötelező'</span>;
+  } 
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!is_numeric(<span class="hljs-variable">$input</span>[<span class="hljs-string">'sugar'</span>])) {
+    <span class="hljs-variable">$errors</span>[] = <span class="hljs-string">'Az a nem szám!'</span>;
+  }
+  <span class="hljs-keyword">else</span> {
+    <span class="hljs-variable">$data</span>[<span class="hljs-string">'sugar'</span>] = (float)<span class="hljs-variable">$input</span>[<span class="hljs-string">'sugar'</span>];
+  } 
+  
+  <span class="hljs-keyword">return</span> !(bool)<span class="hljs-variable">$errors</span>;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="általánosított-validálás">Általánosított validálás</h2>
+<pre class="php"><code class="hljs"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validate</span><span class="hljs-params">(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$rules</span>, &amp;<span class="hljs-variable">$data</span>, &amp;<span class="hljs-variable">$errors</span>)</span> </span>{
+  <span class="hljs-variable">$errors</span> = [];
+  
+  <span class="hljs-variable">$filtered_inputs</span> = filter_var_array(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$rules</span>);
+  
+  <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$filtered_inputs</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$key</span> =&gt; <span class="hljs-variable">$value</span>) {
+    <span class="hljs-variable">$data</span>[<span class="hljs-variable">$key</span>] = <span class="hljs-keyword">null</span>;
+    <span class="hljs-keyword">if</span> (is_null(<span class="hljs-variable">$value</span>) || is_empty(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$key</span>)) {
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$rules</span>[<span class="hljs-variable">$key</span>][<span class="hljs-string">'default'</span>])) {
+        <span class="hljs-variable">$data</span>[<span class="hljs-variable">$key</span>] = <span class="hljs-variable">$rules</span>[<span class="hljs-variable">$key</span>][<span class="hljs-string">'default'</span>];
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-variable">$errors</span>[] = <span class="hljs-string">"{$key} hiányzik"</span>;
+      }
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable">$value</span> === <span class="hljs-keyword">false</span>) {
+      <span class="hljs-variable">$errors</span>[] = <span class="hljs-variable">$rules</span>[<span class="hljs-variable">$key</span>][<span class="hljs-string">'errormsg'</span>];
+    }
+    <span class="hljs-keyword">else</span> {
+      <span class="hljs-variable">$data</span>[<span class="hljs-variable">$key</span>] = <span class="hljs-variable">$value</span>;
+    }
+  }
+  
+  <span class="hljs-keyword">return</span> !(bool)<span class="hljs-variable">$errors</span>;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="általánosított-validálás-használata">Általánosított validálás használata</h2>
+<pre class="php"><code class="hljs"><span class="hljs-variable">$rules</span> = [
+    <span class="hljs-string">'sugar'</span> =&gt; [
+        <span class="hljs-string">'filter'</span>=&gt; FILTER_VALIDATE_FLOAT,
+        <span class="hljs-string">'errormsg'</span>  =&gt; <span class="hljs-string">'A sugár nem megfelelő formátumú!'</span>,
+        <span class="hljs-comment">// 'default'   =&gt; 0.0,</span>
+    ],
+];
+  
+<span class="hljs-keyword">if</span> (validate(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$rules</span>, <span class="hljs-variable">$data</span>, <span class="hljs-variable">$errors</span>)) {
+    
+    <span class="hljs-comment">//Beolvasás</span>
+    <span class="hljs-variable">$sugar</span> = <span class="hljs-variable">$data</span>[<span class="hljs-string">'sugar'</span>];
+
+    <span class="hljs-comment">// Feldolgozás</span>
+    <span class="hljs-variable">$ker</span> = kerulet(<span class="hljs-variable">$sugar</span>);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hibák-kiírása">Hibák kiírása</h2>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable">$errors</span>) : <span class="hljs-preprocessor">?&gt;</span>
+    &lt;ul&gt;
+        <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$errors</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$error</span>) : <span class="hljs-preprocessor">?&gt;</span>
+            &lt;li&gt;<span class="hljs-preprocessor">&lt;?</span>= <span class="hljs-variable">$error</span> <span class="hljs-preprocessor">?&gt;</span>&lt;/li&gt;
+        <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-preprocessor">?&gt;</span>
+    &lt;/ul&gt;
+<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-preprocessor">?&gt;</span></code></pre>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlapok" class="new-section">Űrlapok</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlapok-1">Űrlapok</h2>
+<ul>
+<li>Előző megoldás nem felhasználóbarát
+<ul>
+<li>böngésző címsora</li>
+<li>URL</li>
+</ul></li>
+<li>Input megadás a felhasználó részéről általában űrlapokon keresztül történik</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tervezés">Tervezés</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/form_3.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlap">Űrlap</h2>
+<ul>
+<li>kerulet.html</li>
+<li>statikus oldal</li>
+</ul>
+<pre class="html"><code class="hljs xml"><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Kerulet<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">"kerulet.php"</span> <span class="hljs-attribute">method</span>=<span class="hljs-value">"get"</span>&gt;</span>
+      Sugár: <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"sugar"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="feldolgozó-szkript">Feldolgozó szkript</h2>
+<p>kerulet.php (ld. korábban)</p>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-comment">// Debugolás</span>
+print_r(<span class="hljs-variable">$_GET</span>);
+print_r(<span class="hljs-variable">$_POST</span>);
+
+<span class="hljs-comment">// Üzleti logika</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">kerulet</span><span class="hljs-params">(float <span class="hljs-variable">$sugar</span>)</span>: <span class="hljs-title">float</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * <span class="hljs-variable">$sugar</span> * pi();
+}
+
+<span class="hljs-comment">// Validáló függvények</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">is_empty</span><span class="hljs-params">(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$key</span>)</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validate</span><span class="hljs-params">(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$rules</span>, &amp;<span class="hljs-variable">$data</span>, &amp;<span class="hljs-variable">$errors</span>)</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-comment">// Belépési pont</span>
+
+<span class="hljs-variable">$rules</span> = [
+    <span class="hljs-string">'sugar'</span> =&gt; [
+        <span class="hljs-string">'filter'</span>=&gt; FILTER_VALIDATE_FLOAT,
+        <span class="hljs-string">'errormsg'</span>  =&gt; <span class="hljs-string">'A sugár nem megfelelő formátumú!'</span>,
+        <span class="hljs-comment">// 'default'   =&gt; 0.0,</span>
+    ],
+];
+  
+<span class="hljs-keyword">if</span> (validate(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$rules</span>, <span class="hljs-variable">$data</span>, <span class="hljs-variable">$errors</span>)) {
+    
+    <span class="hljs-comment">//Beolvasás</span>
+    <span class="hljs-variable">$sugar</span> = <span class="hljs-variable">$data</span>[<span class="hljs-string">'sugar'</span>];
+
+    <span class="hljs-comment">// Feldolgozás</span>
+    <span class="hljs-variable">$ker</span> = kerulet(<span class="hljs-variable">$sugar</span>);
+}
+
+<span class="hljs-comment">// Kiírás</span>
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=<span class="hljs-string">"utf-8"</span>&gt;
+    &lt;title&gt;Kerulet&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable">$errors</span>) : <span class="hljs-preprocessor">?&gt;</span>
+        &lt;ul&gt;
+            <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$errors</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$error</span>) : <span class="hljs-preprocessor">?&gt;</span>
+                &lt;li&gt;<span class="hljs-preprocessor">&lt;?</span>= <span class="hljs-variable">$error</span> <span class="hljs-preprocessor">?&gt;</span>&lt;/li&gt;
+            <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-preprocessor">?&gt;</span>
+        &lt;/ul&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">else</span> : <span class="hljs-preprocessor">?&gt;</span>
+        &lt;p&gt;Sugár = <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$sugar</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/p&gt;
+        &lt;p&gt;Kerület = <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$ker</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/p&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-preprocessor">?&gt;</span>
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ergonómiai-megfontolások">Ergonómiai megfontolások</h2>
+<ul>
+<li>Az alkalmazás funkcionálisan teljesíti az elvárásokat</li>
+<li>De nem ergonomikus a használata
+<ul>
+<li>Felhasználó nem tudja, mit írt be</li>
+<li>Külön kattintásra (vissza) tud
+<ul>
+<li>javítani</li>
+<li>újra számolni</li>
+</ul></li>
+</ul></li>
+<li>Jó lenne ott jelezni a hibát, ahol az űrlap van</li>
+<li>Jó lenne az űrlapon jelezni a megoldást is</li>
+<li>Szemantikusan is helyesebb</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="következmények">Következmények</h2>
+<ul>
+<li>A kerület kiszámítása egy végpont felelőssége</li>
+<li>–&gt; egy PHP fájl (<code>kerulet.php</code>)</li>
+<li>Először érkezve (GET)
+<ul>
+<li>űrlap</li>
+</ul></li>
+<li>Adatot küldve (GET)
+<ul>
+<li>ellenőrzés</li>
+<li>beolvasás</li>
+<li>feldolgozás</li>
+<li>eredmény/hiba kiírása</li>
+<li>űrlap</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tervezés-oldalak">Tervezés – oldalak</h2>
+<div class="span10 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/form_4.png" alt="">
+</figure>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tervezés-állomány-szint">Tervezés – állomány szint</h2>
+<div class="span6 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/form_5.png" alt="">
+</figure>
+</div>
+<aside class="notes">
+<ul>
+<li>PHP kód
+<ul>
+<li>1: nincs input</li>
+</ul></li>
+<li>kiírás (űrlap)
+<ul>
+<li>2, 3, 4, …:</li>
+</ul></li>
+<li>beolvasás</li>
+<li>ellenőrzés</li>
+<li>feldolgozás</li>
+<li>kiírás (űrlap)</li>
+<li>Eldöntés
+<ul>
+<li>Van-e <code>POST</code> adat</li>
+<li><code>REQUEST_METHOD</code></li>
+</ul></li>
+</ul>
+</aside>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="html-rész">HTML rész</h2>
+<pre class="php"><code class="hljs">&lt;body&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">if</span> (<span class="hljs-variable">$errors</span>) : <span class="hljs-preprocessor">?&gt;</span>
+      &lt;ul&gt;
+        <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">foreach</span>(<span class="hljs-variable">$errors</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$error</span>) : <span class="hljs-preprocessor">?&gt;</span>
+          &lt;li&gt;<span class="hljs-preprocessor">&lt;?</span>= <span class="hljs-variable">$error</span> <span class="hljs-preprocessor">?&gt;</span>&lt;/li&gt;
+        <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-preprocessor">?&gt;</span>
+      &lt;/ul&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-preprocessor">?&gt;</span>
+    
+    &lt;form action=<span class="hljs-string">"kerulet.php"</span> method=<span class="hljs-string">"get"</span>&gt;
+      Sugár: &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"sugar"</span>&gt;
+      &lt;input type=<span class="hljs-string">"submit"</span>&gt;
+    &lt;/form&gt;
+    
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$ker</span>)) : <span class="hljs-preprocessor">?&gt;</span>
+      &lt;p&gt;Sugár = <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$sugar</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/p&gt;
+      &lt;p&gt;Kerület = <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$ker</span>; <span class="hljs-preprocessor">?&gt;</span>&lt;/p&gt;
+    <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-preprocessor">?&gt;</span>
+&lt;/body&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="feldolgozó-rész">Feldolgozó rész</h2>
+<ul>
+<li>Lényeg:
+<ul>
+<li><code>if ($_POST) {…}</code></li>
+</ul></li>
+<li><code>$hiba</code> kiemelve az elágazás elé</li>
+</ul>
+<pre class="php"><code class="hljs"><span class="hljs-comment">// Függvénydefiníciók ...</span>
+<span class="hljs-comment">// kerulet(), validate(), ...</span>
+
+<span class="hljs-comment">// Adatok, alapértelmezett értékek</span>
+<span class="hljs-variable">$errors</span> = [];
+<span class="hljs-variable">$input</span> = [];
+<span class="hljs-variable">$sugar</span> = <span class="hljs-keyword">null</span>;
+<span class="hljs-variable">$ker</span> = <span class="hljs-keyword">null</span>;
+
+<span class="hljs-comment">// Adat érkezik</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$_GET</span>) {
+  
+  <span class="hljs-variable">$input</span> = <span class="hljs-variable">$_GET</span>; 
+  <span class="hljs-variable">$rules</span> = [ <span class="hljs-comment">/* ... */</span> ];
+  <span class="hljs-keyword">if</span> (validate(<span class="hljs-variable">$input</span>, <span class="hljs-variable">$rules</span>, <span class="hljs-variable">$data</span>, <span class="hljs-variable">$errors</span>)) {
+    <span class="hljs-comment">// Beolvasás</span>
+    <span class="hljs-variable">$sugar</span> = <span class="hljs-variable">$data</span>[<span class="hljs-string">'sugar'</span>];
+    <span class="hljs-comment">// Feldolgozás</span>
+    <span class="hljs-variable">$x</span> = kerulet(<span class="hljs-variable">$sugar</span>);
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="űrlap-állapottartása">Űrlap állapottartása</h2>
+<p>Írjuk vissza a kitöltött adatokat, legalább hiba esetén!</p>
+<pre class="php"><code class="hljs">&lt;form action=<span class="hljs-string">"kerulet.php"</span> method=<span class="hljs-string">"get"</span>&gt;
+  Sugár: &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"sugar"</span>
+    value=<span class="hljs-string">"&lt;?= $input['sugar'] ?? '' ?&gt;"</span>&gt;
+  &lt;input type=<span class="hljs-string">"submit"</span>&gt;
+&lt;/form&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szkript-szerkezete">Szkript szerkezete</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Három nagy részből áll
+<ul>
+<li>Adatszerkezetek és ezeket feldolgozó függvények</li>
+<li>A kérés fogadásáért, beolvasásért, ellenőrzésért és kiírásért felelős rész</li>
+<li>Megjelenítendő HTML sablonja</li>
+</ul></li>
+</ul>
+</div>
+<div class="span6">
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+
+<span class="hljs-comment">// Adatok és függvények</span>
+
+<span class="hljs-comment">//---------------------------</span>
+
+<span class="hljs-comment">// Ellenőrzés</span>
+<span class="hljs-comment">// Beolvasás</span>
+<span class="hljs-comment">// Feldolgozás meghívása</span>
+
+<span class="hljs-comment">//---------------------------</span>
+<span class="hljs-comment">// Kiírás</span>
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;!-- HTML sablon --&gt;
+&lt;html&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="összefoglalás-2" class="new-section">Összefoglalás</h2>
+<ul>
+<li>Adatok átadása
+<ul>
+<li>URL, űrlapok (GET, POST)</li>
+<li>→ <code>$_GET</code>, <code>$_POST</code> tömbök, ahol a name attribútum a kulcs</li>
+</ul></li>
+<li>Űrlapok feldolgozása
+<ul>
+<li>Önmaguknak küldik</li>
+<li>Első hívás megkülönböztetése a többitől</li>
+<li>Adatellenőrzés</li>
+</ul></li>
+<li>Minden szkript három részből áll: adat def., adat feld., HTML</li>
+</ul>
+</section>
+
+      </div>
+
+    <div class="backgrounds"><div class="slide-background slide level1 present" data-loaded="true" style="display: block;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: block;" data-loaded="true"></div><div class="slide-background slide level1 future" data-loaded="true" style="display: block;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div></div><div class="progress" style="display: block;"><span style="width: 0px;"></span></div><aside class="controls" style="display: block;"><button class="navigate-left" aria-label="previous slide"></button><button class="navigate-right enabled" aria-label="next slide"></button><button class="navigate-up" aria-label="above slide"></button><button class="navigate-down" aria-label="below slide"></button></aside><div class="slide-number" style="display: block;"><span class="slide-number-a">1</span></div><div class="speaker-notes" data-prevent-swipe=""></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px 1px 1px 1px);">
+Webfejlesztés 2.
+Bemenet, Űrlapok
+ Horváth Győző
+Egyetemi adjunktus
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba
+Tel: (1) 372-2500/1816
+horvath.gyozo@inf.elte.hu 
+</div></div>
+
+    <script src="./Webfejlesztés 2._files/head.min.js.download"></script>
+    <script src="./Webfejlesztés 2._files/reveal.js.download"></script>
+
+    <script>
+
+      // var newSectionBackgroundColor = '#085536';
+      // var newSectionBackgroundColor = '#FFC000';
+      var newSectionBackgroundColor = '#D4A71C';
+
+      function setDataBackground() {
+        var h2s = document.querySelectorAll('section > h2[data-background], section > h1[data-background]');
+        for (var i = 0; i < h2s.length; i++) { 
+          var section = h2s[i].parentNode; 
+          section.setAttribute('data-background', h2s[i].getAttribute('data-background')); 
+        }
+      }
+
+      function setSectionClass() {
+        var h2s = document.querySelectorAll('section > h2.new-section');
+        console.log(h2s)
+        for (var i = 0; i < h2s.length; i++) { 
+          var section = h2s[i].parentNode; 
+          section.classList.add('new-section'); 
+          section.setAttribute('data-background', newSectionBackgroundColor); 
+          // console.log(section);
+        }
+      }
+
+      setSectionClass();
+      setDataBackground();
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+        multiplex: {
+          secret: null, 
+          id: '1298303991221288', // Obtained from socket.io server
+          url: '//webprogramozas.inf.elte.hu:1948' // Location of socket.io server
+        },
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../revealjs/plugin/zoom-js/zoom.js', async: true },
+          { src: '../revealjs/plugin/notes/notes.js', async: true },
+          { src: '//cdn.socket.io/socket.io-1.3.5.js', async: true },
+          { src: '../revealjs/plugin/multiplex/client.js', async: true },
+        ]
+      });
+
+    </script><script type="text/javascript" src="./Webfejlesztés 2._files/highlight.js.download"></script><script type="text/javascript" src="./Webfejlesztés 2._files/zoom.js.download"></script><script type="text/javascript" src="./Webfejlesztés 2._files/notes.js.download"></script><script type="text/javascript" src="./Webfejlesztés 2._files/socket.io-1.3.5.js.download"></script><script type="text/javascript" src="./Webfejlesztés 2._files/client.js.download"></script>
+
+  
+
+</body></html>

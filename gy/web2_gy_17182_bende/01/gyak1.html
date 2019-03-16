@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://ermi46.web.elte.hu/webf2/gyak1.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title></title>
+	</head>
+	<body>
+	<script type="text/javascript">
+		/*document.writeln("<h1>Hello world!</h1>");
+		console.log("Hello world");
+		alert("Hello world!");
+		
+		var nev = prompt("Mi a neved?");
+		
+		console.log(nev);*/
+		
+		/*var n = prompt("n: ");
+		
+		function faktorialis(n) {
+			var fakt = 1;
+			for(var i = 1; i <= n; i++) {
+				fakt *= i;
+			}
+			
+			return fakt;
+		} 
+		
+		console.log(faktorialis(n));*/
+		
+		var n = prompt("n: ");
+		
+		document.writeln("<table>");
+		for(var i = 1; i <= n; i++) {
+			document.writeln("<tr>");
+			for(var j = 1; j <= n; j++) {
+				document.writeln("<td>" + i * j + "</td>");
+			}
+			document.writeln("</tr>");
+		}
+		document.writeln("</table>");
+		
+		/*var tomb = [1, 2, 3, 4];
+		tomb.push(5);
+		
+		//console.log(tomb);
+		
+		function kereses(tomb) {
+			var i = 0;
+			while(i < tomb.length && tomb[i] % 2 != 0) {
+				i++;
+			}
+			return {
+				vane: i < tomb.length,
+				sorsz: i
+			};
+		}
+		
+		function kivalogatas(tomb) {
+			var parosSzamok = [];
+			for(var i = 0; i < tomb.length; i++) {
+				if(tomb[i] % 2 == 0) {
+					parosSzamok.push(tomb[i]);
+				}
+			}
+			
+			return parosSzamok;
+		}
+		
+		console.log(kivalogatas(tomb));*/
+
+	</script><table>
+</table>
+
+	
+
+
+
+
+
+</body></html>

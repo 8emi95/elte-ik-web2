@@ -1,0 +1,124 @@
+.toc {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 50px;
+  margin-top: 10px; }
+  .toc ul {
+    padding: 5px;
+    margin: 0; }
+    .toc ul li {
+      list-style: none;
+      display: block; }
+      .toc ul li a {
+        display: block;
+        padding: 12px 20px; }
+        .toc ul li a:hover, .toc ul li a:focus {
+          color: #165ba8;
+          text-decoration: none;
+          background: rgba(0, 0, 0, 0.1); }
+    .toc ul ul, .toc ul .toc-h2, .toc ul .toc-h3 {
+      display: none; }
+
+@media (max-width: 991px) {
+  .toc {
+    position: static; } }
+section {
+  padding: 30px; }
+  section h2 {
+    padding-top: 0;
+    padding-bottom: 30px;
+    margin-top: 0;
+    font-weight: bold;
+    font-size: 36px; }
+  section h3 {
+    font-size: 18px; }
+  section .figure img {
+    display: block;
+    margin: 20px auto; }
+
+main h1 {
+  font-size: 32px;
+  color: #444444;
+  border-bottom: 5px solid #D6E7EE; }
+main h2 {
+  font-size: 24px; }
+
+header {
+  background-color: #012348;
+  color: white; }
+  header a, header a:hover, header a:focus, header a:active {
+    background-color: #012348;
+    color: white; }
+
+dl dt {
+  width: 175px;
+  text-align: right;
+  float: left; }
+dl dd {
+  display: block;
+  margin-left: 200px;
+  margin-bottom: 5px; }
+
+img {
+  max-width: 100%; }
+
+#backlink {
+  height: 32px;
+  line-height: 32px;
+  padding-left: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0; }
+
+#footer {
+  padding: 30px 0;
+  background-color: #333333;
+  color: white; }
+
+#nav {
+  padding: 0;
+  background-color: #04356B; }
+  #nav a {
+    background-color: #04356B;
+    color: white; }
+
+.affix {
+  top: 60px; }
+
+@media (max-width: 767px) {
+  .affix {
+    top: 60px;
+    position: static; } }
+.jumbotron {
+  margin-bottom: 0;
+  background-color: #04356B;
+  color: white; }
+
+.list-group-item:nth-child(odd) {
+  background: #F5F5F5; }
+
+a.list-group-item:hover {
+  background: #D6E7EE; }
+
+.equal, .equal > div[class*='col-'] {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap; }
+  .equal h3, .equal > div[class*='col-'] h3 {
+    font-size: 26px; }
+
+.feher {
+  background-color: white; }
+
+.sarga {
+  background-color: #EFB900;
+  /*EFB900*/
+  color: white; }
+
+.kek {
+  background-color: #007777;
+  color: white; }

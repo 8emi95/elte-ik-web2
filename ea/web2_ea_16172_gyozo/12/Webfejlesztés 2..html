@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)http://webprogramozas.inf.elte.hu/webfejl2/ea/12/#/webfejleszts-2. -->
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>Webfejlesztés 2.</title>
+
+    <meta name="description" content="Hour of Code előadás, Csorna">
+    <meta name="author" content="Horváth Győző">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/reveal.css">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2.css" id="theme">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2(1).css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <!-- <link rel="stylesheet" href="../revealjs/lib/css/obsidian.css"> -->
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/github.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../revealjs/css/print/pdf.css' : '../revealjs/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script><link rel="stylesheet" type="text/css" href="./Webfejlesztés 2._files/paper.css">
+
+    <!--[if lt IE 9]>
+    <script src="../revealjs/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body style="transition: -webkit-transform 0.8s ease;">
+
+    <div class="reveal convex center has-parallax-background" role="application" data-transition-speed="default" data-background-transition="fade">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides" style="width: 960px; height: 700px; left: 50%; top: 50%; bottom: auto; right: auto; transform: translate(-50%, -50%) scale(0.757286);">
+
+<section id="webfejlesztés-2." class="slide level1 present" style="top: 126px; display: block;">
+<h1>Webfejlesztés 2.</h1>
+<h3 id="ajax">AJAX</h3>
+<p><small> Horváth Győző<br>
+Egyetemi adjunktus<br>
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba<br>
+Tel: (1) 372-2500/1816<br>
+horvath.gyozo@inf.elte.hu </small></p>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 73px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="php-beadandó" class="new-section">PHP beadandó</h2>
+<ul>
+<li>Honlapról elérhető</li>
+<li>Fénytörő fejtörő szerveroldali funkcionalitása
+<ul>
+<li>hitelesítés</li>
+<li>listázás</li>
+<li>AJAX</li>
+<li>új fejtörő létrehozása</li>
+</ul></li>
+<li>Határidő: 2017. május 28. éjfél</li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 224.5px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés" class="new-section">Ismétlés</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés-1">Ismétlés</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Dinamikus szerveroldali webprogramozás</li>
+<li>Output (HTML generálás)</li>
+<li>Input (link, űrlap)</li>
+<li>Adattárolás: fájlok</li>
+<li>Kódszervezés</li>
+<li>Munkamenet-kezelés</li>
+<li>Hitelesítés</li>
+<li>Fájlfeltöltés</li>
+</ul>
+</div>
+<div class="span6">
+<figure>
+<img src="./Webfejlesztés 2._files/server_client_php_file.png" alt="">
+</figure>
+</div>
+</div>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ajax-1" class="new-section">AJAX</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hagyományos-oldalak">Hagyományos oldalak</h2>
+<ul>
+<li>HTTP kapcsolat</li>
+<li>Kérés-válasz</li>
+<li>Mindig a böngésző kezdeményez</li>
+<li>Feldolgozás: kliensen vagy szerveren</li>
+<li>Időben picit eltolva</li>
+</ul>
+<figure>
+<img src="./Webfejlesztés 2._files/hagyomanyos_feldolgozas.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="következmény">Következmény</h2>
+<ul>
+<li>Állandóan frissül a böngészőbeli oldal</li>
+<li>Szaggatott folyamat</li>
+<li>„Villog”</li>
+<li>Kényelmetlen</li>
+<li>Oldal tetejére ugrik</li>
+<li>Néha feleslegesen nagy adattömeg közlekedik</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás">Megoldás</h2>
+<ul>
+<li>A kapcsolatfelvétel a szerverrel szükséges</li>
+<li>Csak a szükséges adatok továbbítása a <strong>háttérben</strong>, a teljes oldal újratöltése nélkül</li>
+<li>→ Remote scripting
+<ul>
+<li>iframe</li>
+<li>Java applet</li>
+<li>XMLHttpRequest objektum</li>
+</ul></li>
+<li>90-es évek végi technológiák</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szélesebb-körű-elterjedtség">Szélesebb körű elterjedtség</h2>
+<ul>
+<li>Sok tényező együttállása
+<ul>
+<li>Egyre nagyobb internetpenetráció</li>
+<li>Egyre több webes alkalmazás</li>
+<li>Szélesebb társadalmi rétegek kapcsolódnak be</li>
+<li>Nagyobb igények a webes alkalmazások iránt</li>
+<li>Úttörő, innovatív vállalatok (Google – GMail, GMaps, GDocs, stb.)</li>
+</ul></li>
+<li>Nevet kap az XMLHttpRequest-es technológia</li>
+<li>→ AJAX (2005, Jesse James Garrett)</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ajax-2">AJAX</h2>
+<ul>
+<li>Aszinkron JavaScript és XML</li>
+<li>Nem új technológia</li>
+<li>Meglévő, kiforrott, szabványos technológiák együttese
+<ul>
+<li>HTML, XHTML, CSS – megjelenítés</li>
+<li>DOM – dinamikus felhasználói felület, interakció</li>
+<li>XML, XSLT – adatleíró formátum</li>
+<li>XMLHttpRequest – aszinkron kliens-szerver adatátvitel</li>
+<li>JavaScript – ezeket irányító programozási nyelv</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ajax-oldalkiszolgálás">AJAX – oldalkiszolgálás</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/ajax_feldolgozas.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ajax-os-oldal-tulajdonságai">AJAX-os oldal tulajdonságai</h2>
+<ul>
+<li>A felhasználói felület folyamatosan használható</li>
+<li>Nincs szaggatottság, villogás, ugrálás</li>
+<li>A szerverrel való kommunikáció a háttérben történik</li>
+<li>Aszinkron módon, azaz párhuzamosan a többi eseménnyel</li>
+<li>Csak a szükséges adatok közlekednek a szerver és kliens között</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ajax-hívás">AJAX hívás</h2>
+<ul>
+<li>HTTP kommunikáció
+<ul>
+<li>url megadása</li>
+<li>GET és POST adatok küldése</li>
+<li>válasz feldolgozása</li>
+</ul></li>
+<li>Nem a böngésző végzi a HTTP kapcsolat kialakítását, hanem programból vezéreljük</li>
+<li>→ XMLHttpRequest objektum</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="xmlhttprequest-metódusok">XMLHttpRequest: metódusok</h2>
+<ul>
+<li><code>open("method", "URL", async)</code>: hívási paraméterek beállítása</li>
+<li><code>send([data])</code>: kérés küldése (opc. data a kéréstörzsben)</li>
+<li><code>abort()</code>: kérés leállítása.</li>
+<li><code>getAllResponseHeaders()</code>: HTTP fejlécek visszaadása szövegként</li>
+<li><code>getResponseHeader("fejléc")</code>: adott fejléc értéke</li>
+<li><code>setRequestHeader("fejléc", "érték")</code>: kérésfejléc beállítása</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="xmlhttprequest-tulajdonságok">XMLHttpRequest: tulajdonságok</h2>
+<ul>
+<li><code>readyState</code>: a kérés aktuális státusza
+<ul>
+<li><code>0</code> = uninitialized</li>
+<li><code>1</code> = loading</li>
+<li><code>2</code> = loaded</li>
+<li><code>3</code> = interactive (néhány adat érkezett)</li>
+<li><code>4</code> = complete</li>
+</ul></li>
+<li><code>status</code>: a HTTP válasz státuszkódja, pl. 200</li>
+<li><code>statusText</code>: a HTTP válasz státusza, pl. “OK”</li>
+<li><code>responseText</code>: a szerverről érkezett szöveges válasz</li>
+<li><code>responseXML</code>: ha a válasz XML dokumentum volt, akkor annak XML DOM dokumentuma.</li>
+<li><code>responseType</code>: a válasz típusának beállítása.</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="xmlhttprequest-események">XMLHttpRequest: események</h2>
+<ul>
+<li><code>readystatechange</code>: a <code>readyState</code> állapot változásainál hívódik meg</li>
+<li><code>progress</code>: a feltöltés állapotáról ad információt</li>
+<li><code>abort</code></li>
+<li><code>error</code></li>
+<li><code>load</code></li>
+<li><code>loadend</code></li>
+<li><code>loadstart</code></li>
+</ul>
+<p><code>XMLHttpRequest.upload</code> objektumon is működik</p>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-lépésről-lépésre" class="new-section">Példa lépésről lépésre</h2>
+<p>Kódevolúció</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa">Példa</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Ping
+<ul>
+<li>szerver megszólítása</li>
+<li>válaszban az aktuális idő érkezik vissza</li>
+</ul></li>
+<li>Felhasználói felület
+<ul>
+<li>gomb</li>
+<li>div – kimenet</li>
+</ul></li>
+</ul>
+</div>
+<div class="span6">
+<figure>
+<img src="./Webfejlesztés 2._files/ping_architektura.png" alt="">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hagyományos-megoldás">Hagyományos megoldás</h2>
+<pre class="php"><code class="hljs"><span class="hljs-preprocessor">&lt;?php</span>
+var_dump(<span class="hljs-variable">$_GET</span>);
+var_dump(<span class="hljs-variable">$_POST</span>);
+<span class="hljs-variable">$ido</span> = date(<span class="hljs-string">'Y.m.d. G:i:s'</span>);
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=<span class="hljs-string">"utf-8"</span>&gt;
+    &lt;title&gt;AJAX példa&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form action=<span class="hljs-string">"pingphp.php"</span> method=<span class="hljs-string">"get"</span>&gt;
+    &lt;input type=<span class="hljs-string">"submit"</span> id=<span class="hljs-string">"gomb"</span> value=<span class="hljs-string">"Ping"</span>&gt;
+    &lt;/form&gt;
+    &lt;hr&gt;
+    &lt;div id=<span class="hljs-string">"output"</span>&gt;
+      <span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$ido</span>; <span class="hljs-preprocessor">?&gt;</span>
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ajax-osítás-kellékek">AJAX-osítás: kellékek</h2>
+<p>ping.html</p>
+<pre class="html"><code class="hljs xml"><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>AJAX példa<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"ping.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"button"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"gomb"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Ping"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">hr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"output"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>
+<p>ping.php</p>
+<pre class="php"><code class="hljs">var_dump(<span class="hljs-variable">$_GET</span>);
+var_dump(<span class="hljs-variable">$_POST</span>);
+
+<span class="hljs-keyword">echo</span> date(<span class="hljs-string">'Y.m.d. G:i:s'</span>);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szinkron-megoldás">Szinkron megoldás</h2>
+<p>ping.js</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-comment">//Segédfüggvények</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">$</span>(<span class="hljs-params">id</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">document</span>.getElementById(id);
+}
+<span class="hljs-comment">//Oldal betöltésekor lefutó függvény</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'gomb'</span>).onclick = ping;
+}
+<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'load'</span>, init, <span class="hljs-literal">false</span>);
+<span class="hljs-comment">//A gomb lenyomásakor lefutó függvény</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ping</span>(<span class="hljs-params"></span>) </span>{ 
+  <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+  xhr.open(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'ping.php'</span>, <span class="hljs-literal">false</span>);
+  xhr.send(<span class="hljs-literal">null</span>);
+  $(<span class="hljs-string">'output'</span>).innerHTML = xhr.responseText;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szinkron-megoldás-1">Szinkron megoldás</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Szinkron = akkor folytatódik a szkript futása, ha a válasz megérkezett (ld. alert)</li>
+<li>Ha sokára érkezik válasz → egy ideig nem használható a felület</li>
+<li>Szaggatott élmény</li>
+<li>→ Aszinkronitás</li>
+</ul>
+</div>
+<div class="span6">
+<figure>
+<img src="./Webfejlesztés 2._files/szinkron_architektura.png" alt="">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="aszinkron-kommunikáció">Aszinkron kommunikáció</h2>
+<ul>
+<li>Az elküldést követően a szkript továbbfut</li>
+<li>Eseményen keresztül értesülünk a válasz megérkezéséről</li>
+<li>→ <code>readyState</code> tulajdonság változik</li>
+<li>→ <code>readystatechange</code> eseménykezelőt kell írnunk</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="aszinkron-megoldás">Aszinkron megoldás</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> xhr;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ping</span>(<span class="hljs-params"></span>) </span>{ 
+  xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+  xhr.open(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'ping.php'</span>, <span class="hljs-literal">true</span>);
+  xhr.addEventListener(<span class="hljs-string">'readystatechange'</span>, pingKezelo, <span class="hljs-literal">false</span>);
+  xhr.send(<span class="hljs-literal">null</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pingKezelo</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">if</span> (xhr.readyState == <span class="hljs-number">4</span> &amp;&amp; xhr.status == <span class="hljs-number">200</span>) {
+    $(<span class="hljs-string">'output'</span>).innerHTML = xhr.responseText;
+  }
+}</code></pre>
+<p>Globális xhr objektum → problémás → paraméter</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="xhr-objektum-paraméterként">XHR objektum paraméterként</h2>
+<p>Névtelen függvény segítségével</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ping</span>(<span class="hljs-params"></span>) </span>{ 
+  <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+  xhr.open(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'ping.php'</span>, <span class="hljs-literal">true</span>);
+  xhr.addEventListener(<span class="hljs-string">'readystatechange'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    pingKezelo(xhr);
+  }, <span class="hljs-literal">false</span>);
+  xhr.send(<span class="hljs-literal">null</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pingKezelo</span>(<span class="hljs-params">xhr</span>) </span>{
+  <span class="hljs-keyword">if</span> (xhr.readyState == <span class="hljs-number">4</span> &amp;&amp; xhr.status == <span class="hljs-number">200</span>) {
+    $(<span class="hljs-string">'output'</span>).innerHTML = xhr.responseText;
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="xhr-objektum-paraméterként-1">XHR objektum paraméterként</h2>
+<p>A lényegi részt még jobban leválasztva</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ping</span>(<span class="hljs-params"></span>) </span>{ 
+  <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+  xhr.open(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'ping.php'</span>, <span class="hljs-literal">true</span>);
+  xhr.addEventListener(<span class="hljs-string">'readystatechange'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (xhr.readyState == <span class="hljs-number">4</span> &amp;&amp; xhr.status == <span class="hljs-number">200</span>) {
+      pingKezelo(xhr);
+    }
+  }, <span class="hljs-literal">false</span>);
+  xhr.send(<span class="hljs-literal">null</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pingKezelo</span>(<span class="hljs-params">xhr</span>) </span>{
+  $(<span class="hljs-string">'output'</span>).innerHTML = xhr.responseText;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="get-paraméterek">GET paraméterek</h2>
+<p>Kérésszöveg az URL-ben</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ping</span>(<span class="hljs-params"></span>) </span>{ 
+  <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+  xhr.open(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'ping.php?alma=piros'</span>, <span class="hljs-literal">true</span>);
+  xhr.addEventListener(<span class="hljs-string">'readystatechange'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (xhr.readyState == <span class="hljs-number">4</span> &amp;&amp; xhr.status == <span class="hljs-number">200</span>) {
+      pingKezelo(xhr);
+    }
+  }, <span class="hljs-literal">false</span>);
+  xhr.send(<span class="hljs-literal">null</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pingKezelo</span>(<span class="hljs-params">xhr</span>) </span>{
+  $(<span class="hljs-string">'output'</span>).innerHTML = xhr.responseText;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="post-paraméterek">POST paraméterek</h2>
+<ul>
+<li>Kérésszöveg az üzenettörzsben → send() metódus</li>
+<li>speciális kódolás beállítása kérés fejléceként</li>
+</ul>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ping</span>(<span class="hljs-params"></span>) </span>{ 
+  <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+  xhr.open(<span class="hljs-string">'POST'</span>, <span class="hljs-string">'ping.php?alma=piros'</span>, <span class="hljs-literal">true</span>);
+  xhr.setRequestHeader(
+    <span class="hljs-string">'Content-Type'</span>, <span class="hljs-string">'application/x-www-form-urlencoded'</span>);
+  xhr.addEventListener(<span class="hljs-string">'readystatechange'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (xhr.readyState == <span class="hljs-number">4</span> &amp;&amp; xhr.status == <span class="hljs-number">200</span>) {
+      pingKezelo(xhr);
+    }
+  }, <span class="hljs-literal">false</span>);
+  xhr.send(<span class="hljs-string">'korte=sarga'</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pingKezelo</span>(<span class="hljs-params">xhr</span>) </span>{
+  $(<span class="hljs-string">'output'</span>).innerHTML = xhr.responseText;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="xmlhttprequest-objektum">XMLHttpRequest objektum</h2>
+<ul>
+<li>Manapság minden böngészőben
+<ul>
+<li><code>new XMLHttpRequest()</code></li>
+</ul></li>
+<li>Böngészőfüggetlenítés (régebben)</li>
+</ul>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ujXHR</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> xhr = <span class="hljs-literal">null</span>;
+  <span class="hljs-keyword">try</span> { xhr = <span class="hljs-keyword">new</span> XMLHttpRequest(); } <span class="hljs-keyword">catch</span>(e) {
+  <span class="hljs-keyword">try</span> { xhr = <span class="hljs-keyword">new</span> ActiveXObject(<span class="hljs-string">"Msxml2.XMLHTTP"</span>); } <span class="hljs-keyword">catch</span>(e) {
+  <span class="hljs-keyword">try</span> { xhr = <span class="hljs-keyword">new</span> ActiveXObject(<span class="hljs-string">"Microsoft.XMLHTTP"</span>); } <span class="hljs-keyword">catch</span>(e) {
+        xhr = <span class="hljs-literal">null</span>;
+  }}}
+  <span class="hljs-keyword">return</span> xhr;
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ping</span>(<span class="hljs-params"></span>) </span>{ 
+  <span class="hljs-keyword">var</span> xhr = ujXHR();
+  <span class="hljs-comment">//...</span>
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="hibakezelés">Hibakezelés</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ping</span>(<span class="hljs-params"></span>) </span>{ 
+  <span class="hljs-keyword">var</span> xhr = ujXHR();
+  xhr.open(<span class="hljs-string">'POST'</span>, <span class="hljs-string">'ping.php?alma=piros'</span>, <span class="hljs-literal">true</span>);
+  xhr.setRequestHeader(<span class="hljs-string">'Content-Type'</span>, 
+    <span class="hljs-string">'application/x-www-form-urlencoded'</span>);
+  xhr.addEventListener(<span class="hljs-string">'readystatechange'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (xhr.readyState == <span class="hljs-number">4</span>) {
+      <span class="hljs-keyword">if</span> (xhr.status == <span class="hljs-number">200</span>) {
+        pingKezelo(xhr);
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hiba'</span>);
+      }
+    }
+  }, <span class="hljs-literal">false</span>);
+  xhr.send(<span class="hljs-string">'korte=sarga'</span>);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="általánosítás">Általánosítás</h2>
+<ul>
+<li>AJAX hívás nagy része mindig ugyanaz</li>
+<li>Változó
+<ul>
+<li>url</li>
+<li>metódus (GET/POST)</li>
+<li>GET adatok</li>
+<li>POST adatok</li>
+<li>feldolgozó függvény siker esetén</li>
+<li>feldolgozó függvény hiba esetén</li>
+</ul></li>
+<li>→ <code>ajax()</code> függvény</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="általánosítás-ajax-függvény">Általánosítás – ajax() függvény</h2>
+<p>Alapértelmezett értékek</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ajax</span>(<span class="hljs-params">opts</span>) </span>{ 
+  <span class="hljs-keyword">var</span> mod    = opts.mod        || <span class="hljs-string">'GET'</span>,
+      url      = opts.url      || <span class="hljs-string">''</span>,
+      getadat  = opts.getadat  || <span class="hljs-string">''</span>,
+      postadat = opts.postadat || <span class="hljs-string">''</span>,
+      siker    = opts.siker    || <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{},
+      hiba     = opts.hiba     || <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{};
+
+  mod = mod.toUpperCase();
+  url = url+<span class="hljs-string">'?'</span>+getadat;
+  <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest(); <span class="hljs-comment">// ujXHR();</span>
+  xhr.open(mod, url, <span class="hljs-literal">true</span>);
+  <span class="hljs-keyword">if</span> (mod === <span class="hljs-string">'POST'</span>) {
+    xhr.setRequestHeader(<span class="hljs-string">'Content-Type'</span>, 
+      <span class="hljs-string">'application/x-www-form-urlencoded'</span>);
+  }
+  xhr.addEventListener(<span class="hljs-string">'readystatechange'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span> (xhr.readyState == <span class="hljs-number">4</span>) {
+      <span class="hljs-keyword">if</span> (xhr.status == <span class="hljs-number">200</span>) {
+        siker(xhr, xhr.responseText);
+      } <span class="hljs-keyword">else</span> {
+        hiba(xhr);
+      }
+    }
+  }, <span class="hljs-literal">false</span>);
+  xhr.send(mod == <span class="hljs-string">'POST'</span> ? postadat : <span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">return</span> xhr;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-ajax-függvénnyel">Megoldás ajax() függvénnyel</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ping</span>(<span class="hljs-params"></span>) </span>{
+  ajax({
+    mod:      <span class="hljs-string">'post'</span>,
+    url:      <span class="hljs-string">'ping.php'</span>,
+    getadat:  <span class="hljs-string">'alma=piros'</span>,
+    postadat: <span class="hljs-string">'korte=sarga'</span>,
+    siker:    pingKezelo
+  });
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pingKezelo</span>(<span class="hljs-params">xhr, text</span>) </span>{
+  $(<span class="hljs-string">'output'</span>).innerHTML = text;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-ajax-függvénnyel-1">Megoldás ajax() függvénnyel</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ping</span>(<span class="hljs-params"></span>) </span>{
+  ajax({
+    mod:      <span class="hljs-string">'post'</span>,
+    url:      <span class="hljs-string">'ping.php'</span>,
+    getadat:  <span class="hljs-string">'alma=piros'</span>,
+    postadat: <span class="hljs-string">'korte=sarga'</span>,
+    siker:    <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xhr, text</span>) </span>{
+      $(<span class="hljs-string">'output'</span>).innerHTML = text;
+    }
+  });
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="összefoglalás">Összefoglalás</h2>
+<ul>
+<li>Segédfüggvény
+<ul>
+<li><code>ajax()</code></li>
+</ul></li>
+<li>Alkalmazás
+<ul>
+<li>deklaratív</li>
+<li>az <code>ajax()</code> függvény paraméterezése</li>
+</ul></li>
+</ul>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="válaszformátumok" class="new-section">Válaszformátumok</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ajax-io">AJAX I/O</h2>
+<div class="equal">
+<div class="span6">
+<h3 id="kérés-input">Kérés (input)</h3>
+<ul>
+<li>GET paraméterek</li>
+<li>POST paraméterek</li>
+<li>HTTP fejlécek</li>
+</ul>
+</div>
+<div class="span6">
+<h3 id="válasz-output">Válasz (output)</h3>
+<ul>
+<li>Egyszerű szöveg</li>
+<li>JSON</li>
+<li>HTML</li>
+<li>XML</li>
+<li>JavaScript</li>
+<li>stb. (pl. CSS,…)</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tartalom-előállítása">Tartalom előállítása</h2>
+<ul>
+<li>A válasz az előállítás módjától függően lehet
+<ul>
+<li>Statikus tartalom</li>
+<li>Dinamikus tartalom</li>
+</ul></li>
+<li>A kliens szempontjából mindegy, hogy ki állítja elő a tartalmat (nem is tud róla)</li>
+<li>Csak a válasz formátumára koncentrálunk</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-1">Példa</h2>
+<p>Adott gyümölcsök listája, jelenítsük meg felsorolásként.</p>
+<figure>
+<img src="./Webfejlesztés 2._files/gyumolcsok.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="architektúra">Architektúra</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/ajaxio_architektura.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="html-kód">HTML kód</h2>
+<pre class="html"><code class="hljs xml"><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>AJAX példa<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"ajax.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"format.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"button"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"btnText"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Text"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"button"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"btnJSON"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"JSON"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"button"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"btnHTML"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"HTML"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"button"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"btnXML"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"XML"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"button"</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"btnScript"</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">"Szkript"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">hr</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"output"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szöveges-válasz-feldolgozása">Szöveges válasz feldolgozása</h2>
+<pre class="txt"><code class="hljs stata">alma,körte,szilva,barack,eper,<span class="hljs-keyword">m</span>álna,szeder</code></pre>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">lista</span>(<span class="hljs-params">t</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;ul&gt;&lt;li&gt;'</span> + t.join(<span class="hljs-string">'&lt;/li&gt;&lt;li&gt;'</span>) + <span class="hljs-string">'&lt;/li&gt;&lt;/ul&gt;'</span>; 
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">text</span>(<span class="hljs-params"></span>) </span>{
+  ajax({
+    url: <span class="hljs-string">'gyumolcs.txt'</span>,
+    siker: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xhr, text</span>) </span>{
+      <span class="hljs-built_in">console</span>.log(text);
+      <span class="hljs-keyword">var</span> t = text.split(<span class="hljs-string">','</span>);
+      $(<span class="hljs-string">'output'</span>).innerHTML = 
+        (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).toLocaleString() + lista(t);
+    }
+  });
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szöveges-válasz-feldolgozása-1">Szöveges válasz feldolgozása</h2>
+<ul>
+<li>A szöveges válasz formátumától függ</li>
+<li>Egyedi feldolgozás</li>
+<li>Sokszor bonyolult logika</li>
+<li>Bármi lehet</li>
+<li>Ritkábban használják</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="json-válasz-feldolgozása">JSON válasz feldolgozása</h2>
+<div class="equal">
+<div class="span3">
+<pre class="js"><code class="hljs javascript">[
+  <span class="hljs-string">"alma"</span>,
+  <span class="hljs-string">"körte"</span>,
+  <span class="hljs-string">"szilva"</span>,
+  <span class="hljs-string">"barack"</span>,
+  <span class="hljs-string">"eper"</span>,
+  <span class="hljs-string">"málna"</span>,
+  <span class="hljs-string">"szeder"</span>
+]</code></pre>
+</div>
+<div class="span9">
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">json</span>(<span class="hljs-params"></span>) </span>{
+  ajax({
+    url: <span class="hljs-string">'gyumolcs.json'</span>,
+    siker: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xhr, text</span>) </span>{
+      <span class="hljs-keyword">var</span> json = <span class="hljs-built_in">eval</span>(text);
+      <span class="hljs-comment">// vagy</span>
+      <span class="hljs-keyword">var</span> json = <span class="hljs-built_in">JSON</span>.parse(text);
+      <span class="hljs-built_in">console</span>.log(json);
+      $(<span class="hljs-string">'output'</span>).innerHTML = 
+        (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).toLocaleString() + lista(json);
+    }
+  });  
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="json-válasz">JSON válasz</h2>
+<ul>
+<li>JSON általános adatleíró formátum</li>
+<li>Nagyon elterjedt</li>
+<li>Gyakran használatos</li>
+<li>Egyszerű az értelmezése
+<ul>
+<li><code>eval</code></li>
+<li><code>JSON.parse</code></li>
+</ul></li>
+<li>Utána már JavaScript adatszerkezetekkel kell dolgozni</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="html-válasz-feldolgozása">HTML válasz feldolgozása</h2>
+<div class="equal">
+<div class="span3">
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>alma<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>körte<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>szilva<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>barack<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>eper<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>málna<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>szeder<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span></code></pre>
+</div>
+<div class="span9">
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">html</span>(<span class="hljs-params"></span>) </span>{
+  ajax({
+    url: <span class="hljs-string">'gyumolcs.html'</span>,
+    siker: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xhr, text</span>) </span>{
+      <span class="hljs-keyword">var</span> html = text;
+      <span class="hljs-built_in">console</span>.log(html);
+      $(<span class="hljs-string">'output'</span>).innerHTML = 
+        (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).toLocaleString() + html;
+    }
+  });  
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="html-válasz">HTML válasz</h2>
+<ul>
+<li>Szabványos formátum</li>
+<li>Elterjedt</li>
+<li>Egyszerű a feldolgozása
+<ul>
+<li>tipikusan a választ egy másik elembe kell helyezni</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="xml-válasz">XML válasz</h2>
+<pre class="xml"><code class="hljs"><span class="hljs-pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">gyumolcsok</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">gyumolcs</span>&gt;</span>alma<span class="hljs-tag">&lt;/<span class="hljs-title">gyumolcs</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">gyumolcs</span>&gt;</span>körte<span class="hljs-tag">&lt;/<span class="hljs-title">gyumolcs</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">gyumolcs</span>&gt;</span>szilva<span class="hljs-tag">&lt;/<span class="hljs-title">gyumolcs</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">gyumolcs</span>&gt;</span>barack<span class="hljs-tag">&lt;/<span class="hljs-title">gyumolcs</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">gyumolcs</span>&gt;</span>eper<span class="hljs-tag">&lt;/<span class="hljs-title">gyumolcs</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">gyumolcs</span>&gt;</span>málna<span class="hljs-tag">&lt;/<span class="hljs-title">gyumolcs</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">gyumolcs</span>&gt;</span>szeder<span class="hljs-tag">&lt;/<span class="hljs-title">gyumolcs</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">gyumolcsok</span>&gt;</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="xml-válasz-feldolgozása">XML válasz feldolgozása</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">xml</span>(<span class="hljs-params"></span>) </span>{
+  ajax({
+    url: <span class="hljs-string">'gyumolcs.xml'</span>,
+    siker: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xhr, text</span>) </span>{
+      <span class="hljs-keyword">var</span> xmldom = xhr.responseXML;
+      <span class="hljs-built_in">console</span>.log(xmldom);
+
+      <span class="hljs-keyword">var</span> gyumolcsok = xmldom.getElementsByTagName(<span class="hljs-string">'gyumolcs'</span>);
+      <span class="hljs-keyword">var</span> t = [];
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; gyumolcsok.length; i++) {
+        t.push(gyumolcsok[i].firstChild.nodeValue);
+      };
+
+      $(<span class="hljs-string">'output'</span>).innerHTML = 
+        (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).toLocaleString() + lista(t);
+    }
+  });  
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="xml-válasz-1">XML válasz</h2>
+<ul>
+<li>Szabványos adatleírási formátum</li>
+<li>Nagyon elterjedt
+<ul>
+<li>főleg vállalati alkalmazásokban</li>
+<li>webes alkalmazásokban kevésbé</li>
+</ul></li>
+<li>Eredetileg ezt várták fő formátumnak
+<ul>
+<li><code>xhr.responseXML</code></li>
+</ul></li>
+<li><code>responseXML</code> az XML dokumentum értelmezett DOM fáját tartalmazza (ld. HTML DOM)</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="javascript-kód-feldolgozása">JavaScript kód feldolgozása</h2>
+<div class="equal">
+<div class="span3">
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getGyumolcsok</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> [
+    <span class="hljs-string">"alma"</span>,
+    <span class="hljs-string">"körte"</span>,
+    <span class="hljs-string">"szilva"</span>,
+    <span class="hljs-string">"barack"</span>,
+    <span class="hljs-string">"eper"</span>,
+    <span class="hljs-string">"málna"</span>,
+    <span class="hljs-string">"szeder"</span>
+  ];
+}</code></pre>
+</div>
+<div class="span9">
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">script</span>(<span class="hljs-params"></span>) </span>{
+  ajax({
+    url:  <span class="hljs-string">'gyumolcs.js'</span>,
+    siker:  <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">xhr, text</span>) </span>{
+      <span class="hljs-built_in">console</span>.log(text);
+      <span class="hljs-built_in">eval</span>(text);
+      <span class="hljs-keyword">var</span> t = getGyumolcsok();
+      $(<span class="hljs-string">'output'</span>).innerHTML = 
+        (<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()).toLocaleString() + lista(t);
+    }
+  });  
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="javascript-kód-feldolgozása-1">JavaScript kód feldolgozása</h2>
+<ul>
+<li>Jól illeszkedik a kliensoldali környezetbe</li>
+<li>Feldolgozása egyszerű</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="dinamikus-válasz">Dinamikus válasz</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>A választ egy program (PHP) állítja elő</li>
+<li>Válasz formátuma bármi lehet
+<ul>
+<li>text</li>
+<li>json</li>
+<li>html</li>
+<li>xml</li>
+<li>stb.</li>
+</ul></li>
+</ul>
+</div>
+<div class="span6">
+<figure>
+<img src="./Webfejlesztés 2._files/ajaxio_dinamikus.png" alt="">
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="json-válasz-generálása">JSON válasz generálása</h2>
+<p>gyumolcs.php</p>
+<pre class="php"><code class="hljs"><span class="hljs-variable">$gyumolcsok</span> = <span class="hljs-keyword">array</span>(
+  <span class="hljs-string">"alma"</span>,
+  <span class="hljs-string">"körte"</span>,
+  <span class="hljs-string">"szilva"</span>,
+  <span class="hljs-string">"barack"</span>,
+  <span class="hljs-string">"eper"</span>,
+  <span class="hljs-string">"málna"</span>,
+  <span class="hljs-string">"szeder"</span>,
+);
+<span class="hljs-keyword">echo</span> json_encode(<span class="hljs-variable">$gyumolcsok</span>);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="alternatíva">Alternatíva</h2>
+<p><code>xhr.responseType</code> és <code>xhr.response</code> használata</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();
+
+xhr.onload = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">var</span> arraybuffer = xhr.response; <span class="hljs-comment">// not responseText</span>
+  <span class="hljs-comment">/* ... */</span>
+}
+xhr.open(<span class="hljs-string">"GET"</span>, url);
+xhr.responseType = <span class="hljs-string">"arraybuffer"</span>;
+xhr.send();</code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="további-tudnivalók" class="new-section">További tudnivalók</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eszközök">Eszközök</h2>
+<ul>
+<li>JavaScript konzolok
+<ul>
+<li>Nyomon követik az AJAX-os hívásokat
+<ul>
+<li>kérés</li>
+<li>válasz</li>
+<li>értelmezett válasz</li>
+<li>lekérés időtartama</li>
+</ul></li>
+<li>console.log</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="korlátozások">Korlátozások</h2>
+<ul>
+<li>Biztonsági okokból nem engedélyezett különböző domainek között ajax kommunikáció
+<ul>
+<li>Kivéve JSONP (JSON with Padding): script elem dinamikus beszúrásával idegen tartalom futtatása</li>
+</ul></li>
+<li>CORS (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">Cross-Origin Resource Sharing</a>)</li>
+<li>Nincsen szerver push itt sem: ajax kéréseket mindig a kliens kezdeményezi</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="api-json-válasz">API JSON válasz</h2>
+<pre class="txt"><code class="hljs groovy"><span class="hljs-string">http:</span><span class="hljs-comment">//www.omdbapi.com/?s=hobbit</span></code></pre>
+<pre class="js"><code class="hljs javascript">{
+  <span class="hljs-string">"Search"</span>:[
+    {
+      <span class="hljs-string">"Title"</span>:<span class="hljs-string">"The Hobbit: An Unexpected Journey"</span>,
+      <span class="hljs-string">"Year"</span>:<span class="hljs-string">"2012"</span>,
+      <span class="hljs-string">"imdbID"</span>:<span class="hljs-string">"tt0903624"</span>,
+      <span class="hljs-string">"Type"</span>:<span class="hljs-string">"movie"</span>
+    },
+    {
+      <span class="hljs-string">"Title"</span>:<span class="hljs-string">"The Hobbit: The Desolation of Smaug"</span>,
+      <span class="hljs-string">"Year"</span>:<span class="hljs-string">"2013"</span>,
+      <span class="hljs-string">"imdbID"</span>:<span class="hljs-string">"tt1170358"</span>,
+      <span class="hljs-string">"Type"</span>:<span class="hljs-string">"movie"</span>
+    },
+    {
+      <span class="hljs-string">"Title"</span>:<span class="hljs-string">"The Hobbit"</span>,
+      <span class="hljs-string">"Year"</span>:<span class="hljs-string">"1977"</span>,
+      <span class="hljs-string">"imdbID"</span>:<span class="hljs-string">"tt0077687"</span>,
+      <span class="hljs-string">"Type"</span>:<span class="hljs-string">"movie"</span>
+    }
+  ]
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="jsonp">JSONP</h2>
+<pre class="txt"><code class="hljs groovy"><span class="hljs-string">http:</span><span class="hljs-comment">//www.omdbapi.com/?s=hobbit&amp;callback=feldolgoz</span></code></pre>
+<pre class="js"><code class="hljs javascript">feldolgoz({<span class="hljs-string">"Search"</span>:[{<span class="hljs-string">"Title"</span>:<span class="hljs-string">"The Hobbit: An Unexpected Journey"</span>,<span class="hljs-string">"Year"</span>:<span class="hljs-string">"2012"</span>,<span class="hljs-string">"imdbID"</span>:<span class="hljs-string">"tt0903624"</span>,<span class="hljs-string">"Type"</span>:<span class="hljs-string">"movie"</span>},{<span class="hljs-string">"Title"</span>:<span class="hljs-string">"The Hobbit: The Desolation of Smaug"</span>,<span class="hljs-string">"Year"</span>:<span class="hljs-string">"2013"</span>,<span class="hljs-string">"imdbID"</span>:<span class="hljs-string">"tt1170358"</span>,<span class="hljs-string">"Type"</span>:<span class="hljs-string">"movie"</span>},{<span class="hljs-string">"Title"</span>:<span class="hljs-string">"The Hobbit"</span>,<span class="hljs-string">"Year"</span>:<span class="hljs-string">"1977"</span>,<span class="hljs-string">"imdbID"</span>:<span class="hljs-string">"tt0077687"</span>,<span class="hljs-string">"Type"</span>:<span class="hljs-string">"movie"</span>}]});</code></pre>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">omdbHivas</span>(<span class="hljs-params">keresett</span>) </span>{
+  <span class="hljs-keyword">var</span> script = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'script'</span>);
+  script.type = <span class="hljs-string">'text/javascript'</span>;
+  script.src = <span class="hljs-string">'http://www.omdbapi.com/?s='</span>+keresett+<span class="hljs-string">'&amp;callback=feldolgoz'</span>;
+  <span class="hljs-built_in">document</span>.body.appendChild(script);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">feldolgoz</span>(<span class="hljs-params">json</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(json);   
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="modern-alternatívája-fetch">Modern alternatívája: <code>fetch</code></h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Dokumentáció</a></p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> myImage = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">'img'</span>);
+
+fetch(<span class="hljs-string">'flowers.jpg'</span>)
+  .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+    <span class="hljs-keyword">return</span> response.blob();
+  })
+  .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">myBlob</span>) </span>{
+    <span class="hljs-keyword">var</span> objectURL = URL.createObjectURL(myBlob);
+    myImage.src = objectURL;
+  });</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="előnyök-és-hátrányok">Előnyök és hátrányok</h2>
+<div class="equal">
+<div class="span6">
+<h3 id="előnyök">Előnyök</h3>
+<ul>
+<li>Nincs szaggatás</li>
+<li>Kényelmes felület</li>
+<li>Gyors</li>
+<li>Jóval kisebb adatforgalom</li>
+<li>Párhuzamos kérések</li>
+</ul>
+</div>
+<div class="span6">
+<h3 id="átgondolandó">Átgondolandó</h3>
+<ul>
+<li>JavaScript kell</li>
+<li>Eltérő támogatottság</li>
+<li>Vissza gomb</li>
+<li>Frissít gomb</li>
+<li>Más oldalszervezési logika</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="összefoglalás-1" class="new-section">Összefoglalás</h2>
+<ul>
+<li>AJAX elvek</li>
+<li>XMLHttpRequest objektum</li>
+<li>Magas szintű <code>ajax()</code> segédfüggvény</li>
+<li>Válasz feldolgozások</li>
+<li>JSONP</li>
+</ul>
+</section>
+
+      </div>
+
+    <div class="backgrounds" style="background-image: url(&quot;hatter.jpg&quot;); background-size: 2460px 800px; background-position: 0px 0px;"><div class="slide-background slide level1 present" data-loaded="true" style="display: block;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: block;" data-loaded="true"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: block;" data-loaded="true"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div></div><div class="progress" style="display: block;"><span style="width: 0px;"></span></div><aside class="controls" style="display: block;"><button class="navigate-left" aria-label="previous slide"></button><button class="navigate-right enabled" aria-label="next slide"></button><button class="navigate-up" aria-label="above slide"></button><button class="navigate-down" aria-label="below slide"></button></aside><div class="slide-number" style="display: block;"><span class="slide-number-a">1</span></div><div class="speaker-notes" data-prevent-swipe=""></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px 1px 1px 1px);">
+Webfejlesztés 2.
+AJAX
+ Horváth Győző
+Egyetemi adjunktus
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba
+Tel: (1) 372-2500/1816
+horvath.gyozo@inf.elte.hu 
+</div></div>
+
+    <script src="./Webfejlesztés 2._files/head.min.js.download"></script>
+    <script src="./Webfejlesztés 2._files/reveal.js.download"></script>
+
+    <script>
+
+      // var newSectionBackgroundColor = '#085536';
+      // var newSectionBackgroundColor = '#FFC000';
+      var newSectionBackgroundColor = '#D4A71C';
+
+      function moveAttributesFromH2ToSection() {
+        var h2s = document.querySelectorAll('section > h2, section > h1');
+        for (var i = 0; i < h2s.length; i++) { 
+          var h2 = h2s[i];
+          if (h2.hasAttributes()) {
+            var section = h2s[i].parentNode;
+            var attrs = h2.attributes;
+            for(var j = attrs.length - 1; j >= 0; j--) {
+              if (attrs[j].name != 'id') {
+                section.setAttribute(attrs[j].name, attrs[j].value);
+              } 
+            }
+          } 
+        }
+      }
+
+      // function setDataBackground() {
+      //   var h2s = document.querySelectorAll('section > h2[data-background], section > h1[data-background]');
+      //   for (var i = 0; i < h2s.length; i++) { 
+      //     var section = h2s[i].parentNode; 
+      //     section.setAttribute('data-background', h2s[i].getAttribute('data-background')); 
+      //   }
+      // }
+
+      // function setVideoBackground() {
+      //   var h2s = document.querySelectorAll('section > h2[data-background-video], section > h1[data-background-video]');
+      //   for (var i = 0; i < h2s.length; i++) { 
+      //     var section = h2s[i].parentNode; 
+      //     section.setAttribute('data-background-video', h2s[i].getAttribute('data-background-video')); 
+      //   }
+      // }
+
+      function setSectionClass() {
+        var h2s = document.querySelectorAll('section > h2.new-section');
+        console.log(h2s)
+        for (var i = 0; i < h2s.length; i++) { 
+          var section = h2s[i].parentNode; 
+          section.classList.add('new-section'); 
+          section.setAttribute('data-background', newSectionBackgroundColor); 
+          // console.log(section);
+        }
+      }
+
+      setSectionClass();
+      moveAttributesFromH2ToSection();
+      // setDataBackground();
+      // setVideoBackground();
+
+
+      Reveal.addEventListener('slidechanged', function(event) {
+        // console.log(event.currentSlide)               
+        if(event.currentSlide.getAttribute('data-background-iframe')) {
+          document.querySelector('.reveal > .backgrounds').style.zIndex = 1;
+        } else {
+          document.querySelector('.reveal > .backgrounds').style.zIndex = 0;
+        }                  
+      });
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        backgroundTransition: 'fade', 
+
+        multiplex: {
+          secret: null, 
+          id: 'cf04f005072d21b2', // Obtained from socket.io server
+          url: '//webprogramozas.inf.elte.hu:1948' // Location of socket.io server
+        },
+
+        parallaxBackgroundImage: 'hatter.jpg',
+        parallaxBackgroundSize: '2460px 800px', 
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../revealjs/plugin/zoom-js/zoom.js', async: true },
+          { src: '../revealjs/plugin/notes/notes.js', async: true },
+          // { src: '//cdn.socket.io/socket.io-1.3.5.js', async: true },
+          // { src: '../revealjs/plugin/multiplex/client.js', async: true },
+        ]
+      });
+
+    </script><script type="text/javascript" src="./Webfejlesztés 2._files/highlight.js.download"></script><script type="text/javascript" src="./Webfejlesztés 2._files/zoom.js.download"></script><script type="text/javascript" src="./Webfejlesztés 2._files/notes.js.download"></script>
+
+  
+
+</body></html>

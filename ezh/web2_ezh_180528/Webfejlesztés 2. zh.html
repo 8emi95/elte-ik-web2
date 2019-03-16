@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)http://webprogramozas.inf.elte.hu/webfejl2/gyak/zh.html -->
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Webfejlesztés 2. zh</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./Webfejlesztés 2. zh_files/bootstrap.min.css">
+<link rel="stylesheet" href="./Webfejlesztés 2. zh_files/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="http://webprogramozas.inf.elte.hu/assets/images/favicon.ico">
+
+</head><body><div class="jumbotron bg-dark rounded-0 m-0">
+    <div class="container text-center text-light">
+        <h1>Webfejlesztés 2. zh</h1>
+    </div>
+</div>
+
+<header id="backlink" class="bg-dark">
+    <a href="http://webprogramozas.inf.elte.hu/webdev2.html" class="text-white">
+        <strong>
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Vissza a tárgyhoz
+        </strong>
+    </a>
+</header>
+
+<section class="feher">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                
+
+                <h2 id="webfejlesztés-2.-zh-vetületek">Webfejlesztés 2. zh – Vetületek</h2>
+<p>Egy kis kockákból álló térbeli alakzatnak háromféle vetületét állíthatjuk elő: felülnézet, oldalnézet, elölnézet.</p>
+<table>
+<tbody><tr>
+<td>
+<p><img src="./Webfejlesztés 2. zh_files/ortho.png"></p>
+</td>
+<td>
+<p><img src="./Webfejlesztés 2. zh_files/ortho.gif"></p>
+</td>
+</tr>
+</tbody></table>
+<p>Egy ilyen alakzatot úgy adunk meg, hogy a felülnézeti vetületén definiáljuk, hány kocka van egymáson:</p>
+<p><img src="./Webfejlesztés 2. zh_files/isometric.gif"></p>
+<p>Egy olyan webes alkalmazást kell készíteni, amely lehetőséget ad ilyen alakzatok megadására, tárolására és vetületeinek megjelenítésére. Ezen kívül a jobban sikerülteket kedvencként is megjelölhetjük.</p>
+<p>További tudnivalók:</p>
+<ul>
+<li>A feladatokat a <code>webprogramozas.inf.elte.hu</code> szerveren kell elkészíteni. A <code>www</code> mappádon belül hozzál létre egy <code>wf2zh</code> mappát, és abban készítsd el a megoldásodat.</li>
+<li>A megoldás kinézete nem számít, csak az oldalak funkcionalitása.</li>
+<li>A feladatokat nem szükségszerű a leírás sorrendjében elvégezni, a feladatok többsége nem épül a másikra.</li>
+<li><strong>Fontos</strong> Azt, hogy az adatok megjelenítése dinamikus, csak sikeres mentés után tudjuk ellenőrizni. Így a megjelenítésekért kapott pontok egy része csak akkor érvényesül, ha működik a mentés is.</li>
+<li>A zh-n bármilyen segédanyag használható, de humán segítség a jelenlévő gyakorlatvezetőkön kívül nem vehető igénybe.</li>
+<li>A zh után a megoldásokon plágiumellenőrzést végzünk, az esetlegesen hasonló megoldások készítőit védésre behívhatjuk.</li>
+</ul>
+<p>Ponthatárok:</p>
+<ul>
+<li>0-20 pont: 1</li>
+<li>21-30 pont: 2</li>
+<li>31-40 pont: 2,5</li>
+<li>41-50 pont: 3</li>
+<li>51-60 pont: 3,5</li>
+<li>61-70 pont: 4</li>
+<li>71-80 pont: 4,5</li>
+<li>81-90 pont: 5</li>
+</ul>
+<h3 id="feladatok">Feladatok</h3>
+<ol start="0" type="1">
+<li><p><strong>Előkészületek</strong></p>
+<p><strong>Adatok előkészítése</strong> Az adatok tárolását fájlban vagy adatbázisban is elvégezheted. Az alakzatokat úgy tárolod, ahogy akarod, a felületen egy JavaScript mátrix sorosított változatát kell megadni, érdemes ezt a szöveget tárolni. Három rekordot vegyél fel kezdetben, amiket később se módosíts (ezek kellenek a teszteléshez):</p>
+<pre class="txt"><code>id          név         szélesség   magasság    kedvenc    alakzat
+1           alma        2           2           igen       [[1,3],[0,2]]
+2           korte       3           3           nem       [[1,2,1],[0,0,3],[4,0,1]]
+200000000   szilva      3           2           nem        [[2,1,1],[2,0,0]] </code></pre>
+<p>A 10-100000000 <code>id</code> tartományba ne vegyél fel új elemet, azt a tesztelő használja majd a véletlen <code>id</code> generáláskor. A 200000000 sorra azért van szükség, hogy adatbázis használata esetén az üresen hagyott <code>auto_increment</code>-es mező onnantól adja hozzá az <code>id</code>-kat.</p>
+<p>Az automatikus tesztelő új elemeket vesz fel. Az így létrehozott elemeket bármikor törölheted az adataid közül, csak a fent említett 3 rekord maradjon változatlan!</p>
+<p>Ha adatbázist használsz, akkor az alábbi SQL utasítás bemásolásával létre tudod hozni (phpmyadminban kiválasztva az adatbázisod, SQL fül):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">CREATE</span> <span class="kw">TABLE</span> `alakzatok` (</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  `id` <span class="dt">int</span>(<span class="dv">11</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">  `nev` <span class="dt">varchar</span>(<span class="dv">30</span>) COLLATE utf8_hungarian_ci <span class="kw">NOT</span> <span class="kw">NULL</span>,</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">  `szelesseg` <span class="dt">int</span>(<span class="dv">11</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">  `magassag` <span class="dt">int</span>(<span class="dv">11</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6">  `kedvenc` tinyint(<span class="dv">1</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">  `alakzat` text COLLATE utf8_hungarian_ci <span class="kw">NOT</span> <span class="kw">NULL</span>,</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8">  <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (`id`)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9">) ENGINE=InnoDB <span class="kw">DEFAULT</span> CHARSET=utf8 COLLATE=utf8_hungarian_ci;</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw">INSERT</span> <span class="kw">INTO</span> `alakzatok` (`id`, `nev`, `szelesseg`, `magassag`, `alakzat`, `kedvenc`) <span class="kw">VALUES</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12">(<span class="dv">1</span>, <span class="st">'alma'</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="st">'[[1,3],[0,2]]'</span>, <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb2-13" data-line-number="13">(<span class="dv">2</span>, <span class="st">'korte'</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="st">'[[1,2,1],[0,0,3],[4,0,1]]'</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">(<span class="dv">200000000</span>, <span class="st">'szilva'</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="st">'[[2,1,1],[2,0,0]]'</span>, <span class="dv">0</span>);</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="kw">ALTER</span> <span class="kw">TABLE</span> `alakzatok`</a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">  <span class="kw">MODIFY</span> `id` <span class="dt">int</span>(<span class="dv">11</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> AUTO_INCREMENT, AUTO_INCREMENT=<span class="dv">200000001</span>;</a></code></pre></div>
+<p><strong>Stílusok</strong></p>
+<p>Minden oldalon legyenek elérhetőek a következő stílusok:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode css"><code class="sourceCode css"><a class="sourceLine" id="cb3-1" data-line-number="1">* {</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">    <span class="kw">box-sizing</span>: <span class="dv">border-box</span>;</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="pp">#tabla</span> {</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">    <span class="kw">border-collapse</span>: <span class="dv">collapse</span>;</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">}</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="pp">#tabla</span> td {</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">    <span class="kw">padding</span>: <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">    <span class="kw">width</span>: <span class="dv">25px</span>;</a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">    <span class="kw">height</span>: <span class="dv">25px</span>;</a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">    <span class="kw">border</span>: <span class="dv">1px</span> <span class="dv">solid</span> <span class="dv">black</span>;</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">    <span class="kw">text-align</span>: <span class="dv">center</span>;</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13">}</a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="fu">.vetulet</span> {</a>
+<a class="sourceLine" id="cb3-15" data-line-number="15">    <span class="kw">border</span>: <span class="dv">1px</span> <span class="dv">solid</span> orange;</a>
+<a class="sourceLine" id="cb3-16" data-line-number="16">    <span class="kw">min-width</span>: <span class="dv">10px</span>;</a>
+<a class="sourceLine" id="cb3-17" data-line-number="17">    <span class="kw">min-height</span>: <span class="dv">10px</span>;</a>
+<a class="sourceLine" id="cb3-18" data-line-number="18">}</a>
+<a class="sourceLine" id="cb3-19" data-line-number="19">table<span class="fu">.vetulet</span> {</a>
+<a class="sourceLine" id="cb3-20" data-line-number="20">    <span class="kw">border-spacing</span>: <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb3-21" data-line-number="21">    <span class="kw">display</span>: <span class="dv">inline-table</span>;</a>
+<a class="sourceLine" id="cb3-22" data-line-number="22">}</a>
+<a class="sourceLine" id="cb3-23" data-line-number="23">table<span class="fu">.vetulet</span> td {</a>
+<a class="sourceLine" id="cb3-24" data-line-number="24">    <span class="kw">padding</span>: <span class="dv">0</span>;</a>
+<a class="sourceLine" id="cb3-25" data-line-number="25">    <span class="kw">width</span>: <span class="dv">10px</span>;</a>
+<a class="sourceLine" id="cb3-26" data-line-number="26">    <span class="kw">height</span>: <span class="dv">10px</span>;</a>
+<a class="sourceLine" id="cb3-27" data-line-number="27">    <span class="kw">border</span>: <span class="dv">1px</span> <span class="dv">solid</span> <span class="dv">black</span>;</a>
+<a class="sourceLine" id="cb3-28" data-line-number="28">}</a>
+<a class="sourceLine" id="cb3-29" data-line-number="29">table<span class="fu">.vetulet</span> td<span class="fu">.black</span> {</a>
+<a class="sourceLine" id="cb3-30" data-line-number="30">    <span class="kw">background-color</span>: lightgray;</a>
+<a class="sourceLine" id="cb3-31" data-line-number="31">}</a>
+<a class="sourceLine" id="cb3-32" data-line-number="32">div<span class="fu">.vetulet</span> {</a>
+<a class="sourceLine" id="cb3-33" data-line-number="33">    <span class="kw">display</span>: inline-flex;</a>
+<a class="sourceLine" id="cb3-34" data-line-number="34">    <span class="kw">flex-direction</span>: row;</a>
+<a class="sourceLine" id="cb3-35" data-line-number="35">    <span class="kw">align-items</span>: flex-end;</a>
+<a class="sourceLine" id="cb3-36" data-line-number="36">}</a>
+<a class="sourceLine" id="cb3-37" data-line-number="37">div<span class="fu">.vetulet</span> &gt; div {</a>
+<a class="sourceLine" id="cb3-38" data-line-number="38">    <span class="kw">width</span>: <span class="dv">10px</span>;</a>
+<a class="sourceLine" id="cb3-39" data-line-number="39">    <span class="kw">display</span>: flex;</a>
+<a class="sourceLine" id="cb3-40" data-line-number="40">    <span class="kw">flex-direction</span>: column;</a>
+<a class="sourceLine" id="cb3-41" data-line-number="41">}</a>
+<a class="sourceLine" id="cb3-42" data-line-number="42">div<span class="fu">.vetulet</span> &gt; div &gt; div {</a>
+<a class="sourceLine" id="cb3-43" data-line-number="43">    <span class="kw">width</span>: <span class="dv">10px</span>;</a>
+<a class="sourceLine" id="cb3-44" data-line-number="44">    <span class="kw">height</span>: <span class="dv">10px</span>;</a>
+<a class="sourceLine" id="cb3-45" data-line-number="45">    <span class="kw">border</span>: <span class="dv">1px</span> <span class="dv">solid</span> <span class="dv">black</span>;</a>
+<a class="sourceLine" id="cb3-46" data-line-number="46">    <span class="kw">background-color</span>: lightgray;</a>
+<a class="sourceLine" id="cb3-47" data-line-number="47">}</a></code></pre></div></li>
+<li><p><strong>Listázás</strong> Listázd ki a tárolt alakzatokat egy táblázatban. Fájlnév: <code>lista.php</code></p>
+<ol type="a">
+<li>A táblázatnak 4 oszlopa legyen ilyen sorrendben:
+<ul>
+<li>Név</li>
+<li>Méret</li>
+<li>Kedvenc</li>
+<li>Funkciók</li>
+</ul></li>
+<li><p>A táblázatnak legyen fejlécsora, ahol az oszlopneveket tüntetjük fel <code>th</code> elemekben.</p></li>
+<li><p>A táblázat adatait tartalmazó soroknak legyen az <code>id</code>-t tartalmazó <code>data-id</code> attribútuma (pl. <code>&lt;tr data-id="1"&gt;</code>).</p></li>
+<li><p>A Kedvenc oszlopban teli szívvel jelezzük, ha kedvenc az alakzat, üres szívvel, ha nem. Használd ezeket az UTF-8 karaktereket: ♥, ♡.</p></li>
+<li><p>A Funkciók oszlopban egyetlen hivatkozás szerepel “Megjelenít” felirattal. A hivatkozás a <code>megjelenit.php</code>-ra mutat átadva az <code>id</code> értékét <code>id</code> név alatt GET paraméterként.</p></li>
+<li><p>Legyen lehetőség csak a kedvenceket vagy a nem kedvenceket kilistázni. Ezt GET paraméterként jelezzük: <code>lista.php?kedvenc=true</code> vagy <code>lista.php?kedvenc=false</code>. Ennek megadását a felületen nem kell elvégezni.</p></li>
+<li><p>Legyen egy link az oldalon “Új alakzat felirattal”, ami az <code>uj.php</code>-ra mutat.</p></li>
+</ol>
+<p><img src="./Webfejlesztés 2. zh_files/lista.png"></p></li>
+<li><p><strong>Megjelenítés</strong> A listázó oldalon az egyik alakzat “Megjelenít” hivatkozására kattintva a <code>megjelenit.php</code> oldal jelenik meg, URL-ben átadva a megjelenítendő alakzat <code>id</code>-ját.</p>
+<ol type="a">
+<li>Az oldalon egy definíciós listában kell a kiválasztott elem adatait megmutatni. A vetületek a <code>vetulet</code> stílusosztályú táblába, illetve <code>div</code>-ekbe fognak kerülni.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">&lt;dl&gt;</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">    <span class="kw">&lt;dt&gt;</span>Azonosító&lt;/dt&gt;</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">    <span class="kw">&lt;dd&gt;</span>200000000<span class="kw">&lt;/dd&gt;</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">    <span class="kw">&lt;dt&gt;</span>Név<span class="kw">&lt;/dt&gt;</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">    <span class="kw">&lt;dd&gt;</span>szilva<span class="kw">&lt;/dd&gt;</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">    <span class="kw">&lt;dt&gt;</span>Méret<span class="kw">&lt;/dt&gt;</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">    <span class="kw">&lt;dd&gt;</span>2 x 3<span class="kw">&lt;/dd&gt;</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">    <span class="kw">&lt;dt&gt;</span>Kedvenc<span class="kw">&lt;/dt&gt;</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">    <span class="kw">&lt;dd&gt;</span>♡<span class="kw">&lt;/dd&gt;</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">    <span class="kw">&lt;dt&gt;</span>Vetületek&lt;/dt&gt;</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">    <span class="kw">&lt;dd&gt;</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">        <span class="kw">&lt;table&gt;</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">            <span class="kw">&lt;tr&gt;</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">                <span class="kw">&lt;th&gt;</span>Felülnézet<span class="kw">&lt;/th&gt;</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">                <span class="kw">&lt;th&gt;</span>Oldalnézet<span class="kw">&lt;/th&gt;</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">                <span class="kw">&lt;th&gt;</span>Elölnézet<span class="kw">&lt;/th&gt;</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">            <span class="kw">&lt;/tr&gt;</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">            <span class="kw">&lt;tr&gt;</span></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">                <span class="kw">&lt;td&gt;</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">                    <span class="kw">&lt;table</span><span class="ot"> class=</span><span class="st">"vetulet"</span><span class="ot"> id=</span><span class="st">"felul"</span><span class="kw">&gt;&lt;/table&gt;</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">                <span class="kw">&lt;/td&gt;</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26">                <span class="kw">&lt;td&gt;</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27">                    <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">"vetulet"</span><span class="ot"> id=</span><span class="st">"oldal"</span><span class="kw">&gt;&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">                <span class="kw">&lt;/td&gt;</span></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">                <span class="kw">&lt;td&gt;</span></a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">                    <span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">"vetulet"</span><span class="ot"> id=</span><span class="st">"elol"</span><span class="kw">&gt;&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb4-31" data-line-number="31">                <span class="kw">&lt;/td&gt;</span></a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">            <span class="kw">&lt;/tr&gt;</span></a>
+<a class="sourceLine" id="cb4-33" data-line-number="33">        <span class="kw">&lt;/table&gt;</span></a>
+<a class="sourceLine" id="cb4-34" data-line-number="34">    <span class="kw">&lt;/dd&gt;</span></a>
+<a class="sourceLine" id="cb4-35" data-line-number="35"><span class="kw">&lt;/dl&gt;</span></a></code></pre></div>
+<ol start="2" type="a">
+<li><p>A vetületek generálását kliens- vagy szerveroldalon is elvégezheted, a végső struktúra kerül ellenőrzésre. (Tesztek szempontjából a 2. teszt az előre megadott alakzatok közül választ véletlenszerűen, a x. teszt egy új alakzat esetén vizsgálja meg. Ezért a vetületekre kapható pontokat kettéválasztottuk.)</p></li>
+<li><p>A felülnézeti vetületet a <code>table.vetulet#felul</code> elemben kell megjeleníteni. A szilva nevű alakzat esetén ez így néz ki. Fontos, hogy <code>black</code> stílusosztállyal lássuk el azokat a cellákat, ahol van kocka.</p></li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">&lt;table</span><span class="ot"> class=</span><span class="st">"vetulet"</span><span class="ot"> id=</span><span class="st">"felul"</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">    <span class="kw">&lt;tr&gt;</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">        <span class="kw">&lt;td</span><span class="ot"> class=</span><span class="st">"black"</span><span class="kw">&gt;&lt;/td&gt;</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">        <span class="kw">&lt;td</span><span class="ot"> class=</span><span class="st">"black"</span><span class="kw">&gt;&lt;/td&gt;</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">        <span class="kw">&lt;td</span><span class="ot"> class=</span><span class="st">"black"</span><span class="kw">&gt;&lt;/td&gt;</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">    <span class="kw">&lt;/tr&gt;</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">    <span class="kw">&lt;tr&gt;</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">        <span class="kw">&lt;td</span><span class="ot"> class=</span><span class="st">"black"</span><span class="kw">&gt;&lt;/td&gt;</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">        <span class="kw">&lt;td</span><span class="ot"> class=</span><span class="st">""</span><span class="kw">&gt;&lt;/td&gt;</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">        <span class="kw">&lt;td</span><span class="ot"> class=</span><span class="st">""</span><span class="kw">&gt;&lt;/td&gt;</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">    <span class="kw">&lt;/tr&gt;</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="kw">&lt;/table&gt;</span></a></code></pre></div>
+<ol start="4" type="a">
+<li>Oldalnézeti vetületet a <code>div.vetulet#oldal</code> elembe kell generálni. Ebben annyi <code>div</code> van, ahány oszlop, egy oszlopon belül pedig annyi <code>div</code>, ahány kocka van egymáson.</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">"vetulet"</span><span class="ot"> id=</span><span class="st">"bal"</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">    <span class="kw">&lt;div&gt;</span></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3">        <span class="kw">&lt;div&gt;&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4">        <span class="kw">&lt;div&gt;&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5">    <span class="kw">&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6">    <span class="kw">&lt;div&gt;</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7">        <span class="kw">&lt;div&gt;&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8">        <span class="kw">&lt;div&gt;&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9">    <span class="kw">&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="kw">&lt;/div&gt;</span></a></code></pre></div>
+<ol start="5" type="a">
+<li>Hasonlóan épül fel az elölnézeti vetület, amelyet a <code>div.vetulet#elol</code> elembe kell generálni. Ebben annyi <code>div</code> van, ahány oszlop, egy oszlopon belül pedig annyi <code>div</code>, ahány kocka van egymáson.</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode html"><code class="sourceCode html"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">"vetulet"</span><span class="ot"> id=</span><span class="st">"elol"</span><span class="kw">&gt;</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">    <span class="kw">&lt;div&gt;</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">        <span class="kw">&lt;div&gt;&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">        <span class="kw">&lt;div&gt;&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">    <span class="kw">&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">    <span class="kw">&lt;div&gt;</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">        <span class="kw">&lt;div&gt;&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">    <span class="kw">&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">    <span class="kw">&lt;div&gt;</span></a>
+<a class="sourceLine" id="cb7-10" data-line-number="10">        <span class="kw">&lt;div&gt;&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11">    <span class="kw">&lt;/div&gt;</span></a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="kw">&lt;/div&gt;</span></a></code></pre></div>
+<p><img src="./Webfejlesztés 2. zh_files/megjelenit.png"></p></li>
+<li><p><strong>Új alakzat felvitele</strong> Az <code>uj.php</code> oldalon kell megvalósítani egy új alakzat felvitelét. Ehhez meg kell adni a következő mezőket. A validációt szerveroldalon kell elvégezni. A hibaüzeneteket egy <code>hibak</code> azonosítójú elembe kell kiíratni (nincs speciális struktúra).</p>
+<ul>
+<li>id (azonosítója: <code>id</code>, szöveges, nem kötelező, ha meg van adva, akkor szám; hibaüzenetek: "Az id nem szám")</li>
+<li>név (azonosítója: <code>nev</code>, szöveges, kötelező; hibaüzenetek: "A név kötelező")</li>
+<li>magasság (azonosítója: <code>magassag</code>, szöveges, kötelező, szám; hibaüzenetek: "A magasság kötelező", "A magasság nem szám")</li>
+<li>szélesség (azonosítója: <code>szelesseg</code>, szöveges, kötelező, szám; hibaüzenetek: "A szélesség kötelező", "A szélesség nem szám")</li>
+<li>kedvenc (azonosítója: <code>kedvenc</code>, checkbox)</li>
+<li>alakzat (azonosítója: <code>alakzat</code>, többsoros szöveges beviteli mező, kötelező, valid JSON – ez utóbbi hibáját a PHP-s <code>json_decode</code> függvény <code>NULL</code> visszatérési értéke jelzi; hibaüzenetek: "Az alakzat kötelező", "Az alakzat rossz formátumú")</li>
+</ul>
+<p>Sikeres mentéskor a listázó oldalra (<code>lista.php</code>) kell átirányítani a böngészőt.</p>
+<p><img src="./Webfejlesztés 2. zh_files/uj_form.png"></p></li>
+<li><p><strong>Új alakzat megadása kattintgatással</strong> A felvivő oldalon macerás az alakzat mátrixának JSON kódját kézzel megadni. Segítsük ezt a folyamatot azzal, hogy egy felülnézeti táblázatot generálunk az oldalra, és a cellákba kattintgatva adjuk meg, hány kocka is van egymáson!</p>
+<ol type="a">
+<li><p>Tegyünk fel egy gombot <code>general</code> azonosítóval. Erre kattintva az oldalon meg kell jelennie egy <code>n</code>x<code>m</code>-es táblázatnak, ahol <code>n</code> értékét a magasság mezőből, <code>m</code> értékét a szélesség mezőből olvassuk ki. A megjelenő táblázat azonosítója <code>tabla</code> (<code>table#tabla</code>), és eleinte mindegyik értéke 0.</p></li>
+<li><p>A táblában kattintgatva az adott cella értéke 1-gyel növekszik.</p></li>
+<li><p>Minden kattintás után a táblának megfelelő JSON mátrix az alakzatnak megfelelő többsoros szöveges beviteli mezőben megjelenik.</p></li>
+</ol>
+<p><img src="./Webfejlesztés 2. zh_files/uj_js.png"></p></li>
+<li><p><strong>AJAX szerkesztés</strong> A megjelenítő oldalon tegyük lehetővé az adatok szerkesztését és AJAX-os mentését.</p>
+<ol type="a">
+<li><p>Tegyünk fel egy <code>szerkeszt</code> azonosítójú gombot, amire kattintva az oldalon megjelenik három beviteli mező (az alakzat aktuális értékeivel) és egy gomb, amik addig el voltak rejtve (érdemes a <code>hidden</code> attribútummal vagy a <code>display: none</code>-nal elrejteni őket):</p>
+<ul>
+<li>név (azonosítója: <code>nev</code>, szöveges)</li>
+<li>kedvenc (azonosítója: <code>kedvenc</code>, checkbox)</li>
+<li>alakzat (azonosítója: <code>alakzat</code>, többsoros szöveges beviteli mező)</li>
+<li>gomb (azonosítója: <code>mentes</code>, felirata)</li>
+</ul></li>
+<li><p>A Mentés gombra kattintva egy AJAX kérést kell küldeni a szervernek, ott elmenteni a változásokat, majd a szélesség és magasság adatokat visszaküldeni a kliensre, ahol a méreteknél megjelenítjük. Más dolgot nem kell tenni. A szerver válasza JSON formátumban küldje vissza az adatot:</p></li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">    <span class="dt">"szelesseg"</span><span class="fu">:</span> <span class="dv">33</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">    <span class="dt">"magassag"</span><span class="fu">:</span> <span class="dv">23</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="fu">}</span></a></code></pre></div>
+<p><img src="./Webfejlesztés 2. zh_files/megjelenit_szerkeszt.png"></p></li>
+</ol>
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+</body></html>

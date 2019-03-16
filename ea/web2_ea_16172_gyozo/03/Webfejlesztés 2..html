@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)http://webprogramozas.inf.elte.hu/webfejl2/ea/03/#/webfejleszts-2. -->
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+    <title>Webfejlesztés 2.</title>
+
+    <meta name="description" content="Hour of Code előadás, Csorna">
+    <meta name="author" content="Horváth Győző">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/reveal.css">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2.css" id="theme">
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/wf2(1).css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <!-- <link rel="stylesheet" href="../revealjs/lib/css/obsidian.css"> -->
+    <link rel="stylesheet" href="./Webfejlesztés 2._files/github.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../revealjs/css/print/pdf.css' : '../revealjs/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script><link rel="stylesheet" type="text/css" href="./Webfejlesztés 2._files/paper.css">
+
+    <!--[if lt IE 9]>
+    <script src="../revealjs/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body style="transition: -webkit-transform 0.8s ease;">
+
+    <div class="reveal convex center has-parallax-background" role="application" data-transition-speed="default" data-background-transition="fade">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides" style="width: 960px; height: 700px; left: 50%; top: 50%; bottom: auto; right: auto; transform: translate(-50%, -50%) scale(0.757286);">
+
+<section id="webfejlesztés-2." class="slide level1 present" style="top: 96.5px; display: block;">
+<h1>Webfejlesztés 2.</h1>
+<h3 id="események-nyelvi-elemek-beépített-objektumok">3. Események, nyelvi elemek, beépített objektumok</h3>
+<p><small> Horváth Győző<br>
+Egyetemi adjunktus<br>
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba<br>
+Tel: (1) 372-2500/1816<br>
+horvath.gyozo@inf.elte.hu </small></p>
+</section>
+<section class="new-section future" data-background="desert.jpg" style="top: 224.5px; display: block;" data-background-image="desert.jpg" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés" class="new-section" data-background="desert.jpg">Ismétlés</h2>
+</section>
+<section class="slide level1 future" style="top: 86.5px; display: block;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés-nyelvi-elemek">Ismétlés – nyelvi elemek</h2>
+<ul>
+<li>Gyengén típusos</li>
+<li>Interpretált nyelv</li>
+<li>Szintaxis C++-hoz hasonló
+<ul>
+<li>vezérlési szerkezetek</li>
+<li>operátorok</li>
+</ul></li>
+<li>Adatszerkezetek
+<ul>
+<li>elemi típusok</li>
+<li>összetett típusok (JSON)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés-dom">Ismétlés – DOM</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/sematikus_kapcsolatrendszer.png" alt="">
+</figure>
+<aside class="notes">
+<ul>
+<li>HTML elem → DOM objektum</li>
+<li>DOM objektum &lt;=&gt; Megjelenített elem</li>
+<li>DOM objektum – JavaScript objektum</li>
+</ul>
+</aside>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés-dom-1">Ismétlés – DOM</h2>
+<ul>
+<li>Elemek elérése
+<ul>
+<li><code>document.getElementById('id')</code></li>
+<li><code>document.querySelector('css selector')</code></li>
+<li>rövidítve: pl. <code>$()</code> függvény</li>
+</ul></li>
+<li>Elem (JavaScript objektum) tulajdonságai
+<ul>
+<li>Analógia: Webfejlesztés 1. → Webfejlesztés 2.</li>
+</ul></li>
+<li>Eseménykezelés
+<ul>
+<li>Eseménytípusok</li>
+<li>Eseménykezelő modellek</li>
+</ul></li>
+<li>Kimenet generálása
+<ul>
+<li><code>innerHTML</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés-kódszervezés">Ismétlés – kódszervezés</h2>
+<ul>
+<li>HTML és JavaScript szétválasztása</li>
+<li>Feladatmegoldás lépései
+<ul>
+<li>HTML szükséglet</li>
+<li>JavaScript adatszerkezet és függvények</li>
+<li>Eseménykezelők hozzárendelése és logikája</li>
+</ul></li>
+<li>Felelősségi körök
+<ul>
+<li>segédfüggvények</li>
+<li>adat és feldolgozó függvények</li>
+<li>eseménykezelők</li>
+<li>HTML generálók</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ismétlés-kódszervezés-1">Ismétlés – kódszervezés</h2>
+<figure>
+<img src="./Webfejlesztés 2._files/architektura.png" alt="">
+</figure>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="továbbiakban-a-félév-során">Továbbiakban a félév során</h2>
+<ul>
+<li>Finomítások
+<ul>
+<li>Nyelvi elemek</li>
+<li>DOM kezelés</li>
+<li>Tulajdonságok</li>
+<li>Eseménykezelés</li>
+</ul></li>
+<li>Új ismeretek
+<ul>
+<li>BOM</li>
+<li>API-k</li>
+</ul></li>
+</ul>
+</section>
+<section class="new-section future" data-background="nature.jpg" style="top: 330px; display: none;" data-background-image="nature.jpg" hidden="" aria-hidden="true">
+
+<h2 id="eseménykezelés" class="new-section" data-background="nature.jpg">Eseménykezelés</h2>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eddig">Eddig…</h2>
+<ul>
+<li>Mik azok az események?</li>
+<li>Események típusai</li>
+<li>Eseménykezelők</li>
+<li>Eseménykezelők hozzárendelése, regisztrálása
+<ul>
+<li>inline (HTML attribútumként: <code>&lt;elem onclick="fv()"&gt;</code>)</li>
+<li>tradicionális (JS tulajdonságként: <code>elem.onclick = fv;</code>)</li>
+<li>szabványos (<code>elem.addEventListener(típus, fv, irány);</code>)</li>
+<li>Microsoft (<code>elem.attachEvent(típus, fv);</code>)</li>
+</ul></li>
+</ul>
+<aside class="notes">
+<h2 id="további-kérdések">További kérdések</h2>
+<ul>
+<li><code>[✔]</code> Események típusai</li>
+<li><code>[✔]</code> Eseménykezelő regisztrálása</li>
+<li>Eseményt kiváltó DOM objektum</li>
+<li>Eseményobjektum megszerzése</li>
+<li>Eseményobjektum tulajdonságai</li>
+<li>Alapértelmezett művelet megakadályozása</li>
+<li>Események buborékolása</li>
+<li>Eseményt először kiváltó DOM objektum</li>
+</ul>
+</aside>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa">Példa</h2>
+<ul>
+<li>Adott: hivatkozások felsorolása</li>
+<li>Cél: SHIFT gomb nyomva tartásával kattintva a konzolra kiírjuk a megnyitandó oldal URL-jét</li>
+</ul>
+<div class="span8 text-center example">
+<ul id="ul1">
+<li>
+<a id="link1" href="http://www.elte.hu/">ELTE</a>
+</li>
+<li>
+<a id="link2" href="http://www.inf.elte.hu/">ELTE Informatika Kar</a>
+</li>
+<li>
+<a id="link3" href="http://www.inf.elte.hu/mot">Médiainformatikai Tanszék</a>
+</li>
+</ul>
+</div>
+<script>
+document.getElementById('ul1').onclick = mutat1;
+function mutat1(e) {
+  var obj = e.target;
+  if (e.shiftKey) {
+    e.preventDefault();
+    var href = obj.href;
+    console.log(href);
+  }
+} 
+</script>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="példa-html">Példa – HTML</h2>
+<pre class="html"><code class="hljs xml"><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Linkek<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.elte.hu"</span>&gt;</span>ELTE<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.inf.elte.hu"</span>&gt;</span>ELTE Informatika Kar<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.inf.elte.hu/mot"</span>&gt;</span>Médiainformatikai Tanszék<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"link.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás">1. megoldás</h2>
+<ul>
+<li>Minden linkhez id</li>
+<li>Mindegyik link eseménykezelőjére külön függvényt készítünk</li>
+</ul>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"link1"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.elte.hu"</span>&gt;</span>ELTE<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"link2"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.inf.elte.hu"</span>&gt;</span>IK<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"link3"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.inf.elte.hu/mot"</span>&gt;</span>MOT<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-1">1. megoldás</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'#link1'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat1, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link2'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat2, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link3'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat3, <span class="hljs-literal">false</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat1</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> href = $(<span class="hljs-string">'#link1'</span>).href;
+  <span class="hljs-built_in">console</span>.log(href);
+  alert(<span class="hljs-string">'stop'</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat2</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> href = $(<span class="hljs-string">'#link2'</span>).href;
+  <span class="hljs-built_in">console</span>.log(href);
+  alert(<span class="hljs-string">'stop'</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat3</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> href = $(<span class="hljs-string">'#link3'</span>).href;
+  <span class="hljs-built_in">console</span>.log(href);
+  alert(<span class="hljs-string">'stop'</span>);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-2">1. megoldás</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'#link1'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat1, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link2'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat2, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link3'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat3, <span class="hljs-literal">false</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutatKozos</span>(<span class="hljs-params">obj</span>) </span>{
+  <span class="hljs-keyword">var</span> href = obj.href;
+  <span class="hljs-built_in">console</span>.log(href);
+  alert(<span class="hljs-string">'stop'</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat1</span>(<span class="hljs-params"></span>) </span>{
+  mutatKozos($(<span class="hljs-string">'#link1'</span>));
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat2</span>(<span class="hljs-params"></span>) </span>{
+  mutatKozos($(<span class="hljs-string">'#link2'</span>));
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat3</span>(<span class="hljs-params"></span>) </span>{
+  mutatKozos($(<span class="hljs-string">'#link3'</span>));
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-3">1. megoldás</h2>
+<ul>
+<li>Három függvény oka: eseménykezelőkben csak konkrét id-val tudunk egyelőre hivatkozni</li>
+<li>Ezért annyi függvény kell, ahány link – felesleges</li>
+<li>Kérdés: nem lehet az eseménykezelő függvényen belül az eseményt jelző objektumot elérni?</li>
+<li>Így elég lenne mindhárom link kattintására ugyanazt a függvényt futtatni.</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseményt-jelző-dom-objektum">Eseményt jelző DOM objektum</h2>
+<ul>
+<li>Az eseményt jelző (vagy az eseménykezelőt meghívó) DOM objektum az eseménykezelő függvényen belül a <code>this</code> kulcsszóval érhető el.</li>
+<li>Sok elem eseményéhez ugyanaz az eseménykezelő rendelhető, mégis kinyerhető az eseményt kiváltó objektum</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-4">2. megoldás</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'#link1'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link2'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link3'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>);
+  <span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">this</span>;
+  <span class="hljs-keyword">var</span> href = obj.href;
+  <span class="hljs-built_in">console</span>.log(href);
+  alert(<span class="hljs-string">'stop'</span>);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-5">3. megoldás</h2>
+<ul>
+<li>Honnan tudom, hogy a SHIFT billentyű le volt-e nyomva kattintás közben?</li>
+<li>Általában: honnan tudom
+<ul>
+<li>milyen billentyűt nyomtak le?</li>
+<li>melyik egérgombot nyomták le?</li>
+<li>a képernyőn hol van az egér pozíciója?</li>
+<li>milyen típusú esemény váltódott ki?</li>
+</ul></li>
+<li>→ eseményobjektum</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseményobjektum-megszerzése">Eseményobjektum megszerzése</h2>
+<p>Szabványos (W3C)</p>
+<p>Az eseménykezelő függvény első paramétereként érkezik automatikusan</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fv</span>(<span class="hljs-params">e</span>) </span>{
+
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseményobjektum-tulajdonságai">Eseményobjektum tulajdonságai</h2>
+<ul>
+<li>Milyen értékek érhetők el az eseményobjektumon keresztül?
+<ul>
+<li>egér (pozíció, gomb)</li>
+<li>billentyűzet (gomb)</li>
+<li>esemény (típus, stb)</li>
+<li>elemek (kiváltó, eredeti, stb.)</li>
+</ul></li>
+<li>Szabványos</li>
+<li>Történetileg nagy eltérések</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseményobjektum-tulajdonságai-1">Eseményobjektum tulajdonságai</h2>
+<ul>
+<li>Egérpozíció
+<ul>
+<li><code>clientX</code>, <code>clientY</code> (DOM dokumentumhoz képest)</li>
+<li><code>screenX</code>, <code>screenY</code> (képernyőhöz képest)</li>
+</ul></li>
+<li>Egérgomb
+<ul>
+<li><code>button</code></li>
+</ul></li>
+<li>Módosítógombok (logikai)
+<ul>
+<li><code>shiftKey</code></li>
+<li><code>altKey</code></li>
+<li><code>ctrlKey</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseményobjektum-tulajdonságai-2">Eseményobjektum tulajdonságai</h2>
+<div class="equal">
+<div class="span6">
+<ul>
+<li>Billentyűzet
+<ul>
+<li><code>keyCode</code></li>
+<li><code>charCode</code></li>
+<li><code>which</code></li>
+</ul></li>
+</ul>
+</div>
+<div class="span6">
+<ul>
+<li>Egyéb ulajdonság
+<ul>
+<li><code>type</code></li>
+<li><code>target</code></li>
+<li><code>currentTarget</code></li>
+<li><code>bubbles</code></li>
+<li><code>cancelable</code></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-6">3. megoldás</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'#link1'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link2'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link3'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(e);
+  <span class="hljs-keyword">if</span> (e.shiftKey) {
+    <span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">var</span> href = obj.href;
+    <span class="hljs-built_in">console</span>.log(href);
+    alert(<span class="hljs-string">'stop'</span>);
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-7">4. megoldás</h2>
+<ul>
+<li>SHIFT-et lenyomva ne jelenjen meg az új oldal, csak írjuk ki a konzolra</li>
+<li><code>alert</code> nem megoldás</li>
+<li>Meg kellene akadályozni, hogy a böngésző végrehajtsa az oldalbetöltést</li>
+<li>→ Általánosan: <em>az alapértelmezett művelet megakadályozása</em> szükséges</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="alapértelmezett-művelet-megakadályozása">Alapértelmezett művelet megakadályozása</h2>
+<ul>
+<li>Alapértelmezett műveletek:
+<ul>
+<li>Linkre kattintás → oldal betöltése</li>
+<li>Submit gombra kattintás → űrlap elküldése</li>
+<li>Beviteli mezőbe gépelés → karakterek beíródnak</li>
+</ul></li>
+<li>Megakadályozásra két módszer
+<ul>
+<li><p>eseményobjektum <code>preventDefault()</code> metódusa</p>
+<pre class="js"><code class="hljs javascript">e.preventDefault();</code></pre></li>
+<li><p>hamis értékkel visszatérni a függvényből</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;</code></pre></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="alapértelmezett-művelet-megakadályozása-1">Alapértelmezett művelet megakadályozása</h2>
+<ul>
+<li><code>preventDefault()</code>
+<ul>
+<li>szabványos</li>
+<li>bárhol szerepelhet az eseménykezelő függvényen belül</li>
+</ul></li>
+<li><code>return false</code>
+<ul>
+<li>nem szabványos</li>
+<li>mindenhol működik</li>
+<li>az utolsó sorba kell tenni</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-8">4. megoldás</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'#link1'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link2'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link3'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">if</span> (e.shiftKey) {
+    e.preventDefault();
+    <span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">var</span> href = obj.href;
+    <span class="hljs-built_in">console</span>.log(href);
+
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-9">4. megoldás</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'#link1'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link2'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+  $(<span class="hljs-string">'#link3'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">if</span> (e.shiftKey) {
+
+    <span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">this</span>;
+    <span class="hljs-keyword">var</span> href = obj.href;
+    <span class="hljs-built_in">console</span>.log(href);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-10">5. megoldás</h2>
+<ul>
+<li>Az eseménykezelő függvény OK</li>
+<li>Az eseménykezelő függvény hozzárendelése egyesével történik az érintett elemeken
+<ul>
+<li>feleslegesen ismétlődik</li>
+<li>új link beszúrása?</li>
+</ul></li>
+<li>Ciklusban hozzárendelni
+<ul>
+<li>félmegoldás és egyéb bonyodalmak lehetnek</li>
+</ul></li>
+<li>→ Események buborékolása</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="események-buborékolása">Események buborékolása</h2>
+<ul>
+<li>Egy esemény nemcsak a közvetlenül érintett elemen hívódik meg, hanem mindegyik szülőelemen is.</li>
+<li>Mindig elérhető az eredeti kiváltó objektum
+<ul>
+<li><code>target</code> (szabvány)</li>
+<li><code>srcElement</code> (Internet Explorer)</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="események-buborékolása-1">Események buborékolása</h2>
+<div class="span9 text-center">
+<figure>
+<img src="./Webfejlesztés 2._files/bubbling.png" alt="">
+</figure>
+</div>
+<aside class="notes">
+<h2 id="események-buborékolása-2">Események buborékolása</h2>
+<p>Példa: szülő elemek is <code>id</code>-t kapnak</p>
+<pre class="html"><code class="hljs xml"><span class="hljs-doctype">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"html"</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- head --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">body</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"body"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"ul"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"link1"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.elte.hu"</span>&gt;</span>ELTE<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"link2"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.inf.elte.hu"</span>&gt;</span>IK<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"link3"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.inf.elte.hu/mot"</span>&gt;</span>MOT<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>
+<h2 id="események-buborékolása-3">Események buborékolása</h2>
+<div class="equal">
+<div class="span6">
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'#link1'</span>).onclick = mutat;
+  $(<span class="hljs-string">'#link2'</span>).onclick = mutat;
+  $(<span class="hljs-string">'#link3'</span>).onclick = mutat;
+  $(<span class="hljs-string">'ul'</span>).onclick = mutat;
+  $(<span class="hljs-string">'body'</span>).onclick = mutat;
+  $(<span class="hljs-string">'html'</span>).onclick = mutat;
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">if</span> (!e) e = <span class="hljs-built_in">window</span>.event;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>);
+  <span class="hljs-built_in">console</span>.log(e);
+  e.preventDefault();
+}</code></pre>
+</div>
+<div class="span6">
+<figure>
+<img src="http://webprogramozas.inf.elte.hu/webfejl2/ea/03/" alt="">
+</figure>
+</div>
+</div>
+</aside>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-11">5. megoldás</h2>
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"lista"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.elte.hu"</span>&gt;</span>ELTE<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.inf.elte.hu"</span>&gt;</span>ELTE Informatika Kar<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.inf.elte.hu/mot"</span>&gt;</span>Médiainformatikai Tanszék<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span></code></pre>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+  $(<span class="hljs-string">'#lista'</span>).addEventListener(<span class="hljs-string">'click'</span>, mutat, <span class="hljs-literal">false</span>);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">if</span> (e.target.tagName === <span class="hljs-string">'A'</span>) {
+    <span class="hljs-keyword">if</span> (e.shiftKey) {
+      e.preventDefault();
+      <span class="hljs-keyword">var</span> obj = e.target;
+      <span class="hljs-keyword">var</span> href = obj.href;
+      <span class="hljs-built_in">console</span>.log(href);
+    }
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-12">5. megoldás</h2>
+<div class="equal">
+<div class="span10">
+<pre class="html"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"lista"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.elte.hu"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>ELTE<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.inf.elte.hu"</span>&gt;</span>ELTE <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>Informatika Kar<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.inf.elte.hu/mot"</span>&gt;</span>Médiainformatikai Tanszék<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span></code></pre>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">var</span> target = e.target;
+
+  <span class="hljs-keyword">while</span> (target &amp;&amp; !target.matches(<span class="hljs-string">'li a'</span>)) {
+    <span class="hljs-keyword">if</span> (target === $(<span class="hljs-string">'ul'</span>)) {
+      <span class="hljs-keyword">return</span>;
+    }
+    target = target.parentNode;
+  }
+
+  <span class="hljs-keyword">if</span> (e.shiftKey) {
+    e.preventDefault();
+    <span class="hljs-keyword">var</span> href = target.href;
+    <span class="hljs-built_in">console</span>.log(href);
+  }
+}</code></pre>
+</div>
+<div class="span2">
+<figure>
+<img src="./Webfejlesztés 2._files/delegate.png" alt="">
+</figure>
+</div>
+</div>
+<aside class="notes">
+<p>ul li a span matchesSelector mozMatchesSelector</p>
+</aside>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-13">5. megoldás</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-comment">// $('#lista').addEventListener() helyett</span>
+delegate($(<span class="hljs-string">'#lista'</span>), <span class="hljs-string">'click'</span>, <span class="hljs-string">'li a'</span>, mutat);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mutat</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">if</span> (e.shiftKey) {
+    e.preventDefault();
+    <span class="hljs-built_in">console</span>.log(e.delegatedTarget.href);
+    <span class="hljs-comment">// vagy</span>
+    <span class="hljs-comment">// console.log(this.href);</span>
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="delegate-segédfüggvény"><code>delegate()</code> segédfüggvény</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">delegate</span>(<span class="hljs-params">parent, type, selector, fn</span>) </span>{
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">delegatedFunction</span>(<span class="hljs-params">e</span>) </span>{
+    <span class="hljs-keyword">if</span> (e.target.matches(<span class="hljs-string">`<span class="hljs-subst">${selector}</span>,<span class="hljs-subst">${selector}</span> *`</span>)) {
+      <span class="hljs-keyword">let</span> target = e.target;
+      <span class="hljs-keyword">while</span> (!target.matches(selector)) {
+        target = target.parentNode;
+      }
+      e.delegatedTarget = target;
+      <span class="hljs-keyword">return</span> fn(e);
+      <span class="hljs-comment">// vagy</span>
+      <span class="hljs-keyword">return</span> fn.call(target, e);
+    }
+  }
+
+  parent.addEventListener(type, delegatedFunction, <span class="hljs-literal">false</span>);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="megoldás-14">5. megoldás</h2>
+<ul>
+<li>dinamikus</li>
+<li>rövid kód</li>
+<li>egy elem, egy eseménykezelő</li>
+<li>delegálás</li>
+<li><code>e.stopPropagation()</code> – megállítja a buborékolást</li>
+</ul>
+<aside class="notes">
+<h2 id="eseménykezelők-regisztrálása">Eseménykezelők regisztrálása</h2>
+<ul>
+<li>Egységes megoldás</li>
+<li><code>addEvent()</code> saját függvény bevezetése</li>
+<li>eseménykezelők hozzáadása ciklusban</li>
+<li>Névtelen függvényeket itt könnyen behozhatnánk, hiszen az eseménykezelőknél fordul elő, hogy paramétert adunk át.</li>
+</ul>
+<h2 id="hivatkozások">Hivatkozások</h2>
+<p><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html">W3C szabvány: események</a></p>
+</aside>
+</section>
+<section class="new-section future" data-background="sea_storm.jpg" style="top: 330px; display: none;" data-background-image="sea_storm.jpg" hidden="" aria-hidden="true">
+
+<h2 id="böngésző-függetlenség" class="new-section" data-background="sea_storm.jpg">Böngésző-függetlenség</h2>
+<p>Örökölt kód megértéséhez</p>
+<p>Eseménykezelők regisztrációja, eseményobjektum megszerzése, eseményobjektum tulajdonságai</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseménykezelők-regisztrációja">Eseménykezelők regisztrációja</h2>
+<p>Tulajdonság ellenőrzés (feature detection)</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">kezelotRegisztral</span>(<span class="hljs-params">elem, tipus, kezelo</span>) </span>{
+  <span class="hljs-comment">//Szabványos módszer</span>
+  <span class="hljs-keyword">if</span> (elem.addEventListener) {
+    elem.addEventListener(tipus, kezelo, <span class="hljs-literal">false</span>);
+  }
+  <span class="hljs-comment">//Microsoft módszer</span>
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (elem.attachEvent) {
+    elem.attachEvent(<span class="hljs-string">'on'</span> + tipus, kezelo);
+  }
+  <span class="hljs-comment">//Tradicionális módszer</span>
+  <span class="hljs-keyword">else</span> {
+    elem[<span class="hljs-string">'on'</span> + tipus] = kezelo;
+  }
+}</code></pre>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span>(<span class="hljs-params"></span>) </span>{
+  kezelotRegisztral($(<span class="hljs-string">'#lista'</span>), <span class="hljs-string">'click'</span>, mutat);
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseményobjektum-megszerzése-1">Eseményobjektum megszerzése</h2>
+<ul>
+<li>Szabványos (W3C)
+<ul>
+<li><p>Az eseménykezelő függvény első paramétereként érkezik automatikusan</p>
+<pre class="js"><code class="hljs javascript">    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fv</span>(<span class="hljs-params">e</span>) </span>{
+
+    }</code></pre></li>
+</ul></li>
+<li>Internet Explorer (régebbi)
+<ul>
+<li><p>Az eseménykezelő függvényen belül a globális <code>window.event</code> objektum az</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fv</span>(<span class="hljs-params"></span>) </span>{
+  e = <span class="hljs-built_in">window</span>.event;
+}</code></pre></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseményobjektum-megszerzése-2">Eseményobjektum megszerzése</h2>
+<ul>
+<li>Egységes megoldás
+<ul>
+<li>Ha nem jön paraméterként, akkor a globális értéket kell venni.</li>
+<li><p>Minden eseménykezelőnek így kell kezdődnie</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fv</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">if</span> (!e) e = <span class="hljs-built_in">window</span>.event;
+  <span class="hljs-comment">//... e felhasználása</span>
+}</code></pre></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseményobjektum-megszerzése-3">Eseményobjektum megszerzése</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">kezelotRegisztral</span>(<span class="hljs-params">elem, tipus, kezelo</span>) </span>{
+  <span class="hljs-comment">//Szabványos módszer</span>
+  <span class="hljs-keyword">if</span> (elem.addEventListener) {
+    elem.addEventListener(tipus, kezelo, <span class="hljs-literal">false</span>);
+  }
+  <span class="hljs-comment">//Microsoft módszer</span>
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (elem.attachEvent) {
+    elem.attachEvent(<span class="hljs-string">'on'</span> + tipus, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+      kezelo(<span class="hljs-built_in">window</span>.event);
+      <span class="hljs-comment">//vagy</span>
+      <span class="hljs-keyword">return</span> kezelo.call(elem, <span class="hljs-built_in">window</span>.event);
+    });
+  }
+  <span class="hljs-comment">//Tradicionális módszer</span>
+  <span class="hljs-keyword">else</span> {
+    elem[<span class="hljs-string">'on'</span> + tipus] = kezelo;
+  }
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseményobjektum-tulajdonságai-3">Eseményobjektum tulajdonságai</h2>
+<div class="equal">
+<div class="span6">
+<h3 id="szabványos">Szabványos</h3>
+<ul>
+<li>type</li>
+<li>target</li>
+<li>button (értékek)</li>
+<li>keyCode</li>
+</ul>
+</div>
+<div class="span6">
+<h3 id="ie">IE</h3>
+<ul>
+<li>type</li>
+<li>srcElement</li>
+<li>button (értékek)</li>
+<li>which</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseményobjektum-tulajdonságai-4">Eseményobjektum tulajdonságai</h2>
+<ul>
+<li>Egységes megoldás – karakter kódja</li>
+<li>Megnézni, melyik tulajdonság tartalmaz értelmes értéket – feature detection</li>
+</ul>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fv</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">var</span> kod;
+  <span class="hljs-keyword">if</span> (!e) <span class="hljs-keyword">var</span> e = <span class="hljs-built_in">window</span>.event;
+  <span class="hljs-keyword">if</span> (e.keyCode) kod = e.keyCode;
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (e.which) kod = e.which;
+}</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="eseményobjektum-tulajdonságai-5">Eseményobjektum tulajdonságai</h2>
+<ul>
+<li>Egységes megoldás – eseményt kiváltó objektum</li>
+<li>feature detection</li>
+<li>Safari böngészőhiba kezelése</li>
+</ul>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fv</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">var</span> obj;
+  <span class="hljs-keyword">if</span> (!e) <span class="hljs-keyword">var</span> e = <span class="hljs-built_in">window</span>.event;
+  <span class="hljs-keyword">if</span> (e.target) obj = e.target;
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (e.srcElement) obj = e.srcElement;
+  <span class="hljs-keyword">if</span> (obj.nodeType == <span class="hljs-number">3</span>) { <span class="hljs-comment">// Safari bug</span>
+    obj = obj.parentNode;
+  }
+}</code></pre>
+</section>
+<section class="new-section future" data-background="landscape.jpg" style="top: 330px; display: none;" data-background-image="landscape.jpg" hidden="" aria-hidden="true">
+
+<h2 id="nyelvi-elemek" class="new-section" data-background="landscape.jpg">Nyelvi elemek</h2>
+<p>Globális függvények, JavaScript beépített objektumai, névtelen függvények</p>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="globális-függvények">Globális függvények</h2>
+<ul>
+<li>Számokkal kapcsolatos
+<ul>
+<li><code>isNaN(s)</code></li>
+<li><code>isFinite(s)</code> – véges-e a szám</li>
+<li><code>parseInt(s, számrendszer)</code></li>
+<li><code>parseFloat(s)</code></li>
+</ul></li>
+<li>Kódolással kapcsolatos
+<ul>
+<li><code>decodeURI</code></li>
+<li><code>decodeURIComponent</code></li>
+<li><code>encodeURI</code></li>
+<li><code>encodeURIComponent</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="nan">NaN</h2>
+<ul>
+<li>Not a Number</li>
+<li>Speciális érték, ha egy művelet nem értelmezhető a számok halmazán</li>
+<li>Vizsgálata: <code>isNaN(érték)</code></li>
+</ul>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-string">'alma'</span> / <span class="hljs-number">2</span>;
+<span class="hljs-built_in">isNaN</span>(a);  <span class="hljs-comment">//true</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="infinity">Infinity</h2>
+<ul>
+<li>Végtelen jelölésére szolgál</li>
+<li><code>+Infinity</code>, <code>-Inifity</code></li>
+<li>Vizsgálata: <code>isFinite()</code></li>
+</ul>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>/<span class="hljs-number">0</span>;
+<span class="hljs-built_in">isFinite</span>(a);  <span class="hljs-comment">//false</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szövegből-szám">Szövegből szám</h2>
+<ul>
+<li><code>parseInt(szöveg, számrendszer)</code></li>
+<li><code>parseFloat(szöveg)</code></li>
+</ul>
+<pre class="js"><code class="hljs javascript"><span class="hljs-built_in">console</span>.log( <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">'123'</span>) );     <span class="hljs-comment">//123</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">'123'</span>, <span class="hljs-number">10</span>) ); <span class="hljs-comment">//123</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">'0101'</span>, <span class="hljs-number">2</span>) ); <span class="hljs-comment">//5</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">'alma'</span>, <span class="hljs-number">10</span>) ); <span class="hljs-comment">//NaN</span>
+<span class="hljs-built_in">console</span>.log( <span class="hljs-built_in">parseInt</span>(<span class="hljs-string">'5alma'</span>, <span class="hljs-number">10</span>) ); <span class="hljs-comment">//5</span>
+
+<span class="hljs-built_in">console</span>.log( <span class="hljs-built_in">parseFloat</span>(<span class="hljs-string">'4.54'</span>) ); <span class="hljs-comment">//4.54</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="szövegkódolás">Szövegkódolás</h2>
+<ul>
+<li>Speciális karakterek
+<ul>
+<li>tárolása</li>
+<li>küldése</li>
+</ul></li>
+<li>Teljes URL kódolása
+<ul>
+<li><code>encodeURI()</code>, <code>decodeURI()</code></li>
+</ul></li>
+<li>URL-beli érték kódolása
+<ul>
+<li><code>encodeURIComponent()</code>, <code>decodeURIComponent()</code></li>
+</ul></li>
+<li>Régi módszer (ne használjuk)
+<ul>
+<li><code>escape()</code>, <code>unescape()</code></li>
+</ul></li>
+</ul>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> kod = <span class="hljs-built_in">encodeURIComponent</span>(<span class="hljs-string">'árvíztűrőtükörfúrógép'</span>);
+<span class="hljs-comment">//"%C3%A1rv%C3%ADzt%C5%B1r%C5%91t%C3%BCk%C3%B6rf%C3%BAr%C3%B3g%C3%A9p"</span>
+<span class="hljs-keyword">var</span> dekod = <span class="hljs-built_in">decodeURIComponent</span>(kod);
+<span class="hljs-comment">//"árvíztûrõtükörfúrógép„</span>
+<span class="hljs-keyword">var</span> url = <span class="hljs-built_in">encodeURI</span>(<span class="hljs-string">'http://server.hu/útvonal szóközökkel'</span>);
+<span class="hljs-comment">//"http://server.hu/%C3%BAtvonal%20sz%C3%B3k%C3%B6z%C3%B6kkel"</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="dátum-függvények">Dátum függvények</h2>
+<ul>
+<li>Date objektum</li>
+<li>Aktuális időpont
+<ul>
+<li><code>Date.now()</code></li>
+</ul></li>
+<li>Megadott időpont
+<ul>
+<li><code>new Date(year, month, day [, hour, minute, second, millisecond]);</code></li>
+</ul></li>
+<li>Műveletcsoportok
+<ul>
+<li>getterek: <code>getMonth()</code>, <code>getDay()</code>, stb</li>
+<li>setterek: <code>setMonth()</code>, <code>setDay()</code>, stb.</li>
+<li>toString metódusok: pl. <code>toLocaleString()</code>, <code>toGMTString()</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="dátum-példa">Dátum példa</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> most = <span class="hljs-built_in">Date</span>.now();
+<span class="hljs-built_in">console</span>.log(most.toLocaleString());
+<span class="hljs-built_in">console</span>.log(most.getFullYear());
+most.setFullYear(<span class="hljs-number">2011</span>);
+<span class="hljs-built_in">console</span>.log(most.toLocaleString());
+
+<span class="hljs-keyword">var</span> maskor = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2011</span>, <span class="hljs-number">2</span>, <span class="hljs-number">28</span>);
+<span class="hljs-built_in">console</span>.log(maskor.toLocaleString());
+<span class="hljs-comment">//"2011. március 28. 0:00:00"</span>
+
+<span class="hljs-built_in">console</span>.log(maskor - most); <span class="hljs-comment">//ms-okban</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="string-műveletek">String műveletek</h2>
+<ul>
+<li>egy karakter vagy kódja
+<ul>
+<li><code>charAt(i)</code>, <code>charCodeAt(i)</code></li>
+</ul></li>
+<li>keresés elölről, hátulról, indexet ad vissza
+<ul>
+<li><code>indexOf(mit, honnan)</code>, <code>lastIndexOf(mit, honnan)</code></li>
+</ul></li>
+<li>összehasonlítás, -1, 0, 1
+<ul>
+<li><code>localeCompare(mivel)</code></li>
+</ul></li>
+<li>keresés, csere, reguláris kifejezésekkel is
+<ul>
+<li><code>search(regexp)</code>, <code>replace(mit, mivel)</code>, <code>match(regexp)</code></li>
+</ul></li>
+<li>részszöveg
+<ul>
+<li><code>substr(honnan, hossz)</code>, <code>substring(mettől, meddig)</code>, <code>slice(mettől, meddig)</code></li>
+</ul></li>
+<li>szöveg felbontása → tömb
+<ul>
+<li><code>split(szeparátor)</code></li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="string-példa">String példa</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'piros alma'</span>.charAt(<span class="hljs-number">2</span>)); <span class="hljs-comment">//"r"</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'piros alma'</span>.charCodeAt(<span class="hljs-number">2</span>)); <span class="hljs-comment">//114</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'piros alma'</span>.indexOf(<span class="hljs-string">'alma'</span>)); <span class="hljs-comment">//6</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'piros alma'</span>.localeCompare(<span class="hljs-string">'piros körte'</span>)); <span class="hljs-comment">//-1</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'piros alma'</span>.replace(<span class="hljs-string">'piros'</span>, <span class="hljs-string">'sárga'</span>)); <span class="hljs-comment">//"sárga alma"</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'piros alma'</span>.substr(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>)); <span class="hljs-comment">//"ros"</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'piros alma'</span>.split(<span class="hljs-string">' '</span>)); <span class="hljs-comment">//["piros","alma"]</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="math-objektum">Math objektum</h2>
+<ul>
+<li>Matematikai műveletek
+<ul>
+<li><code>sin(rad)</code>, <code>asin(sz)</code>, <code>cos(rad)</code>, <code>acos(sz)</code>, <code>tan(rad)</code>, <code>atan(sz)</code></li>
+<li><code>pow(alap, kit)</code>, <code>exp(n)</code>, <code>log(n)</code>, stb.</li>
+<li><code>random()</code></li>
+<li><code>round(n)</code>, <code>floor(n)</code></li>
+</ul></li>
+<li>Konstansok
+<ul>
+<li><code>PI</code></li>
+<li><code>E</code></li>
+<li><code>SQRT2</code></li>
+<li><code>LN2</code>, stb.</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="math-példa">Math példa</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.PI);  <span class="hljs-comment">//3.141592653589793</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.sin(<span class="hljs-number">90</span>));  <span class="hljs-comment">//0.8939966636005579</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.sin(<span class="hljs-number">90</span> * <span class="hljs-built_in">Math</span>.PI / <span class="hljs-number">180</span>));  <span class="hljs-comment">//1</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.random());  <span class="hljs-comment">//pl. 0.47057095554085615</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.random());  <span class="hljs-comment">//pl. 0.5286946792885748</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.round(<span class="hljs-number">1.6</span>));  <span class="hljs-comment">//2</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.floor(<span class="hljs-number">1.6</span>));  <span class="hljs-comment">//1</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tömb-műveletek">Tömb műveletek</h2>
+<ul>
+<li><code>pop()</code>, <code>push(e)</code>, <code>shift(e)</code>, <code>unshift()</code>
+<ul>
+<li>végéről, végére, elejére,elejéről</li>
+</ul></li>
+<li><code>reverse()</code>
+<ul>
+<li>megfordít</li>
+</ul></li>
+<li><code>splice(honnan, mennyit)</code>
+<ul>
+<li>kivág</li>
+</ul></li>
+<li><code>join(szeparátor)</code>
+<ul>
+<li>szöveggé fűz</li>
+</ul></li>
+<li><code>indexOf(elem)</code>
+<ul>
+<li>keresés</li>
+</ul></li>
+<li><code>includes(elem)</code>
+<ul>
+<li>eldöntés</li>
+</ul></li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tömb-példa">Tömb példa</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> t = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+t.push(<span class="hljs-number">6</span>);
+<span class="hljs-built_in">console</span>.log(t);  <span class="hljs-comment">//[1, 2, 3, 4, 5, 6]</span>
+<span class="hljs-built_in">console</span>.log(t.pop());  <span class="hljs-comment">//6</span>
+<span class="hljs-built_in">console</span>.log(t);  <span class="hljs-comment">//[1, 2, 3, 4, 5]</span>
+t.unshift(<span class="hljs-number">0</span>);
+<span class="hljs-built_in">console</span>.log(t);  <span class="hljs-comment">//[0, 1, 2, 3, 4, 5]</span>
+<span class="hljs-built_in">console</span>.log(t.shift());  <span class="hljs-comment">//0</span>
+<span class="hljs-built_in">console</span>.log(t);  <span class="hljs-comment">//[1, 2, 3, 4, 5]</span>
+t.reverse();
+<span class="hljs-built_in">console</span>.log(t);  <span class="hljs-comment">//[5, 4, 3, 2, 1]</span>
+t.splice(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>);
+<span class="hljs-built_in">console</span>.log(t);  <span class="hljs-comment">//[5, 4, 2, 1]</span>
+<span class="hljs-built_in">console</span>.log(t.join(<span class="hljs-string">'###'</span>));  <span class="hljs-comment">//"5###4###2###1"</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="névtelen-függvény">Névtelen függvény</h2>
+<pre class="js"><code class="hljs javascript">elem.addEventListener(<span class="hljs-string">'click'</span>, onClick, <span class="hljs-literal">false</span>);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onClick</span>(<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-comment">//...</span>
+}
+
+<span class="hljs-comment">//HELYETTE</span>
+
+elem.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-comment">//...</span>
+}, <span class="hljs-literal">false</span>);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="függvényliterál">Függvényliterál</h2>
+<p>Névtelen függvény</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">par1, par2</span>) </span>{
+  <span class="hljs-comment">//...</span>
+}
+
+<span class="hljs-comment">// VAGY: fat arrow syntax</span>
+
+(par1, par2) =&gt; {
+
+}</code></pre>
+<p>Például</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">return</span> e * <span class="hljs-number">2</span>;
+}
+
+<span class="hljs-comment">// Ekvivalens:</span>
+
+e =&gt; e * <span class="hljs-number">2</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="névtelen-függvény-példák">Névtelen függvény példák</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-comment">//Paraméteres eseménykezelők</span>
+$(<span class="hljs-string">'gomb1'</span>).addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+  leptet(e, -<span class="hljs-number">1</span>);
+}, <span class="hljs-literal">false</span>);
+
+<span class="hljs-comment">//Függvény létrehozása</span>
+<span class="hljs-keyword">var</span> fv = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a + b;
+}
+
+<span class="hljs-comment">// VAGY</span>
+
+<span class="hljs-keyword">const</span> fv = (a, b) =&gt; a + b
+
+<span class="hljs-built_in">console</span>.log( fv(<span class="hljs-number">18</span>, <span class="hljs-number">24</span>) );</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kiválogatás">Kiválogatás</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> tomb = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+
+<span class="hljs-comment">// Kiválogatás</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">kivalogatas</span>(<span class="hljs-params">x</span>) </span>{
+  <span class="hljs-keyword">var</span> out = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i++) {
+    <span class="hljs-keyword">if</span> (x[i] % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) {
+        out.push(x[i]);
+    }
+  }
+  <span class="hljs-keyword">return</span> out;
+}
+<span class="hljs-keyword">var</span> parosak = kivalogatas(tomb);</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kiválogatás-általánosítva">Kiválogatás – általánosítva</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> tomb = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+
+<span class="hljs-comment">// Kiválogatás</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">kivalogatas</span>(<span class="hljs-params">x, fn</span>) </span>{
+  <span class="hljs-keyword">var</span> out = [];
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; x.length; i++) {
+    <span class="hljs-keyword">if</span> (fn(x[i])) {
+        out.push(x[i]);
+    }
+  }
+  <span class="hljs-keyword">return</span> out;
+}
+
+<span class="hljs-keyword">var</span> parosak = kivalogatas(tomb, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+    <span class="hljs-keyword">return</span> e % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
+});</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="kiválogatás-ecmascript-5-tömbfüggvénnyel">Kiválogatás – ECMAScript 5 tömbfüggvénnyel</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">var</span> parosak = tomb.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+  <span class="hljs-keyword">return</span> e % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
+});
+
+<span class="hljs-comment">// VAGY</span>
+
+<span class="hljs-keyword">var</span> parosak = tomb.filter(e =&gt; e % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>)</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="ecmascript-5-tömbfüggvények">ECMAScript 5 tömbfüggvények</h2>
+<p>Programozási tételek megvalósítása</p>
+<ul>
+<li><code>forEach</code>: általános ciklus</li>
+<li><code>some</code>: eldöntés</li>
+<li><code>every</code>: optimista eldöntés</li>
+<li><code>map</code>: másolás</li>
+<li><code>filter</code>: kiválogatás</li>
+<li><code>reduce</code>: összegzés (sorozatszámítás)</li>
+<li><code>find</code>: keresés (elem)</li>
+<li><code>findIndex</code>: keresés (index)</li>
+</ul>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="másik-példa-összegzés">Másik példa: összegzés</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">osszegzes</span>(<span class="hljs-params">tomb</span>) </span>{
+  <span class="hljs-keyword">var</span> s = <span class="hljs-number">0</span>;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; tomb.length; i++) {
+    s = s + tomb[i];
+  }
+  <span class="hljs-keyword">return</span> s;
+}
+
+<span class="hljs-comment">// HELYETTE</span>
+
+tomb.reduce((prev, act) =&gt; prev + act, <span class="hljs-number">0</span>)</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="tömbfüggvények-használata">Tömbfüggvények használata</h2>
+<pre class="js"><code class="hljs javascript"><span class="hljs-comment">// DOM elemek listája</span>
+<span class="hljs-keyword">const</span> elems = <span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'p'</span>) <span class="hljs-comment">// --&gt; tömbszerű objektum</span>
+elems.forEach(e =&gt; e.innerHTML=<span class="hljs-string">''</span>) <span class="hljs-comment">// még működik</span>
+elems.map(e =&gt; <span class="hljs-number">2</span>) <span class="hljs-comment">// nem működik</span>
+
+<span class="hljs-keyword">const</span> elems = <span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">document</span>.querySelectorAll(<span class="hljs-string">'p'</span>))
+elems.forEach(e =&gt; e.innerHTML=<span class="hljs-string">''</span>) <span class="hljs-comment">// még működik</span>
+elems.map(e =&gt; <span class="hljs-number">2</span>) <span class="hljs-comment">// működik ez is</span>
+
+<span class="hljs-comment">// Array.from()</span>
+<span class="hljs-keyword">const</span> range = n =&gt; <span class="hljs-built_in">Array</span>.from({length: n}, (v, i) =&gt; i);
+range(<span class="hljs-number">5</span>) <span class="hljs-comment">// --&gt; [0, 1, 2, 3, 4]</span>
+
+<span class="hljs-comment">//Maximumkiválasztás</span>
+<span class="hljs-keyword">const</span> x = [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">20</span>, <span class="hljs-number">3</span>]
+x.reduce((max, e) =&gt; e &gt; max ? e : max, -<span class="hljs-literal">Infinity</span>)
+
+<span class="hljs-comment">//Megszámolás</span>
+<span class="hljs-keyword">const</span> x = [<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">20</span>, <span class="hljs-number">3</span>]
+x.reduce((db, e) =&gt; e % <span class="hljs-number">2</span> === <span class="hljs-number">0</span> ? db + <span class="hljs-number">1</span> : db, <span class="hljs-number">0</span>)
+
+<span class="hljs-comment">// Mátrixok</span>
+<span class="hljs-keyword">const</span> m = [
+  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>],
+  [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+]
+<span class="hljs-comment">// minden elem szorzása 2-vel</span>
+m.map(row =&gt; row.map(e =&gt; e * <span class="hljs-number">2</span>))
+<span class="hljs-comment">// páros elemek kiválogatása</span>
+m.reduce((prev, row) =&gt; prev.concat(row.filter(e =&gt; e % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>)), [])
+<span class="hljs-comment">// minden elem páros-e</span>
+m.every(row =&gt; row.every(e =&gt; e % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>))</code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="html-generálás">HTML generálás</h2>
+<p>Lista</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">const</span> list = [<span class="hljs-string">'alma'</span>, <span class="hljs-string">'körte'</span>, <span class="hljs-string">'szilva'</span>]
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">genList</span>(<span class="hljs-params">list</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`
+    &lt;ul&gt;
+      <span class="hljs-subst">${list.map(e =&gt; `&lt;li&gt;${e}</span>&lt;/li&gt;`</span>).join(<span class="hljs-string">''</span>)}
+    &lt;<span class="hljs-regexp">/ul&gt;
+  `
+}
+document.body.innerHTML = genList(list)
+
+/</span><span class="hljs-regexp">/ VAGY
+
+function genList(list) {
+  return `
+    &lt;ul&gt;
+      ${list.map(genListItem).join('')}
+    &lt;/u</span>l&gt;
+  <span class="hljs-string">`
+}
+function genListItem(e) {
+  return `</span>&lt;li&gt;${e}&lt;<span class="hljs-regexp">/li&gt;`
+}</span></code></pre>
+</section>
+<section class="slide level1 future" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="html-generálás-1">HTML generálás</h2>
+<p>Táblázat</p>
+<pre class="js"><code class="hljs javascript"><span class="hljs-keyword">const</span> m = [
+  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>],
+  [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+]
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">genTable</span>(<span class="hljs-params">matrix</span>) </span>{
+   <span class="hljs-keyword">return</span> <span class="hljs-string">`
+    &lt;table&gt;
+      <span class="hljs-subst">${matrix.map(row =&gt; `
+        &lt;tr&gt;
+          ${row.map(cell =&gt; `
+            &lt;td&gt;${cell}</span>&lt;/td&gt;
+          `</span>).join(<span class="hljs-string">''</span>)}           
+        &lt;<span class="hljs-regexp">/tr&gt;
+      `).join('')}
+    &lt;/</span>table&gt;
+  <span class="hljs-string">` 
+}
+document.body.innerHTML = genTable(m)
+
+// VAGY
+
+function genTable(matrix) {
+   return `</span>
+    &lt;table&gt;
+      ${matrix.map(genTableRow).join(<span class="hljs-string">''</span>)}
+    &lt;<span class="hljs-regexp">/table&gt;
+  ` 
+}
+function genTableRow(arr) {
+  return `
+    &lt;tr&gt;
+      ${row.map(genTableCell).join('')}           
+    &lt;/</span>tr&gt;
+  <span class="hljs-string">`
+}
+function genTableCell(e) {
+  return `</span>&lt;td&gt;${e}&lt;<span class="hljs-regexp">/td&gt;`
+}</span></code></pre>
+</section>
+<section class="new-section has-light-background future" data-background="#D4A71C" style="top: 330px; display: none;" hidden="" aria-hidden="true">
+
+<h2 id="összefoglalás" class="new-section">Összefoglalás</h2>
+<ul>
+<li>Eseménykezelés
+<ul>
+<li>Eseményt jelző objektum</li>
+<li>Eseményobjektum</li>
+<li>Buborékolás</li>
+<li>Eseményt eredetileg jelző objektum</li>
+</ul></li>
+<li>Nyelvi elemek
+<ul>
+<li>Globális függvények</li>
+<li>JavaScript beépített objektumai</li>
+<li>Névtelen függvények</li>
+</ul></li>
+</ul>
+</section>
+
+      </div>
+
+    <div class="backgrounds" style="background-image: url(&quot;hatter.jpg&quot;); background-size: 2460px 800px; background-position: 0px 0px;"><div class="slide-background slide level1 present" data-loaded="true" style="display: block;"></div><div class="slide-background new-section future" data-background-hash="desert.jpgnullnullnullnullnullnullnullnull" data-loaded="true" style="display: block; background-image: url(&quot;desert.jpg&quot;);"></div><div class="slide-background slide level1 future" data-loaded="true" style="display: block;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="nature.jpgnullnullnullnullnullnullnullnull" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="sea_storm.jpgnullnullnullnullnullnullnullnull" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="landscape.jpgnullnullnullnullnullnullnullnull" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background slide level1 future" style="display: none;"></div><div class="slide-background new-section future" data-background-hash="#D4A71Cnullnullnullnullnullnullnullnull" style="background: rgb(212, 167, 28); display: none;"></div></div><div class="progress" style="display: block;"><span style="width: 0px;"></span></div><aside class="controls" style="display: block;"><button class="navigate-left" aria-label="previous slide"></button><button class="navigate-right enabled" aria-label="next slide"></button><button class="navigate-up" aria-label="above slide"></button><button class="navigate-down" aria-label="below slide"></button></aside><div class="slide-number" style="display: block;"><span class="slide-number-a">1</span></div><div class="speaker-notes" data-prevent-swipe=""></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px 1px 1px 1px);">
+Webfejlesztés 2.
+3. Események, nyelvi elemek, beépített objektumok
+ Horváth Győző
+Egyetemi adjunktus
+1117 Budapest, Pázmány Péter sétány 1/c., 2.420-as szoba
+Tel: (1) 372-2500/1816
+horvath.gyozo@inf.elte.hu 
+</div></div>
+
+    <script src="./Webfejlesztés 2._files/head.min.js.letöltés"></script>
+    <script src="./Webfejlesztés 2._files/reveal.js.letöltés"></script>
+
+    <script>
+
+      // var newSectionBackgroundColor = '#085536';
+      // var newSectionBackgroundColor = '#FFC000';
+      var newSectionBackgroundColor = '#D4A71C';
+
+      function moveAttributesFromH2ToSection() {
+        var h2s = document.querySelectorAll('section > h2, section > h1');
+        for (var i = 0; i < h2s.length; i++) { 
+          var h2 = h2s[i];
+          if (h2.hasAttributes()) {
+            var section = h2s[i].parentNode;
+            var attrs = h2.attributes;
+            for(var j = attrs.length - 1; j >= 0; j--) {
+              if (attrs[j].name != 'id') {
+                section.setAttribute(attrs[j].name, attrs[j].value);
+              } 
+            }
+          } 
+        }
+      }
+
+      // function setDataBackground() {
+      //   var h2s = document.querySelectorAll('section > h2[data-background], section > h1[data-background]');
+      //   for (var i = 0; i < h2s.length; i++) { 
+      //     var section = h2s[i].parentNode; 
+      //     section.setAttribute('data-background', h2s[i].getAttribute('data-background')); 
+      //   }
+      // }
+
+      // function setVideoBackground() {
+      //   var h2s = document.querySelectorAll('section > h2[data-background-video], section > h1[data-background-video]');
+      //   for (var i = 0; i < h2s.length; i++) { 
+      //     var section = h2s[i].parentNode; 
+      //     section.setAttribute('data-background-video', h2s[i].getAttribute('data-background-video')); 
+      //   }
+      // }
+
+      function setSectionClass() {
+        var h2s = document.querySelectorAll('section > h2.new-section');
+        console.log(h2s)
+        for (var i = 0; i < h2s.length; i++) { 
+          var section = h2s[i].parentNode; 
+          section.classList.add('new-section'); 
+          section.setAttribute('data-background', newSectionBackgroundColor); 
+          // console.log(section);
+        }
+      }
+
+      setSectionClass();
+      moveAttributesFromH2ToSection();
+      // setDataBackground();
+      // setVideoBackground();
+
+
+      Reveal.addEventListener('slidechanged', function(event) {
+        // console.log(event.currentSlide)               
+        if(event.currentSlide.getAttribute('data-background-iframe')) {
+          document.querySelector('.reveal > .backgrounds').style.zIndex = 1;
+        } else {
+          document.querySelector('.reveal > .backgrounds').style.zIndex = 0;
+        }                  
+      });
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        backgroundTransition: 'fade', 
+
+        multiplex: {
+          secret: null, 
+          id: 'f074969cd3e23d03', // Obtained from socket.io server
+          url: '//webprogramozas.inf.elte.hu:1948' // Location of socket.io server
+        },
+
+        parallaxBackgroundImage: 'hatter.jpg',
+        parallaxBackgroundSize: '2460px 800px', 
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '../revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../revealjs/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../revealjs/plugin/zoom-js/zoom.js', async: true },
+          { src: '../revealjs/plugin/notes/notes.js', async: true },
+          // { src: '//cdn.socket.io/socket.io-1.3.5.js', async: true },
+          // { src: '../revealjs/plugin/multiplex/client.js', async: true },
+        ]
+      });
+
+    </script><script type="text/javascript" src="./Webfejlesztés 2._files/highlight.js.letöltés"></script><script type="text/javascript" src="./Webfejlesztés 2._files/zoom.js.letöltés"></script><script type="text/javascript" src="./Webfejlesztés 2._files/notes.js.letöltés"></script>
+
+  
+
+</body></html>

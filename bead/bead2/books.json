@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "user_id": 1,
+        "author": "Lilly Singh",
+        "title": "How to Be a Bawse",
+        "pages": 336,
+        "category": "Self Help",
+        "isbn": "9780718185534",
+        "is_read": false
+    },
+    {
+        "id": 2,
+        "user_id": 2,
+        "author": "Kate Bornstein",
+        "title": "Gender Outlaw: On Men, Women and the Rest of Us",
+        "pages": 272,
+        "category": "LBGT",
+        "isbn": "0679757015",
+        "is_read": false
+    },
+    {
+        "id": 3,
+        "user_id": 4,
+        "author": "Stephen King",
+        "title": "It",
+        "pages": 1116,
+        "category": "Horror",
+        "isbn": "0450411435",
+        "is_read": true
+    },
+    {
+        "id": 4,
+        "user_id": 4,
+        "author": "William Shakespeare",
+        "title": "Hamlet",
+        "pages": 289,
+        "category": "Tragedy",
+        "isbn": "9780521618748",
+        "is_read": true
+    },
+    {
+        "id": 5,
+        "user_id": 3,
+        "author": "Stieg Larsson",
+        "title": "The Girl with the Dragon Tattoo",
+        "pages": 465,
+        "category": "Crime",
+        "isbn": "9789113014081",
+        "is_read": false
+    }
+]

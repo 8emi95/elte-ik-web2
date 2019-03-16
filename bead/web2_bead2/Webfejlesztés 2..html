@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://webprogramozas.inf.elte.hu/webfejl2/gyak/php_lezer.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>Webfejlesztés 2.</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="./Webfejlesztés 2._files/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="./Webfejlesztés 2._files/targy.css" rel="stylesheet" media="screen">
+		<link href="./Webfejlesztés 2._files/bootstrap-responsive.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="brand" href="http://webprogramozas.inf.elte.hu/webfejl2/gyak/php_lezer.html#">Webprogramozás szerver</a>
+					<ul class="nav">
+						<li class="active"><a href="http://webprogramozas.inf.elte.hu/webfejl2.php">Webfejlesztés 2.</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/weaf1.php">Webes alkalmazásfejlesztés 1.</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	    <div class="container">
+	    	<div class="well">
+				<h1>Webfejlesztés 2.</h1>
+			</div>
+	    	<div class="row">
+	    		<div class="span3">
+				    <ul class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="125">
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#altalanos">Általános információk</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#szamonkeres">Számonkérés</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#eloadas">Előadások</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#gyakorlat">Gyakorlatok</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#segedanyag">Segédanyagok</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#oktatok">Oktatók</a></li>
+					</ul>
+	    		</div>		
+	    		<div class="span9">
+	    			<section>
+						<h2 id="fénytörő-fejtörő">Fénytörő fejtörő</h2>
+<p>A PHP-s beadandóban a JavaScript beadandóként elkészített fénytörő fejtörő játékot kell szerveroldali funkcionalitással kiegészíteni.</p>
+<h3 id="feladatok">Feladatok</h3>
+<ul>
+<li><p>A főoldalon legyen egy logó és egy rövid leírás a játékról.</p></li>
+<li><p>A főoldalon legyen egy link, amelyre kattintva bejön az első beadandó oldala, és ahol bárki játszhat a játékkal.</p></li>
+<li><p>Legyen lehetőség regisztrálni az alkalmazásba. Ehhez név, jelszó, email cím megadása szükséges. Mindegyik kötelező mező, email cím formátumának ellenőrzése szükséges (a formátum legyen feltüntetve az email mező környékén, pl. placeholderként).</p></li>
+<li><p>Legyen lehetőség bármikor belépni az alkalmazásba. Ehhez az email címet és jelszót kell megadni, mindkettő kötelező legyen, és vizsgáljuk az email mező megfelelő formátumát! Bejelentkezés után a regisztrációkor megadott név jelenik meg a felületeken. Bejelentkezett felhasználónak kilépésre is lehetőséget kell adni.</p></li>
+<li><p>Bejelentkezés után egy listaoldalra kerülünk, ahol a rendszerben tárolt pályák kerülnek felsorolásra. Egy pályánál fel kell tüntetni a nevét (pl. vagy azonosítóját, pl. "Advanced13"), a nehézségét, hányan oldották már meg, illetve a bejelentkezett felhasználó megoldotta-e már.</p></li>
+<li><p>A listában egy pályára kattintva egy másik oldalon a kiválasztott pályával lehet játszani. A játék végeztével a sikerességet AJAX hívással kell a szerverrel közölni és elmenteni a játékhoz, válaszként pedig az adott pályát sikeresen elvégzett játékosok listáját kell visszaadni és megjeleníteni.</p></li>
+<li><p>Legyen egy speciális felhasználó (név: admin, email: admin@admin.hu, jelszó: admin), aki belépve még egy funkcióhoz hozzáfér: új pálya felviteléhez. Itt megadhatja az új pálya nevét, nehézségét, és szerkesztheti a pályaelemeket: a táblán eredetileg fent lévő objektumokat, a felrakandó objektumokat és az akadályok számát. Hogy ezek megadása miként történik, nincs megkötve.</p>
+<ul>
+<li>Lehet az, hogy valaki a játék "motorját" átalakítja és egy drag and drop-os felületet alakít ki.</li>
+<li>Lehet az is, hogy valaki egy <code>textarea</code>-ban egy JSON szöveg szerkesztését követeli meg (érdemes valamilyen példafelépítést megadni).</li>
+<li><p>De az is lehet, hogy valaki ennél egy fokkal egyszerűbb szöveges formátumot határoz meg (érdemes valamilyen példafelépítést megadni). Például:</p>
+<pre><code>[Tábla]
+3:3:lezer:←:fixed
+4:3:felig:↑:fixed
+5:5:cel:↑:fixed
+
+[Felrakandó]
+tukor
+tukor
+blokkolo
+
+[Célok]
+2</code></pre></li>
+</ul>
+<p>Elmentve az új pálya megjelenik a listaoldalon.</p>
+<p>Az admin képes a pályákat törölni is.</p></li>
+</ul>
+<h3 id="beadás">Beadás</h3>
+<p>A megoldásokat a <a href="http://webprogramozas.inf.elte.hu/ebr">beadási felületen</a> keresztül kell feltölteni. Ehhez az elkészült alkalmazást be kell csomagolni ZIP formátumba, ugyanis csak így fogadja el a feltöltő felület.</p>
+<p>Határidő: 2017. május 28. éjfél</p>
+<h3 id="pontozás">Pontozás</h3>
+<h4 id="kötelező-enélkül-nincs-jegy">Kötelező (enélkül nincs jegy):</h4>
+<ul>
+<li>A főoldalról a játék elérhető és játszható.</li>
+<li>Be és ki lehet jelentkezni.</li>
+<li>Bejelentkezve megjelenik egy pályalista a pályák nevével.</li>
+<li>Egy pályát választva, az játszható.</li>
+</ul>
+<h4 id="nem-kötelező">Nem kötelező</h4>
+<ul>
+<li>Lehet regisztrálni, és a regisztrált adatokkal bejelentkezni. (1 pont)</li>
+<li>A pályalista feltünteti a nehézséget, a teljesítők számát és azt, hogy a bejelentkezett felhasználó megoldotta-e már. (2 pont)</li>
+<li>Bejelentkezett felhasználó sikeres megoldás után a sikerességet elmenti a szerveren, a mentéshez és a teljesítők listája lekérdezéséhez AJAX technológiát használ. (2 pont)</li>
+<li>Az admin felhasználónak elérhető az új pálya felvétele, és ott új pályát tud felvenni. (2 pont)</li>
+<li>Az admin felhasználó tud pályát törölni. (1 pont)</li>
+<li>Nincs nagyobb programhiba, nem csalhatók elő furcsa jelenségek (2 pont)</li>
+<li>Május 21-ig beadja (2 pont)</li>
+<li>1 hét késés (-2 pont)</li>
+<li>2 hét késés (-4 pont)</li>
+<li>2 hétnél több késés (nincs elfogadva a beadandó, nincs jegy)</li>
+</ul>
+<h3 id="értékelés">Értékelés:</h3>
+<ul>
+<li>0-4 pont: -0,5</li>
+<li>5-7 pont: 0</li>
+<li>8-10: +0,5</li>
+</ul>
+
+
+
+
+
+					</section>
+	    		</div>
+	    	</div>
+		</div>
+		
+		<script src="./Webfejlesztés 2._files/jquery.min.js.download"></script>
+		<script src="./Webfejlesztés 2._files/bootstrap.min.js.download"></script>
+	
+</body></html>

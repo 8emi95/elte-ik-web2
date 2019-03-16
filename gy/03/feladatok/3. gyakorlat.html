@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)http://webprogramozas.inf.elte.hu/webfejl2-pti/gyak/03.html -->
+<html lang="hu"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>3. gyakorlat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./3. gyakorlat_files/bootstrap.min.css">
+<link rel="stylesheet" href="./3. gyakorlat_files/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="http://webprogramozas.inf.elte.hu/assets/images/favicon.ico">
+
+</head><body><div class="jumbotron bg-dark rounded-0 m-0">
+    <div class="container text-center text-light">
+        <h1>3. gyakorlat</h1>
+    </div>
+</div>
+
+<header id="backlink" class="bg-dark">
+    <a href="http://webprogramozas.inf.elte.hu/webfejl2-pti.html" class="text-white">
+        <strong>
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Vissza a tárgyhoz
+        </strong>
+    </a>
+</header>
+
+<section class="feher">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <h2 id="feladatok">Feladatok</h2>
+
+<ol>
+  <li>
+    <!-- Alapok -->
+    <p>Adott egy paragrafusbeli szöveg, amelyben néhány szó <code class="highlighter-rouge">span</code> elembe van foglalva vagy hivatkozásként van megadva. A paragrafusra kattintáskor írd ki a konzolra:</p>
+
+    <p>a) az eseményt jelző objektumot;</p>
+
+    <p>b) az esemény típusát;</p>
+
+    <p>c) a kattintás közben lenyomott egérgombot;</p>
+
+    <p>d) az egér kattintáskori pozícióját;</p>
+
+    <p>e) az eseményt eredetileg jelző objektumot;</p>
+
+    <p>f) <code class="highlighter-rouge">span</code> elemre kattintva a <code class="highlighter-rouge">span</code> elem szövegét.</p>
+
+    <p>g) Ha a hivatkozás szövege “libero”, akkor ne kövesse a hivatkozást.</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;p&gt;</span>Lorem ipsum <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://translate.google.com/#la/hu/dolor"</span><span class="nt">&gt;</span>dolor<span class="nt">&lt;/a&gt;</span> sit amet, <span class="nt">&lt;span&gt;</span>consectetur<span class="nt">&lt;/span&gt;</span> adipiscing elit. <span class="nt">&lt;span&gt;</span>Proin ut faucibus justo.<span class="nt">&lt;/span&gt;</span> Nullam vulputate iaculis blandit. Sed at placerat mi. Cras volutpat, urna sed accumsan dapibus, <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://www.libero.hu"</span><span class="nt">&gt;</span>libero<span class="nt">&lt;/a&gt;</span> massa cursus felis, eget consectetur libero orci ut sem. Fusce id mollis nibh. In vulputate et turpis eu semper. Sed pharetra tincidunt velit. Fusce pharetra eros vitae placerat luctus. <span class="nt">&lt;span&gt;</span>Fusce cursus ultrices tellus et lobortis.<span class="nt">&lt;/span&gt;&lt;/p&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <!-- Eseményobjektum tulajdonságai -->
+    <p>Írd ki az oldalra folyamatosan az alábbi adatokat:</p>
+
+    <p>a) A felhasználó egere két kattintás között átlagosan hány pixelnyi utat tesz meg?</p>
+
+    <p>b) Átlagosan mennyi idő telik el két kattintás között?</p>
+  </li>
+  <li>
+    <!-- Eseményobjektum tulajdonságai -->
+    <p>Egy listában kattints két listaelemre, és cseréld fel őket (a tartalmukat)!</p>
+  </li>
+  <li>
+    <!-- Alapértelmezett esemény letiltása -->
+    <p>Készítsünk egy csak számokat elfogadó mezőt.</p>
+
+    <p>a) Gépelés közben meg se jelenjenek a számoktól eltérő karakterek.</p>
+
+    <p>b) A megoldás működjön minden olyan szöveges beviteli mezőre, amelynek <code class="highlighter-rouge">szam</code> stílusosztály be van állítva.</p>
+  </li>
+  <li>
+    <!-- Alapértelmezett esemény letiltása -->
+    <p>Az oldalon minden olyan hivatkozást tiltsunk le, amelyik nem ELTÉs címre mutat!</p>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://www.elte.hu"</span><span class="nt">&gt;</span>ELTE honlapja<span class="nt">&lt;/a&gt;&lt;br&gt;</span>
+ <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://webprogramozas.inf.elte.hu"</span><span class="nt">&gt;</span>Webprogramozás szerver<span class="nt">&lt;/a&gt;&lt;br&gt;</span>
+ <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"https://developer.mozilla.org/en-US/docs/Web/JavaScript"</span><span class="nt">&gt;</span>JavaScript referencia<span class="nt">&lt;/a&gt;&lt;br&gt;</span>
+ <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://jsfiddle.net/"</span><span class="nt">&gt;</span>JavaScript homokozó<span class="nt">&lt;/a&gt;&lt;br&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <!-- Delegálás -->
+    <p>Valahány mozifilmről tároljuk a címét, megjelenési évét, hosszát és rendezőjét. Mivel sok film is lehet, ezért olyan felületet szeretnénk, ahol egy szűrőmezőbe írva csak azok a filmcímek jelennek meg, amelyek tartalmazzák a szűrőmezőbe írt szöveget. A kiválasztott filmcím fölé víve az egeret pedig jelenítsük meg az adott film összes részletét!</p>
+  </li>
+  <li>
+    <!-- Delegálás -->
+    <p>Készíts “kézi” amőbát! Adott egy táblázat üres cellákkal. Valamelyik cellájába kattintva írjunk felváltva “X”-et és “O”-t. Ha egy cella tartalma nem üres, akkor ne történjen semmi.</p>
+  </li>
+  <li>
+    <!-- Delegálás -->
+    <p>Készíts memóriajátékot! A páros számú cellában rejts el számokat, és találd meg úgy a párokat, hogy egyszerre csak kettőt fordíthatsz fel! Számold meg, hogy hány lépésben sikerül kitalálni a feladatot! Legyen lehetőség több játékos megadására, ebben az esetben jelezd, hogy éppen ki van soron!</p>
+  </li>
+</ol>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+</body></html>

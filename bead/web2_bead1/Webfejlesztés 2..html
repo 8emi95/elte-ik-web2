@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)http://webprogramozas.inf.elte.hu/webfejl2/gyak/js_lezer.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<title>Webfejlesztés 2.</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- Bootstrap -->
+		<link href="./Webfejlesztés 2._files/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="./Webfejlesztés 2._files/targy.css" rel="stylesheet" media="screen">
+		<link href="./Webfejlesztés 2._files/bootstrap-responsive.min.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+					<a class="brand" href="http://webprogramozas.inf.elte.hu/webfejl2/gyak/js_lezer.html#">Webprogramozás szerver</a>
+					<ul class="nav">
+						<li class="active"><a href="http://webprogramozas.inf.elte.hu/webfejl2.php">Webfejlesztés 2.</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/weaf1.php">Webes alkalmazásfejlesztés 1.</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	    <div class="container">
+	    	<div class="well">
+				<h1>Webfejlesztés 2.</h1>
+			</div>
+	    	<div class="row">
+	    		<div class="span3">
+				    <ul class="nav nav-tabs nav-stacked affix" data-spy="affix" data-offset-top="125">
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#altalanos">Általános információk</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#szamonkeres">Számonkérés</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#eloadas">Előadások</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#gyakorlat">Gyakorlatok</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#segedanyag">Segédanyagok</a></li>
+						<li><a href="http://webprogramozas.inf.elte.hu/webfejl2.php#oktatok">Oktatók</a></li>
+					</ul>
+	    		</div>		
+	    		<div class="span9">
+	    			<section>
+						<h1>JavaScript beadandó feladat</h1>
+						
+						<style type="text/css">
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+table {
+    float: left;
+    border-spacing: 5px;
+    border-collapse: separate;
+}
+td {
+    border: 1px solid gray;
+    padding: 0px;
+    width: 90px;
+    height: 90px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+td:before {
+    content: " ";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+}
+td.lezer:before {
+    background: url('lezer.png') no-repeat no-repeat center;
+}
+td.cel:before {
+    background: url('cel.png') no-repeat no-repeat center;
+}
+td.blokkolo:before {
+    background: url('blokkolo.png') no-repeat no-repeat center;
+}
+td.ellenorzo:before {
+    background: url('ellenorzo.png') no-repeat no-repeat center;
+}
+td.dupla:before {
+    background: url('dupla.png') no-repeat no-repeat center;
+}
+td.felig:before {
+    background: url('felig.png') no-repeat no-repeat center;
+}
+td.tukor:before {
+    background: url('tukor.png') no-repeat no-repeat center;
+}
+.fix {
+    /*border: 3px solid orange;*/
+    background-image: url('lock.ico');
+    background-size: 20px;
+    background-position: top right;
+    background-repeat: no-repeat;
+}
+td.forgat90:before {
+    transform: rotate(90deg);
+}
+td.forgat180:before {
+    transform: rotate(180deg);
+}
+td.forgat270:before {
+    transform: rotate(270deg);
+}
+.szam {
+    color: red;
+    font-size: 100px;
+}
+</style>
+<h2 id="fénytörő-fejtörő">Fénytörő fejtörő</h2>
+<h3 id="a-játék-célja">A játék célja</h3>
+<p>Minden egyes feladványnál rendezd el úgy a megadott objektumokat a táblán, hogy megvilágítsd a feladványban megjelölt számú célpontot.</p>
+<h3 id="objektumok">Objektumok</h3>
+<ul>
+<li><img src="./Webfejlesztés 2._files/lezer.png" alt=""> <strong>Lézer</strong>: innen indul a lézersugár a nyíl irányában.</li>
+<li><img src="./Webfejlesztés 2._files/cel.png" alt=""> <img src="./Webfejlesztés 2._files/tukor.png" alt=""> <strong>Célpont/tükör</strong>: használható célpontként, tükörként vagy egyszerre mindkettőként. Csak az objektum sötétebb háromszöggel jelzett oldala érvényes célpont. Ha piros körrel jelezve van, akkor az adott tükörnek mindenféleképpen célpontnak KELL lennie (de emellett használható tükörként is). Egyéb esetben célpontként, tükörként, vagy mindkét módon is viselkedhet.</li>
+<li><img src="./Webfejlesztés 2._files/felig.png" alt=""> <strong>Féligáteresztő tükör</strong>: kétfelé választja a lézersugarat. Az egyik sugár 90 fokkal megtörve halad tovább, míg a másik a tükrön keresztül egyenesen halad tovább.</li>
+<li><img src="./Webfejlesztés 2._files/dupla.png" alt=""> <strong>Dupla tükör</strong>: az objektum mindkét oldala 90 fokban töri meg a sugár útját.</li>
+<li><img src="./Webfejlesztés 2._files/ellenorzo.png" alt=""> <strong>Ellenőrzőpont</strong>: olyan objektum, amelyen a lézersugárnak mindenképpen át kell haladnia.</li>
+<li><img src="./Webfejlesztés 2._files/blokkolo.png" alt=""> <strong>Blokkoló</strong>: foglalja a helyet, ahol a blokkoló van, oda más objektum nem kerülhet. A lézersugár útját nem akadályozza.</li>
+</ul>
+<h3 id="a-játék-menete">A játék menete</h3>
+<p>A játék egy 5x5-ös táblán zajlik, erre kell elhelyezni az adott feladványban szereplő összes objektumot. A feladvány három információt tartalmaz (ld. lent a <strong>Pályák</strong> részt):</p>
+<ol style="list-style-type: decimal">
+<li><strong>A tábla kezdeti állapota.</strong> A feladvány tartalmazza a tábla kezdeti állapotát. Néhány objektum előre fel van téve a táblára. Ezek helyét változtatni nem szabad. Forgatni akkor nem szabad, ha az objektum jobb felső sarkában egy kis lakat ikon jelenik meg. Ha nincs ott a lakat ikon, akkor az objektum 90 fokonként elforgatható.</li>
+<li><strong>A hozzáadandó elemek.</strong> Ugyancsak meg vannak a tábla mellett adva azok az elemek, amelyeket fel KELL rakni a táblára a feladat megoldásához. Ezek az elemek más elemekre nem rakhatók, viszont tetszőlegesen forgathatók 90 fokonként.</li>
+<li><strong>A megvilágított célpontok száma.</strong> A feladvány tartalmazza, hogy hány célpontot kell megvilágítani a lézernek. A piros körrel jelzett tükrök cél oldalát mindenféleképpen el kell találni, de lehet, hogy piros körrel expliciten nem jelzett tükör cél oldalát kell eltalálni.</li>
+</ol>
+<p>A feladat megoldásához a feladványban szereplő összes objektumot fel kell használni. Pontosan a feladványkártyán szereplő mennyiségű célpontot kell aktiválni. A lézersugárnak minden, a feladványban felsorolt objektumot érintenie kell legalább egyszer (kivéve a blokkolót). A feladat akkor van megoldva, ha a lézersugár a megadott mennyiségű célpontot aktiválta, és (a blokkoló kivételével) minden jelzőt érintett legalább egyszer.</p>
+<h3 id="működés-és-segítség">Működés és segítség</h3>
+<p>Nincs elvárás arra vonatkozóan, hogy milyen technológiával (táblázat vagy canvas) oldod meg a feladatot, továbbá a megjelenést és működést illetően sincsenek kőbe vésett elvárások. Kiválasztva egy feladatot, jelenjen meg a feladvány, és valamilyen módon legyen lehetőség megoldani.</p>
+<p>Az objektumok mozgatása többféleképpen is történhet: lehet drag and dropot használni (<a href="http://jsbin.com/bebaweb/edit?js,output">például így</a>), de úgy is lehet, hogy rákattintva csak kijelölöd, majd egy másik helyre kattintva jelzed, hova szeretnéd mozgatni. Az objektumok forgatására is többféle elképzelés lehetséges: ha drag and dropod van, akkor rákattintva foroghat; ha kijelölöd kattintásra, akkor bevezethetsz két gombot, ami balra és jobbra forgatja 90 fokkal; de az is lehet, hogy bal gombbal kijelölsz, jobb gombbal forgatsz.</p>
+<p>Legyen egy ellenőrző gomb, amivel leellenőrizheted, hogy jól oldottad-e meg a feladatot. Itt sincs szükség a lézernyaláb megjelenítésére, hanem csak kiírod, hogy jó-e vagy sem a megoldás, de látványosabb, ha megjelenik a sugár által bejárt út. Ez is többféleképpen megjelenhet: vagy beszínezed a bejárt cellák hátterét pirosra, vagy magát a sugarat megrajzolod pl. svg segítségével (<a href="http://jsbin.com/mimices/edit?html,css,output">például így</a>).</p>
+<p>A lézer sugarának követésére alapvetően vízszintesen és függőlegesen kell tudni keresni a mátrixban: egy adott pontból adott irányban található-e objektum, és az milyen tulajdonságokkal bír. A bejáráshoz például az alábbi algoritmus használható:</p>
+<pre><code>Változó s: Sor
+
+Sorba(s, lézer koordináták, lézer irány)
+Ciklus amíg nem üres a sor
+    (koordinátapár, irány) := Sorból(s)
+    (van, hol) := Keresés koordinátapárból adott irányban
+    Ha van akkor
+        A hol helyen lévő objektumnak megfelelő adminisztráció (pl. tükör, ellenőrző pont, cél)
+        Ha folytatódhat a sugár akkor
+            Sorba(s, hol, irány)
+            Sorba(s, hol, irány2) //féligáteresztő tükör esetén
+        Elágazás Vége
+    Elágazás Vége
+Ciklus Vége</code></pre>
+<p>Sor létrehozására a sima tömb megfelelő: <code>push()</code> metódussal lehet a végére rakni és <code>shift()</code> metódussal kivenni. A bejárás közben nyilván kell tartani, hogy hány célpontot értünk el, átmentünk-e az ellenőrző ponton, minden objektumot érintettünk-e, egyáltalán minden objektumot felraktunk-e. Ha meg akarjuk jeleníteni a lézert, akkor nyilván kell tartani az utat is: ez lehet a töréspontok koordinátáinak gyűjtése, de lehet rögtön az svg path string építése. Féligáteresztő tükörnél az addigi utat egy az egyben másoljuk le, és akár ezt is be lehet rakni a sorba.</p>
+<p>Érdemes fokozatosan felépíteni az alkalmazást:</p>
+<ol style="list-style-type: decimal">
+<li>Gondold át, milyen adatok szükségesek a játék működtetéséhez!</li>
+<li>Milyen események milyen változást okoznak az adatokban!</li>
+<li>Rajzold ki a pályát az adatok alapján! Mindig ki kell tudni rajzolni az egész pályát az adatok alapján!</li>
+<li>Készítsd el a mozgatást!</li>
+<li>Készítsd el a bejárást (tükörtípusokat folyamatosan bevezetve)!</li>
+</ol>
+<h3 id="pályák">Pályák</h3>
+<p>A játékot megjelenítő oldalon lehessen választani három pálya közül, majd a kiválasztott pályával játszani:</p>
+<div class="clearfix" style="height: 880px; width: 1280px; overflow: hidden;">
+<div style="transform: translate(-260px, -430px) scale(0.5)">
+<h1>
+Egyszerű
+</h1>
+<table>
+<caption>
+Tábla
+</caption>
+<tbody><tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td class="lezer fix forgat90">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td class="cel forgat180">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+</tbody></table>
+<table style="margin-left: 100px">
+<caption>
+Hozzáadandó
+</caption>
+<tbody><tr>
+<td class="dupla">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+</tbody></table>
+<table style="margin-left: 100px">
+<caption>
+Célok száma
+</caption>
+<tbody><tr>
+<td class="szam">
+1
+</td>
+</tr>
+</tbody></table>
+<div class="clearfix">
+
+</div>
+<h1>
+Közepes
+</h1>
+<table>
+<caption>
+Tábla
+</caption>
+<tbody><tr>
+<td class="lezer forgat180">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td class="cel forgat180">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td class="dupla fix forgat90">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+</td>
+<td class="blokkolo">
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+</tbody></table>
+<table style="margin-left: 100px">
+<caption>
+Hozzáadandó
+</caption>
+<tbody><tr>
+<td class="cel">
+</td>
+</tr>
+<tr>
+<td class="felig">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+</tbody></table>
+<table style="margin-left: 100px">
+<caption>
+Célok száma
+</caption>
+<tbody><tr>
+<td class="szam">
+2
+</td>
+</tr>
+</tbody></table>
+<div class="clearfix">
+
+</div>
+<h1>
+Nehéz
+</h1>
+<table>
+<caption>
+Tábla
+</caption>
+<tbody><tr>
+<td>
+</td>
+<td>
+</td>
+<td class="tukor">
+</td>
+<td>
+</td>
+<td class="tukor">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td class="lezer">
+</td>
+<td>
+</td>
+<td class="tukor fix forgat90">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td class="ellenorzo fix">
+</td>
+</tr>
+<tr>
+<td class="dupla forgat90 fix">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+</tbody></table>
+<table style="margin-left: 100px">
+<caption>
+Hozzáadandó
+</caption>
+<tbody><tr>
+<td class="tukor">
+</td>
+</tr>
+<tr>
+<td class="tukor">
+</td>
+</tr>
+<tr>
+<td class="felig">
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+</tr>
+</tbody></table>
+<table style="margin-left: 100px">
+<caption>
+Célok száma
+</caption>
+<tbody><tr>
+<td class="szam">
+2
+</td>
+</tr>
+</tbody></table>
+<div class="clearfix">
+
+</div>
+</div>
+</div>
+<h3 id="pontozás">Pontozás</h3>
+<p>Ha szükséges, akkor a pályák átalakíthatók a lenti feltételek kielégítése végett (pl. Lézerkövetéses feltételek).</p>
+<h4 id="kötelező-enélkül-nincs-jegy">Kötelező (enélkül nincs jegy):</h4>
+<ul>
+<li>Legalább 1 pálya megjelenik.</li>
+<li>Lézer, tükör objektum van.</li>
+<li>Az objektumok mozgathatók.</li>
+<li>Egyenes irányban el tudja dönteni, eléri-e a célt. (Ehhez akár a kezdő pályát át is lehet alakítani.)</li>
+</ul>
+<h4 id="nem-kötelező">Nem kötelező</h4>
+<ul>
+<li>A pályák választhatóak, a kiválasztott pálya megjelenik. (1 pont)</li>
+<li>A megfelelő elemek (ahol nincs lakat) forgathatók. (1 pont)</li>
+<li>A feladványban a pályán lévő elemek nem mozgathatók, csak azok, amiket utólag még hozzá kell adni. (1 pont)</li>
+<li>Lézerkövetés és a megoldás helyességének eldöntése:
+<ul>
+<li>működik egy tükörrel. (1 pont)</li>
+<li>működik akárhány tükörrel. (2 pont)</li>
+<li>működik kétoldalú tükörrel. (1 pont)</li>
+<li>működik blokkolóval. (1 pont)</li>
+<li>működik ellenőrzőponttal. (1 pont)</li>
+<li>működik féligáteresztő tükörrel. (2 pont)</li>
+</ul></li>
+<li>Lézerkövetés: a nyaláb útja valamilyen módon megjelenik. (2 pont)</li>
+<li>Nincs nagyobb programhiba, nem csalhatók elő furcsa jelenségek (1 pont)</li>
+<li>1 hét késés (-3 pont)</li>
+<li>2 hét késés (-6 pont)</li>
+<li>2 hétnél több késés (nincs elfogadva a beadandó, nincs jegy)</li>
+</ul>
+<h3 id="értékelés">Értékelés:</h3>
+<ul>
+<li>0-5 pont: -0,5</li>
+<li>6-10 pont: 0</li>
+<li>11-14 pont: +0,5</li>
+</ul>
+<h3 id="beadás">Beadás</h3>
+<p>A megoldásokat a webprogramozas.inf.elte.hu szerver <a href="http://webprogramozas.inf.elte.hu/bead/">beadási felületén</a> kell megtenni.</p>
+<p>Határidő: 2017. április 18. éjfél</p>
+
+
+
+
+					</section>
+	    		</div>
+	    	</div>
+		</div>
+		
+		<script src="./Webfejlesztés 2._files/jquery.min.js.download"></script>
+		<script src="./Webfejlesztés 2._files/bootstrap.min.js.download"></script>
+	
+</body></html>
